@@ -1,4 +1,4 @@
-<h1 align="center">Streamer Launcher</h1>
+# Streamer Launcher
 
 <p align="center">
   <strong>An ultra-fast, minimal, and elegant home screen engineered specifically for Android TV and Google TV.</strong>
@@ -15,39 +15,41 @@
 
 ---
 
-## 📺 Product Showcase
+## Product Showcase
 
 <p align="center">
   <a href="https://github.com/raviprakashji/Streamer-launcher/releases/download/v1.0/streamer-demo.mp4">
     <img src="docs/screenshots/home.png" alt="Streamer Launcher Demo Video Preview" width="85%">
   </a>
-  <br>
-  <em>🎬 <strong><a href="https://github.com/raviprakashji/Streamer-launcher/releases/download/v1.0/streamer-demo.mp4">Click here to watch the HD Video Demo (MP4)</a></strong></em>
 </p>
 
-### 📸 Core Interface
+<p align="center">
+  <em><strong><a href="https://www.youtube.com/watch?v=ZTTD3AxTKcA">Click here to watch the HD Video Demo (YouTube)</a></strong></em>
+</p>
 
-| 🏠 Home Screen (Page 1) | 🎬 Discover Catalogs (Page 2) |
+### Core Interface
+
+| Home Screen (Page 1) | Discover Catalogs (Page 2) |
 | :---: | :---: |
 | <img src="docs/screenshots/home.png" width="100%" alt="Home Dock and Live Weather"> | <img src="docs/screenshots/discover.png" width="100%" alt="Discover Catalogs and Synopsis"> |
 | *Streamlined glass dock with adaptable icons, clock, and live weather.* | *TMDB Trending rows, ratings aggregator, and dynamic backdrop sync.* |
 
-| ▶️ High-Definition Trailer Streaming | ⚙️ Streamer Settings Main Menu |
+| High-Definition Trailer Streaming | Streamer Settings Main Menu |
 | :---: | :---: |
 | <img src="docs/screenshots/trailer.png" width="100%" alt="In-App Trailer Playback"> | <img src="docs/screenshots/settings.png" width="100%" alt="Streamer Settings Main Menu"> |
 | *Built-in ExoPlayer 1440p / 1080p in-app trailer player with scrub bar and HD badge.* | *AMOLED dark frosted settings menu with fast categorized navigation.* |
 
 ---
 
-### ⚙️ Settings & Configuration Submenus
+### Settings & Configuration Submenus
 
-| 🎨 Appearance Submenu | ⏳ Continue Watching Submenu |
+| Appearance Submenu | Continue Watching Submenu |
 | :---: | :---: |
 | <img src="docs/screenshots/settings_appearance.png" width="100%" alt="Appearance Submenu"> | <img src="docs/screenshots/settings_continue_watching.png" width="100%" alt="Continue Watching Submenu"> |
 | *Wallpapers (Rockies Day/Dusk, Pure black, TMDB cinematic), photo fade, and rotation timer.* | *Filter per-app sources and restore hidden shows with package icon badges.* |
 
 <p align="center">
-  <strong>🎬 Discover Catalogs Submenu</strong>
+  <strong>Discover Catalogs Submenu</strong>
   <br>
   <img src="docs/screenshots/settings_discovery.png" width="70%" alt="Discover Catalogs Submenu">
   <br>
@@ -56,35 +58,35 @@
 
 ---
 
-## 🌟 Key Features
+## Key Features
 
-- **🚀 Featherlight & Instant**: 
+- **Featherlight & Instant**:
   - Sub-4MB APK footprint with instant cold boot.
   - Native heap footprint of only ~38 MB (45% leaner than standard TV launchers) for lag-free 60fps D-pad scrolling.
-- **🎬 TMDB Discover Catalogs**:
+- **TMDB Discover Catalogs**:
   - Browse trending movies, popular series, top rated titles, and curated genres.
   - Dynamic synopsis cards with multi-platform ratings (IMDb, TMDb, Rotten Tomatoes, Trakt, Metacritic).
-- **📋 MDBList & SIMKL Watchlists**:
+- **MDBList & SIMKL Watchlists**:
   - Connect your personal or public MDBList and SIMKL watchlists.
   - Automatically fetches and updates watchlist rows directly onto the Discover page.
-- **🍿 Built-In HD Trailer Streaming**:
+- **Built-In HD Trailer Streaming**:
   - Seamless in-app ExoPlayer trailer playback supporting up to 1440p / 1080p.
   - Video resolution badge, scrubbable progress bar, and instant play/pause without leaving the launcher.
-- **🎯 Preferred Media Player Launcher**:
+- **Preferred Media Player Launcher**:
   - One-click launch to your favorite external video player: **Nuvio**, **Nova Player**, **Stremio**, **Just Player**, **Kodi**, **VLC**, **MX Player**, or prompt on every play.
-- **⏳ Continue Watching Aggregator**:
+- **Continue Watching Aggregator**:
   - Resumes ongoing media from Android TV Watch Next and supported media applications.
   - Hidden show management with app icon badges (`[app_icon] show_title`) and automatic pruning of uninstalled apps.
-- **🎨 Wallpaper & Theme Adaptability**:
+- **Wallpaper & Theme Adaptability**:
   - Adaptive contrast borders: smoothly curved poster corners with zero edge clipping.
   - Dynamic text and border illumination that automatically balances visibility across light wallpapers (e.g. Rockies Day) and dark AMOLED backgrounds.
-- **🔒 Privacy & Layout Control**:
+- **Privacy & Layout Control**:
   - Rearrange, reorder, or hide apps from the home dock.
   - Optional parental/layout lock PIN.
 
 ---
 
-## 🏗️ Technical Architecture & Implementation
+## Technical Architecture & Implementation
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -104,22 +106,26 @@
 ```
 
 ### 1. Zero-Overhead View Hierarchy
+
 To guarantee uncompromising 60fps smoothness on budget Android TV sticks and smart TVs:
+
 - Built strictly using lightweight framework `View` components (`FrameLayout`, `LinearLayout`, `ImageView`, `TextView`).
 - Completely eliminates heavyweight runtime reflection frameworks and heavy Compose runtimes, saving tens of megabytes of RAM.
 
 ### 2. Extreme Memory & APK Optimization
+
 - **Bitmap Memory Management**: Decodes non-transparent backdrops and wallpapers using `Bitmap.Config.RGB_565`, slashing texture memory usage in half.
 - **Native Typography**: Removed redundant bundled `.ttf` fonts, utilizing Android's hardware-optimized system Roboto variants (`sans-serif-light`, `sans-serif-medium`).
 - **Asset Modernization**: Bundled gallery artwork converted to high-compression WebP format, reducing asset footprint by over 70%.
 
 ### 3. In-App YouTube Stream Extraction
+
 - Resolves YouTube trailer streams in-app using an adaptive stream manifest extractor (`InAppYouTubeExtractor.kt`).
 - Merges separate high-bitrate video streams (up to 1440p) with clean AAC audio streams via ExoPlayer's `MergingMediaSource` without external companion apps.
 
 ---
 
-## 🎮 TV Remote Navigation Guide
+## TV Remote Navigation Guide
 
 | Action | Remote Key / Gesture |
 | :--- | :--- |
@@ -132,13 +138,16 @@ To guarantee uncompromising 60fps smoothness on budget Android TV sticks and sma
 
 ---
 
-## 📥 Installation
+## Installation
 
 ### Option 1: Direct APK Download
+
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
+
 - **`Streamer launcher_v1.0.apk`** (3.8 MB)
 
 ### Option 2: Install via ADB
+
 ```bash
 # 1. Connect to your TV over Wi-Fi
 adb connect <your-tv-ip>:5555
@@ -149,13 +158,15 @@ adb install -r "Streamer launcher_v1.0.apk"
 
 ---
 
-## 🛠️ Building from Source
+## Building from Source
 
 ### Prerequisites
+
 - **JDK 17** (Temurin or OpenJDK recommended)
 - **Android SDK** (API Level 36, Build Tools 34.0.0)
 
 ### Build Commands
+
 ```bash
 # Clone the repository
 git clone https://github.com/raviprakashji/Streamer-launcher.git
@@ -167,11 +178,13 @@ cd Streamer-launcher
 # Compile release APK
 ./gradlew assembleRelease
 ```
+
 The compiled APK will be located at:
+
 `app/build/outputs/apk/release/Streamer launcher_v1.0.apk`
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the **GNU General Public License v3.0 (GPL-3.0)**. See the [LICENSE](LICENSE) file for complete details.
