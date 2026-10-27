@@ -1,13 +1,13 @@
-# Streamer Launcher
+﻿# Streamer Launcher
 
 <p align="center">
   <strong>An ultra-fast, minimal, and elegant home screen engineered specifically for Android TV and Google TV.</strong>
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v1.0-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v1.1-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
-  <img alt="APK size" src="https://img.shields.io/badge/APK-3.8%20MB-success?style=flat-square">
+  <img alt="APK size" src="https://img.shields.io/badge/APK-4.0%20MB-success?style=flat-square">
   <a href="https://github.com/raviprakashji/Streamer-launcher/actions"><img alt="CI Build" src="https://img.shields.io/github/actions/workflow/status/raviprakashji/Streamer-launcher/build-release.yml?branch=main&style=flat-square"></a>
   <img alt="Ad-Free" src="https://img.shields.io/badge/Ads-None-brightgreen?style=flat-square">
   <a href="LICENSE"><img alt="GPL-3.0 License" src="https://img.shields.io/badge/License-GPL--3.0-orange?style=flat-square"></a>
@@ -144,7 +144,7 @@ To guarantee uncompromising 60fps smoothness on budget Android TV sticks and sma
 
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
 
-- **`Streamer launcher_v1.0.apk`** (3.8 MB)
+- **`Streamer.launcher_v1.1.apk`** (3.8 MB)
 
 ### Option 2: Install via ADB
 
@@ -153,7 +153,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer launcher_v1.0.apk"
+adb install -r "Streamer.launcher_v1.1.apk"
 ```
 
 ---
@@ -181,7 +181,7 @@ cd Streamer-launcher
 
 The compiled APK will be located at:
 
-`app/build/outputs/apk/release/Streamer launcher_v1.0.apk`
+`app/build/outputs/apk/release/Streamer.launcher_v1.1.apk`
 
 ---
 
