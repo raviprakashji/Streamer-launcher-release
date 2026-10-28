@@ -1,13 +1,13 @@
-﻿# Streamer Launcher
+# Streamer Launcher
 
 <p align="center">
   <strong>An ultra-fast, minimal, and elegant home screen engineered specifically for Android TV and Google TV.</strong>
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v1.1-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v1.2-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
-  <img alt="APK size" src="https://img.shields.io/badge/APK-4.0%20MB-success?style=flat-square">
+  <img alt="APK size" src="https://img.shields.io/badge/APK-1.48%20MB-success?style=flat-square">
   <a href="https://github.com/raviprakashji/Streamer-launcher/actions"><img alt="CI Build" src="https://img.shields.io/github/actions/workflow/status/raviprakashji/Streamer-launcher/build-release.yml?branch=main&style=flat-square"></a>
   <img alt="Ad-Free" src="https://img.shields.io/badge/Ads-None-brightgreen?style=flat-square">
   <a href="LICENSE"><img alt="GPL-3.0 License" src="https://img.shields.io/badge/License-GPL--3.0-orange?style=flat-square"></a>
@@ -60,9 +60,20 @@
 
 ## Key Features
 
-- **Featherlight & Instant**:
-  - Sub-4MB APK footprint with instant cold boot.
-  - Native heap footprint of only ~38 MB (45% leaner than standard TV launchers) for lag-free 60fps D-pad scrolling.
+- **Ultra-Lean & Featherlight (1.48 MB)**:
+  - APK size cut down to **1.48 MB** (over 60% reduction) via aggressive R8 Full-Mode optimization, ProGuard dead-code stripping, and resource configuration targeting.
+  - **Near-Zero Background Memory Usage**: Automatically flushes poster and bitmap caches on app backgrounding (onStop()), leaving virtually no RAM occupied while external video players or games run.
+- **In-App Auto-Updates**:
+  - Direct background check against GitHub Releases.
+  - Notification badge indicator in Settings when a new version is published.
+  - Built-in updater with download progress and automatic APK install prompt via Android FileProvider.
+- **Live Cricket Scores Pill**:
+  - Live cricket scores pill next to weather on the home screen powered by CricketData API.
+  - Interactive popup scorecards with compact card layout, vertical glass scrollbar, and seamless D-pad navigation.
+  - Smart quota handling: automatically hides the pill gracefully when API tokens or match schedules are exhausted.
+- **Media Player Relay & Voice Search Disambiguation**:
+  - Overlays a direct "Watch in [Player]" button on Google Assistant search result pages and TV detail screens.
+  - Intelligent media title resolution ranking that correctly prioritizes exact title and year matches over similar TV series names (e.g., *Brazil (1985)* movie vs *Avenida Brasil* series).
 - **TMDB Discover Catalogs**:
   - Browse trending movies, popular series, top rated titles, and curated genres.
   - Dynamic synopsis cards with multi-platform ratings (IMDb, TMDb, Rotten Tomatoes, Trakt, Metacritic).
@@ -76,7 +87,7 @@
   - One-click launch to your favorite external video player: **Nuvio**, **Nova Player**, **Stremio**, **Just Player**, **Kodi**, **VLC**, **MX Player**, or prompt on every play.
 - **Continue Watching Aggregator**:
   - Resumes ongoing media from Android TV Watch Next and supported media applications.
-  - Hidden show management with app icon badges (`[app_icon] show_title`) and automatic pruning of uninstalled apps.
+  - Hidden show management with app icon badges ([app_icon] show_title) and automatic pruning of uninstalled apps.
 - **Wallpaper & Theme Adaptability**:
   - Adaptive contrast borders: smoothly curved poster corners with zero edge clipping.
   - Dynamic text and border illumination that automatically balances visibility across light wallpapers (e.g. Rockies Day) and dark AMOLED backgrounds.
@@ -86,42 +97,42 @@
 
 ---
 
-## Technical Architecture & Implementation
+## Technical Architecture
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                        Streamer Launcher Engine                        │
-├────────────────────────────────┬───────────────────────────────────────┤
-│         Data Layer             │              UI Layer                 │
-│  • TMDB API Client             │  • Lightweight Android View Hierarchy │
-│  • MDBList / SIMKL Engine      │  • SnapScrollView (60fps D-pad Paging)│
-│  • Android WatchNext Provider  │  • DockPillView (Frosted Blur Glass)  │
-│  • In-App YouTube Extractor    │  • Dynamic Backdrop Renderer          │
-├────────────────────────────────┴───────────────────────────────────────┤
-│                       Hardware & Media Pipeline                        │
-│  • Media3 ExoPlayer 1.5.1 (1440p/1080p Video + AAC Audio Stream Mux)   │
-│  • RGB_565 Decoded Bitmaps (Zero GC Stalls, 45% Native Heap Savings)   │
-│  • LruCache Memory Gate (Bounded 8 MB Cache for Posters)               │
-└────────────────────────────────────────────────────────────────────────┘
-```
+`	ext
++-------------------------------------------------------------------------------+
+|                               Streamer Launcher                               |
++---------------------------------------+---------------------------------------+
+|              Data Layer               |               UI Layer                |
+|  - TMDB API Client                    |  - Lightweight Android View Hierarchy |
+|  - MDBList / SIMKL Engine             |  - SnapScrollView (60fps D-pad Paging)|
+|  - Android WatchNext Provider         |  - DockPillView (Frosted Blur Glass)  |
+|  - In-App YouTube Extractor           |  - Dynamic Backdrop Renderer          |
+|  - CricketData Live Score Engine      |  - Glass Scorecard Overlay Container  |
+|  - GitHub Auto-Update Service         |  - Media Player Relay Accessibility   |
++---------------------------------------+---------------------------------------+
+|                          Hardware & Media Pipeline                            |
+|  - Media3 ExoPlayer 1.5.1 (1440p/1080p Video + AAC Audio Stream Mux)          |
+|  - RGB_565 Decoded Bitmaps (Zero GC Stalls, Native Heap Savings)              |
+|  - Instant Cache Flushing on Backgrounding (Near-Zero Idle Memory Footprint)  |
+|  - R8 Full-Mode Minification & Multi-Pass Optimization (1.48 MB Total APK)    |
++-------------------------------------------------------------------------------+
+`
 
 ### 1. Zero-Overhead View Hierarchy
-
 To guarantee uncompromising 60fps smoothness on budget Android TV sticks and smart TVs:
-
-- Built strictly using lightweight framework `View` components (`FrameLayout`, `LinearLayout`, `ImageView`, `TextView`).
+- Built strictly using lightweight framework View components (FrameLayout, LinearLayout, ImageView, TextView).
 - Completely eliminates heavyweight runtime reflection frameworks and heavy Compose runtimes, saving tens of megabytes of RAM.
 
 ### 2. Extreme Memory & APK Optimization
-
-- **Bitmap Memory Management**: Decodes non-transparent backdrops and wallpapers using `Bitmap.Config.RGB_565`, slashing texture memory usage in half.
-- **Native Typography**: Removed redundant bundled `.ttf` fonts, utilizing Android's hardware-optimized system Roboto variants (`sans-serif-light`, `sans-serif-medium`).
-- **Asset Modernization**: Bundled gallery artwork converted to high-compression WebP format, reducing asset footprint by over 70%.
+- **Ultra-Lean Packaging**: Shrunk APK from 4.13 MB down to 1.48 MB (62% reduction) by removing heavy uncompressed assets, pruning unused HLS codecs, and running 5 passes of R8 full-mode optimization.
+- **Zero-Footprint Idle Cache**: Memory caches for decoded posters and metadata are immediately flushed when external media apps start (onStop()), freeing memory for external 4K video players.
+- **Bitmap Memory Management**: Decodes non-transparent backdrops and wallpapers using Bitmap.Config.RGB_565, slashing texture memory usage in half.
+- **Native Typography**: Uses Android's hardware-optimized system Roboto variants (sans-serif-light, sans-serif-medium).
 
 ### 3. In-App YouTube Stream Extraction
-
-- Resolves YouTube trailer streams in-app using an adaptive stream manifest extractor (`InAppYouTubeExtractor.kt`).
-- Merges separate high-bitrate video streams (up to 1440p) with clean AAC audio streams via ExoPlayer's `MergingMediaSource` without external companion apps.
+- Resolves YouTube trailer streams in-app using an adaptive stream manifest extractor (InAppYouTubeExtractor.kt).
+- Merges separate high-bitrate video streams (up to 1440p) with clean AAC audio streams via ExoPlayer's MergingMediaSource without external companion apps.
 
 ---
 
@@ -129,45 +140,40 @@ To guarantee uncompromising 60fps smoothness on budget Android TV sticks and sma
 
 | Action | Remote Key / Gesture |
 | :--- | :--- |
-| **Move Focus** | <kbd>▲</kbd> <kbd>▼</kbd> <kbd>◀</kbd> <kbd>▶</kbd> Directional Pad (D-pad) |
+| **Move Focus** | <kbd>Up</kbd> <kbd>Down</kbd> <kbd>Left</kbd> <kbd>Right</kbd> Directional Pad (D-pad) |
 | **Launch App / Media** | <kbd>OK</kbd> / <kbd>Enter</kbd> (Center Button) |
-| **Switch Pages** | <kbd>▼</kbd> Down from dock transitions smoothly to Page 2 (Discover Catalogs) |
-| **Quick Play / Trailer** | Highlight movie poster -> Press <kbd>▲</kbd> Up to access Play and Trailer buttons |
+| **Switch Pages** | <kbd>Down</kbd> from dock transitions smoothly to Page 2 (Discover Catalogs) |
+| **Quick Play / Trailer** | Highlight movie poster -> Press <kbd>Up</kbd> to access Play and Trailer buttons |
 | **App Management** | Long-press <kbd>OK</kbd> on any dock app to rearrange or hide |
-| **Back / Exit Modal** | <kbd>Back</kbd> key closes trailers, search dialogs, and settings panels |
+| **Back / Exit Modal** | <kbd>Back</kbd> key closes trailers, search dialogs, scorecards, and settings |
 
 ---
 
 ## Installation
 
 ### Option 1: Direct APK Download
-
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-
-- **`Streamer.launcher_v1.1.apk`** (3.8 MB)
+- **Streamer.launcher_v1.2.apk** (1.48 MB)
 
 ### Option 2: Install via ADB
-
-```bash
+`ash
 # 1. Connect to your TV over Wi-Fi
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v1.1.apk"
-```
+adb install -r "Streamer.launcher_v1.2.apk"
+`
 
 ---
 
 ## Building from Source
 
 ### Prerequisites
-
 - **JDK 17** (Temurin or OpenJDK recommended)
 - **Android SDK** (API Level 36, Build Tools 34.0.0)
 
 ### Build Commands
-
-```bash
+`ash
 # Clone the repository
 git clone https://github.com/raviprakashji/Streamer-launcher.git
 cd Streamer-launcher
@@ -177,11 +183,9 @@ cd Streamer-launcher
 
 # Compile release APK
 ./gradlew assembleRelease
-```
-
+`
 The compiled APK will be located at:
-
-`app/build/outputs/apk/release/Streamer.launcher_v1.1.apk`
+pp/build/outputs/apk/release/Streamer.launcher_v1.2.apk
 
 ---
 
