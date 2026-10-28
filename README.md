@@ -1,4 +1,4 @@
-# Streamer Launcher
+﻿# Streamer Launcher
 
 <p align="center">
   <strong>An ultra-fast, minimal, and elegant home screen engineered specifically for Android TV and Google TV.</strong>
@@ -7,7 +7,7 @@
 <p align="center">
   <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v1.2-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
-  <img alt="APK size" src="https://img.shields.io/badge/APK-1.48%20MB-success?style=flat-square">
+  <img alt="APK size" src="https://img.shields.io/badge/APK-3.6%20MB-success?style=flat-square">
   <a href="https://github.com/raviprakashji/Streamer-launcher/actions"><img alt="CI Build" src="https://img.shields.io/github/actions/workflow/status/raviprakashji/Streamer-launcher/build-release.yml?branch=main&style=flat-square"></a>
   <img alt="Ad-Free" src="https://img.shields.io/badge/Ads-None-brightgreen?style=flat-square">
   <a href="LICENSE"><img alt="GPL-3.0 License" src="https://img.shields.io/badge/License-GPL--3.0-orange?style=flat-square"></a>
@@ -60,7 +60,7 @@
 
 ## Key Features
 
-- **Ultra-Lean & Featherlight (1.48 MB)**:
+- **Ultra-Lean & Featherlight (3.6 MB)**:
   - APK size cut down to **1.48 MB** (over 60% reduction) via aggressive R8 Full-Mode optimization, ProGuard dead-code stripping, and resource configuration targeting.
   - **Near-Zero Background Memory Usage**: Automatically flushes poster and bitmap caches on app backgrounding (onStop()), leaving virtually no RAM occupied while external video players or games run.
 - **In-App Auto-Updates**:
@@ -115,7 +115,7 @@
 |  - Media3 ExoPlayer 1.5.1 (1440p/1080p Video + AAC Audio Stream Mux)          |
 |  - RGB_565 Decoded Bitmaps (Zero GC Stalls, Native Heap Savings)              |
 |  - Instant Cache Flushing on Backgrounding (Near-Zero Idle Memory Footprint)  |
-|  - R8 Full-Mode Minification & Multi-Pass Optimization (1.48 MB Total APK)    |
+|  - R8 Full-Mode Minification & Multi-Pass Optimization (3.6 MB Total APK)    |
 +-------------------------------------------------------------------------------+
 `
 
@@ -125,7 +125,7 @@ To guarantee uncompromising 60fps smoothness on budget Android TV sticks and sma
 - Completely eliminates heavyweight runtime reflection frameworks and heavy Compose runtimes, saving tens of megabytes of RAM.
 
 ### 2. Extreme Memory & APK Optimization
-- **Ultra-Lean Packaging**: Shrunk APK from 4.13 MB down to 1.48 MB (62% reduction) by removing heavy uncompressed assets, pruning unused HLS codecs, and running 5 passes of R8 full-mode optimization.
+- **Ultra-Lean Packaging**: Shrunk APK from 4.13 MB down to 3.6 MB by removing heavy uncompressed assets, pruning unused HLS codecs, and running 5 passes of R8 full-mode optimization.
 - **Zero-Footprint Idle Cache**: Memory caches for decoded posters and metadata are immediately flushed when external media apps start (onStop()), freeing memory for external 4K video players.
 - **Bitmap Memory Management**: Decodes non-transparent backdrops and wallpapers using Bitmap.Config.RGB_565, slashing texture memory usage in half.
 - **Native Typography**: Uses Android's hardware-optimized system Roboto variants (sans-serif-light, sans-serif-medium).
@@ -153,7 +153,7 @@ To guarantee uncompromising 60fps smoothness on budget Android TV sticks and sma
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-- **Streamer.launcher_v1.2.apk** (1.48 MB)
+- **Streamer.launcher_v1.2.apk** (3.6 MB)
 
 ### Option 2: Install via ADB
 `ash
