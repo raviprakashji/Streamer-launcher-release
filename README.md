@@ -1,11 +1,11 @@
-﻿# Streamer Launcher
+# Streamer Launcher
 
 <p align="center">
   <strong>An ultra-fast, minimal, and elegant home screen engineered specifically for Android TV and Google TV.</strong>
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v1.2-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v2.0-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
   <img alt="APK size" src="https://img.shields.io/badge/APK-3.6%20MB-success?style=flat-square">
   <a href="https://github.com/raviprakashji/Streamer-launcher/actions"><img alt="CI Build" src="https://img.shields.io/github/actions/workflow/status/raviprakashji/Streamer-launcher/build-release.yml?branch=main&style=flat-square"></a>
@@ -41,7 +41,7 @@
 
 ---
 
-### Settings & Configuration Submenus
+### Settings and Configuration Submenus
 
 | Appearance Submenu | Continue Watching Submenu |
 | :---: | :---: |
@@ -53,86 +53,81 @@
   <br>
   <img src="docs/screenshots/settings_discovery.png" width="70%" alt="Discover Catalogs Submenu">
   <br>
-  <em>Toggle discovery catalogs, connect MDBList & SIMKL watchlists, and configure preferred media players.</em>
+  <em>Toggle discovery catalogs, connect MDBList and SIMKL watchlists, and configure preferred media players.</em>
 </p>
 
 ---
 
 ## Key Features
 
-- **Ultra-Lean & Featherlight (3.6 MB)**:
-  - APK size cut down to **1.48 MB** (over 60% reduction) via aggressive R8 Full-Mode optimization, ProGuard dead-code stripping, and resource configuration targeting.
-  - **Near-Zero Background Memory Usage**: Automatically flushes poster and bitmap caches on app backgrounding (onStop()), leaving virtually no RAM occupied while external video players or games run.
-- **In-App Auto-Updates**:
-  - Direct background check against GitHub Releases.
-  - Notification badge indicator in Settings when a new version is published.
-  - Built-in updater with download progress and automatic APK install prompt via Android FileProvider.
+- **TV Calendar and Premiere Schedule**:
+  - Full TV Calendar modal accessible directly from the top navigation bar with My Shows and All Premieres tabs.
+  - Fluid continuous scrolling when holding down DPAD navigation across date headers and episode groups.
+  - Genuine Premieres filtering: TMDb season debut verification filters out foreign re-runs, repeats, and catalog noise.
+  - Instant 0ms view loading with persistent disk caching and downsampled RGB_565 poster decoding.
+- **Backup and Restore System**:
+  - Complete configuration export and import under Streamer Settings -> Backup / Reset.
+  - Backs up and restores dock ordering, wallpaper preferences, screensaver modes, weather locations and units, live CricketData API key, Homescreen Dimming timeouts, and SIMKL credentials.
+  - Seamlessly re-applies preferences across device re-installations while matching currently installed TV applications.
+- **Ambient Homescreen Dimming**:
+  - Customizable idle dimmer under Appearance settings (choices: 5s, 10s, 15s, 30s, 1m, 2m, 5m, 15m, or Off).
+  - Smoothly fades the dock, clock, weather, and top navigation bar to transparent during inactivity, transforming the TV into a clean art canvas.
+  - Preserves live Cricket match pill visibility during dimming.
+  - Instantly wakes up upon any remote D-pad input or touch interaction.
+- **Zero-Permission AOT Compilation**:
+  - Bundles Android Jetpack Baseline Profiles (androidx.profileinstaller) to compile DEX bytecode to native machine instructions directly upon installation and update.
+  - Requires zero Developer Options, no USB Debugging, and no Root privileges.
+- **Ultra-Lean and Memory Optimized (3.6 MB APK)**:
+  - Sub-4MB APK footprint with instant cold boot.
+  - Deep memory trim: 89% reduction in active views, saving over 100 MB of native memory and 50% of GPU buffer memory.
+  - Deadlock-free background executor architecture for smooth, stall-free operation on low-RAM TV hardware.
 - **Live Cricket Scores Pill**:
-  - Live cricket scores pill next to weather on the home screen powered by CricketData API.
+  - Live cricket match pill next to weather on the home screen powered by CricketData API.
   - Interactive popup scorecards with compact card layout, vertical glass scrollbar, and seamless D-pad navigation.
-  - Smart quota handling: automatically hides the pill gracefully when API tokens or match schedules are exhausted.
-- **Media Player Relay & Voice Search Disambiguation**:
+- **Media Player Relay and Voice Search Disambiguation**:
   - Overlays a direct "Watch in [Player]" button on Google Assistant search result pages and TV detail screens.
-  - Intelligent media title resolution ranking that correctly prioritizes exact title and year matches over similar TV series names (e.g., *Brazil (1985)* movie vs *Avenida Brasil* series).
+  - Intelligent media title resolution ranking that correctly prioritizes exact title and year matches.
 - **TMDB Discover Catalogs**:
   - Browse trending movies, popular series, top rated titles, and curated genres.
   - Dynamic synopsis cards with multi-platform ratings (IMDb, TMDb, Rotten Tomatoes, Trakt, Metacritic).
-- **MDBList & SIMKL Watchlists**:
-  - Connect your personal or public MDBList and SIMKL watchlists.
+- **MDBList and SIMKL Watchlists**:
+  - Connect personal or public MDBList and SIMKL watchlists.
   - Automatically fetches and updates watchlist rows directly onto the Discover page.
 - **Built-In HD Trailer Streaming**:
   - Seamless in-app ExoPlayer trailer playback supporting up to 1440p / 1080p.
   - Video resolution badge, scrubbable progress bar, and instant play/pause without leaving the launcher.
 - **Preferred Media Player Launcher**:
-  - One-click launch to your favorite external video player: **Nuvio**, **Nova Player**, **Stremio**, **Just Player**, **Kodi**, **VLC**, **MX Player**, or prompt on every play.
+  - One-click launch to your favorite external video player: Nuvio, Nova Player, Stremio, Just Player, Kodi, VLC, MX Player, or prompt on every play.
 - **Continue Watching Aggregator**:
   - Resumes ongoing media from Android TV Watch Next and supported media applications.
-  - Hidden show management with app icon badges ([app_icon] show_title) and automatic pruning of uninstalled apps.
-- **Wallpaper & Theme Adaptability**:
-  - Adaptive contrast borders: smoothly curved poster corners with zero edge clipping.
-  - Dynamic text and border illumination that automatically balances visibility across light wallpapers (e.g. Rockies Day) and dark AMOLED backgrounds.
-- **Privacy & Layout Control**:
-  - Rearrange, reorder, or hide apps from the home dock.
-  - Optional parental/layout lock PIN.
+  - Hidden show management with app icon badges and automatic pruning of uninstalled apps.
 
 ---
 
 ## Technical Architecture
 
-`	ext
+```
 +-------------------------------------------------------------------------------+
 |                               Streamer Launcher                               |
 +---------------------------------------+---------------------------------------+
 |              Data Layer               |               UI Layer                |
 |  - TMDB API Client                    |  - Lightweight Android View Hierarchy |
 |  - MDBList / SIMKL Engine             |  - SnapScrollView (60fps D-pad Paging)|
-|  - Android WatchNext Provider         |  - DockPillView (Frosted Blur Glass)  |
-|  - In-App YouTube Extractor           |  - Dynamic Backdrop Renderer          |
-|  - CricketData Live Score Engine      |  - Glass Scorecard Overlay Container  |
-|  - GitHub Auto-Update Service         |  - Media Player Relay Accessibility   |
+|  - TV Calendar & Premieres Filter     |  - DockPillView (Frosted Blur Glass)  |
+|  - Backup & Restore JSON Engine       |  - Ambient Dimmer Alpha Controller    |
+|  - Android WatchNext Provider         |  - Dynamic Backdrop Renderer          |
+|  - In-App YouTube Extractor           |  - Glass Scorecard Overlay Container  |
+|  - CricketData Live Score Engine      |  - Media Player Relay Accessibility   |
+|  - GitHub Auto-Update Service         |  - TV Calendar Modal & Timeline View  |
 +---------------------------------------+---------------------------------------+
 |                          Hardware & Media Pipeline                            |
 |  - Media3 ExoPlayer 1.5.1 (1440p/1080p Video + AAC Audio Stream Mux)          |
+|  - Android Jetpack ProfileInstaller (Zero-Permission AOT Machine Compilation) |
 |  - RGB_565 Decoded Bitmaps (Zero GC Stalls, Native Heap Savings)              |
 |  - Instant Cache Flushing on Backgrounding (Near-Zero Idle Memory Footprint)  |
 |  - R8 Full-Mode Minification & Multi-Pass Optimization (3.6 MB Total APK)    |
 +-------------------------------------------------------------------------------+
-`
-
-### 1. Zero-Overhead View Hierarchy
-To guarantee uncompromising 60fps smoothness on budget Android TV sticks and smart TVs:
-- Built strictly using lightweight framework View components (FrameLayout, LinearLayout, ImageView, TextView).
-- Completely eliminates heavyweight runtime reflection frameworks and heavy Compose runtimes, saving tens of megabytes of RAM.
-
-### 2. Extreme Memory & APK Optimization
-- **Ultra-Lean Packaging**: Shrunk APK from 4.13 MB down to 3.6 MB by removing heavy uncompressed assets, pruning unused HLS codecs, and running 5 passes of R8 full-mode optimization.
-- **Zero-Footprint Idle Cache**: Memory caches for decoded posters and metadata are immediately flushed when external media apps start (onStop()), freeing memory for external 4K video players.
-- **Bitmap Memory Management**: Decodes non-transparent backdrops and wallpapers using Bitmap.Config.RGB_565, slashing texture memory usage in half.
-- **Native Typography**: Uses Android's hardware-optimized system Roboto variants (sans-serif-light, sans-serif-medium).
-
-### 3. In-App YouTube Stream Extraction
-- Resolves YouTube trailer streams in-app using an adaptive stream manifest extractor (InAppYouTubeExtractor.kt).
-- Merges separate high-bitrate video streams (up to 1440p) with clean AAC audio streams via ExoPlayer's MergingMediaSource without external companion apps.
+```
 
 ---
 
@@ -143,9 +138,11 @@ To guarantee uncompromising 60fps smoothness on budget Android TV sticks and sma
 | **Move Focus** | <kbd>Up</kbd> <kbd>Down</kbd> <kbd>Left</kbd> <kbd>Right</kbd> Directional Pad (D-pad) |
 | **Launch App / Media** | <kbd>OK</kbd> / <kbd>Enter</kbd> (Center Button) |
 | **Switch Pages** | <kbd>Down</kbd> from dock transitions smoothly to Page 2 (Discover Catalogs) |
+| **All Apps Shortcut** | Press <kbd>Up</kbd> from anywhere in the app dock to focus the All Apps icon |
+| **Open TV Calendar** | Select the Calendar icon from the top bar |
 | **Quick Play / Trailer** | Highlight movie poster -> Press <kbd>Up</kbd> to access Play and Trailer buttons |
 | **App Management** | Long-press <kbd>OK</kbd> on any dock app to rearrange or hide |
-| **Back / Exit Modal** | <kbd>Back</kbd> key closes trailers, search dialogs, scorecards, and settings |
+| **Back / Exit Modal** | <kbd>Back</kbd> key closes trailers, search dialogs, calendar, and settings |
 
 ---
 
@@ -153,16 +150,16 @@ To guarantee uncompromising 60fps smoothness on budget Android TV sticks and sma
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-- **Streamer.launcher_v1.2.apk** (3.6 MB)
+- **Streamer.launcher_v2.0.apk** (3.6 MB)
 
 ### Option 2: Install via ADB
-`ash
+```bash
 # 1. Connect to your TV over Wi-Fi
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v1.2.apk"
-`
+adb install -r "Streamer.launcher_v2.0.apk"
+```
 
 ---
 
@@ -173,7 +170,7 @@ adb install -r "Streamer.launcher_v1.2.apk"
 - **Android SDK** (API Level 36, Build Tools 34.0.0)
 
 ### Build Commands
-`ash
+```bash
 # Clone the repository
 git clone https://github.com/raviprakashji/Streamer-launcher.git
 cd Streamer-launcher
@@ -183,9 +180,9 @@ cd Streamer-launcher
 
 # Compile release APK
 ./gradlew assembleRelease
-`
+```
 The compiled APK will be located at:
-pp/build/outputs/apk/release/Streamer.launcher_v1.2.apk
+`app/build/outputs/apk/release/Streamer.launcher_v2.0.apk`
 
 ---
 
