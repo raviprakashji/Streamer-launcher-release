@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.1-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.2-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
   <img alt="APK size" src="https://img.shields.io/badge/APK-3.9%20MB-success?style=flat-square">
   <a href="https://github.com/raviprakashji/Streamer-launcher/actions"><img alt="CI Build" src="https://img.shields.io/github/actions/workflow/status/raviprakashji/Streamer-launcher/build-release.yml?branch=main&style=flat-square"></a>
@@ -169,7 +169,7 @@
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-- **Streamer.launcher_v3.1.apk** (3.9 MB)
+- **Streamer.launcher_v3.2.apk** (3.9 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -177,7 +177,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v3.1.apk"
+adb install -r "Streamer.launcher_v3.2.apk"
 ```
 
 ---
@@ -201,7 +201,23 @@ cd Streamer-launcher
 ./gradlew assembleRelease
 ```
 The compiled APK will be located at:
-`app/build/outputs/apk/release/Streamer.launcher_v3.1.apk`
+`app/build/outputs/apk/release/Streamer.launcher_v3.2.apk`
+
+---
+
+## Changelog
+
+### v3.2
+- **Direct Hardware Screenshot Engine (Android 14 & Google TV Streamer)**: Captures display frames directly from `SurfaceFlinger` hardware buffers via `AccessibilityService.takeScreenshot(Display.DEFAULT_DISPLAY, ...)`, fully bypassing the missing SystemUI screenshot service on Google TV Streamer. Saves directly to `Pictures/Screenshots` with on-screen confirmation toast.
+- **TV-Optimized System Actions Menu**: Removed non-TV compatible options (`Recent apps`, `Notifications`, `Quick settings`) from the Button Mapper System Actions menu, presenting only true Leanback TV actions (Home, Back, Power menu, Take screenshot, Sleep display).
+- **Android 14 Accessibility & Security Policy Compatibility**: Added `canTakeScreenshot="true"` and `canPerformGestures="true"` to `home_override.xml` and preserved capability bitmasks in `HomeOverride`.
+- **Navigation Fallbacks**: Added direct `CATEGORY_HOME` intent fallback for the Home action and `onBackPressed()` for the Back action to guarantee navigation continuity across Android OS versions.
+
+### v3.1
+- **SIMKL Taste Profile & Native "For You" Recommendations**: On-device multi-factor recommendation engine calculating decaying genre affinity, decade distribution, and language preferences.
+- **Seamless SIMKL Watchlist Toggle**: Real-time Watchlist addition and removal with instant in-place state updating and cache invalidation.
+- **Instant Package Uninstallation Sync**: Zero-latency app removal reflecting across All Apps and the App Dock.
+- **Live Cricket Format Resolution Engine**: Automated tournament format discovery distinguishing ODIs, T20s, and Tests accurately.
 
 ---
 
