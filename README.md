@@ -1,13 +1,13 @@
-# Streamer Launcher
+﻿# Streamer Launcher
 
 <p align="center">
   <strong>An ultra-fast, minimal, and elegant home screen engineered specifically for Android TV and Google TV.</strong>
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v2.0-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.0-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
-  <img alt="APK size" src="https://img.shields.io/badge/APK-3.6%20MB-success?style=flat-square">
+  <img alt="APK size" src="https://img.shields.io/badge/APK-3.9%20MB-success?style=flat-square">
   <a href="https://github.com/raviprakashji/Streamer-launcher/actions"><img alt="CI Build" src="https://img.shields.io/github/actions/workflow/status/raviprakashji/Streamer-launcher/build-release.yml?branch=main&style=flat-square"></a>
   <img alt="Ad-Free" src="https://img.shields.io/badge/Ads-None-brightgreen?style=flat-square">
   <a href="LICENSE"><img alt="GPL-3.0 License" src="https://img.shields.io/badge/License-GPL--3.0-orange?style=flat-square"></a>
@@ -60,6 +60,27 @@
 
 ## Key Features
 
+- **LocalSend High-Speed File Transfer**:
+  - Integrated LocalSend (v2 protocol compatible) wireless LAN file transfer directly on Android TV.
+  - Effortlessly send and receive APKs, videos, subtitles, and documents to/from phones, tablets, and PCs without third-party apps or cloud intermediaries.
+- **Streamer Files (Leanback File Manager & Direct APK Installer)**:
+  - Purpose-built Android TV file manager designed specifically for remote D-pad navigation.
+  - Browse internal storage and connected USB flash drives, inspect directories, and install APK packages with background install status feedback.
+- **Hardware HDMI & AV Input Switcher**:
+  - Dedicated input source switcher supporting HDMI 1–4 and Composite AV.
+  - Instantly switch TV hardware inputs directly from the home screen dock or top navigation bar.
+- **Hardware Remote Button Mapper**:
+  - Customize and remap TV remote control buttons (Netflix, Prime Video, Guide, Home, etc.) to launch Streamer Launcher or any preferred TV application/action.
+- **Intelligent Trailer Streaming & Geo-Restriction Fallbacks**:
+  - Multi-tier YouTube stream resolution engine with automatic watch config refresh and fallback candidate discovery (TMDB & YouTube search) for geo-blocked or region-restricted trailers.
+  - Seamless in-app ExoPlayer trailer playback supporting up to 1440p / 1080p with resolution badge, scrubbable progress bar, and instant play/pause.
+- **Pixel-Perfect Leanback UI Symmetry**:
+  - Strictly equidistant Page 2 vertical layout (Top-to-Continue Watching, Continue Watching-to-Catalogs, Catalogs-to-Bottom of screen).
+  - Exact bottom alignment (0px delta) between Catalogs rail list and Media Details container.
+  - Symmetrical 48dp left/right screen margins across Continue Watching, Catalogs rail, and Posters.
+  - Expanded dock context menu width with comfortable breathing room preventing text truncation on action items like "Remove from row".
+- **Collapsible Top Navigation Bar**:
+  - Auxiliary utilities container with smooth expandable "More" / "Less" toggle for a clean, distraction-free aesthetic.
 - **TV Calendar and Premiere Schedule**:
   - Full TV Calendar modal accessible directly from the top navigation bar with My Shows and All Premieres tabs.
   - Fluid continuous scrolling when holding down DPAD navigation across date headers and episode groups.
@@ -114,18 +135,21 @@
 |  - TMDB API Client                    |  - Lightweight Android View Hierarchy |
 |  - MDBList / SIMKL Engine             |  - SnapScrollView (60fps D-pad Paging)|
 |  - TV Calendar & Premieres Filter     |  - DockPillView (Frosted Blur Glass)  |
-|  - Backup & Restore JSON Engine       |  - Ambient Dimmer Alpha Controller    |
-|  - Android WatchNext Provider         |  - Dynamic Backdrop Renderer          |
-|  - In-App YouTube Extractor           |  - Glass Scorecard Overlay Container  |
-|  - CricketData Live Score Engine      |  - Media Player Relay Accessibility   |
-|  - GitHub Auto-Update Service         |  - TV Calendar Modal & Timeline View  |
+|  - LocalSend LAN Engine (v2 Protocol) |  - Ambient Dimmer Alpha Controller    |
+|  - Streamer Files Manager & Installer |  - Dynamic Backdrop Renderer          |
+|  - Backup & Restore JSON Engine       |  - Glass Scorecard Overlay Container  |
+|  - Android WatchNext Provider         |  - Media Player Relay Accessibility   |
+|  - In-App YouTube Extractor & Fallback|  - TV Calendar Modal & Timeline View  |
+|  - CricketData Live Score Engine      |  - LocalSend Modal & File Transfer UI |
+|  - Button Mapper Input Handler        |  - Hardware HDMI / AV Input Relays    |
+|  - GitHub Auto-Update Service         |  - Collapsible Top Bar Utility Group  |
 +---------------------------------------+---------------------------------------+
 |                          Hardware & Media Pipeline                            |
 |  - Media3 ExoPlayer 1.5.1 (1440p/1080p Video + AAC Audio Stream Mux)          |
 |  - Android Jetpack ProfileInstaller (Zero-Permission AOT Machine Compilation) |
 |  - RGB_565 Decoded Bitmaps (Zero GC Stalls, Native Heap Savings)              |
 |  - Instant Cache Flushing on Backgrounding (Near-Zero Idle Memory Footprint)  |
-|  - R8 Full-Mode Minification & Multi-Pass Optimization (3.6 MB Total APK)    |
+|  - R8 Full-Mode Minification & Multi-Pass Optimization (3.9 MB Total APK)    |
 +-------------------------------------------------------------------------------+
 ```
 
@@ -140,6 +164,9 @@
 | **Switch Pages** | <kbd>Down</kbd> from dock transitions smoothly to Page 2 (Discover Catalogs) |
 | **All Apps Shortcut** | Press <kbd>Up</kbd> from anywhere in the app dock to focus the All Apps icon |
 | **Open TV Calendar** | Select the Calendar icon from the top bar |
+| **LocalSend Transfer** | Select the LocalSend icon from the top bar to send/receive files |
+| **Streamer Files** | Select the File Manager icon from the dock or top bar to browse files/APKs |
+| **HDMI / AV Input** | Select an HDMI or AV input icon to switch TV hardware source |
 | **Quick Play / Trailer** | Highlight movie poster -> Press <kbd>Up</kbd> to access Play and Trailer buttons |
 | **App Management** | Long-press <kbd>OK</kbd> on any dock app to rearrange or hide |
 | **Back / Exit Modal** | <kbd>Back</kbd> key closes trailers, search dialogs, calendar, and settings |
@@ -150,7 +177,7 @@
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-- **Streamer.launcher_v2.0.apk** (3.6 MB)
+- **Streamer.launcher_v3.0.apk** (3.9 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -158,7 +185,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v2.0.apk"
+adb install -r "Streamer.launcher_v3.0.apk"
 ```
 
 ---
@@ -182,7 +209,7 @@ cd Streamer-launcher
 ./gradlew assembleRelease
 ```
 The compiled APK will be located at:
-`app/build/outputs/apk/release/Streamer.launcher_v2.0.apk`
+`app/build/outputs/apk/release/Streamer.launcher_v3.0.apk`
 
 ---
 
