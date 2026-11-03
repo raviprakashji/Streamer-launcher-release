@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.2-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.3-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
   <img alt="APK size" src="https://img.shields.io/badge/APK-3.9%20MB-success?style=flat-square">
   <a href="https://github.com/raviprakashji/Streamer-launcher/actions"><img alt="CI Build" src="https://img.shields.io/github/actions/workflow/status/raviprakashji/Streamer-launcher/build-release.yml?branch=main&style=flat-square"></a>
@@ -169,7 +169,7 @@
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-- **Streamer.launcher_v3.2.apk** (3.9 MB)
+- **Streamer.launcher_v3.3.apk** (3.9 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -177,7 +177,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v3.2.apk"
+adb install -r "Streamer.launcher_v3.3.apk"
 ```
 
 ---
@@ -201,11 +201,18 @@ cd Streamer-launcher
 ./gradlew assembleRelease
 ```
 The compiled APK will be located at:
-`app/build/outputs/apk/release/Streamer.launcher_v3.2.apk`
+`app/build/outputs/apk/release/Streamer.launcher_v3.3.apk`
 
 ---
 
 ## Changelog
+
+### v3.3
+- **MDBList Dynamic & User Lists Sync**: Full on-device integration with private and dynamic MDBList user lists, automatically importing user catalogs with resilient URL resolution and deduplication.
+- **Top Bar Layout & Visual Navigation Order**: Modernized homescreen top bar ordering with All apps, Calendar, and System Settings permanently visible, collapsible secondary actions, and smooth sequential DPAD traversal.
+- **Input Action Header**: Renamed homescreen HDMI button and inputs header to "Input".
+- **Discover Catalogs Subpage Optimization**: Streamlined discovery settings hierarchy, locating "Play from assistant UI" exclusively inside Preferred media player and watched content filtering under SIMKL.
+- **Catalog Overscroll & Viewport Stability**: Hardened `HomeScrollView` and `catalogsRailScroll` nested scrolling boundaries, completely eliminating overscroll viewport breakdown when crossing the bottom of catalog lists.
 
 ### v3.2
 - **Direct Hardware Screenshot Engine (Android 14 & Google TV Streamer)**: Captures display frames directly from `SurfaceFlinger` hardware buffers via `AccessibilityService.takeScreenshot(Display.DEFAULT_DISPLAY, ...)`, fully bypassing the missing SystemUI screenshot service on Google TV Streamer. Saves directly to `Pictures/Screenshots` with on-screen confirmation toast.
