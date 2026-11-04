@@ -1,5 +1,37 @@
 # Streamer Launcher - Changelog
 
+## [v3.5] - 2026-11-05
+### Added
+- **Streaming SIMKL TV Calendar Parser**:
+  - Memory-efficient streaming JSON parser (`StreamingJsonReader`) processing large multi-megabyte calendar feeds with bounded memory allocation.
+  - Rolling 16-day windowing (-1 to +14 days) and two-day global timezone margin filter ensuring airing badge synchronization across any local timezone.
+  - Instantaneous calendar day-group rendering and cached airing badges with effective weather-location timezone alignment (IST/local).
+- **Consolidated Watchlist Request Engine**:
+  - Single-flight request coalescing (`fetchWatchlistCoalesced`) for SIMKL watchlist requests, eliminating duplicate concurrent queries.
+  - Mathematical isolation of in-flight tasks keyed by account, session generation, media type, and watchlist status (`${account}_${gen}_$catalogId`).
+  - Cache availability differentiation (`hasCachedItems`) ensuring valid empty watchlists (`[]`) are persisted on disk and avoid recurring network requests.
+  - Dynamic wallpaper catalog cache reuse in `SofadropEngine`, eliminating up to 6 redundant network requests per rotation.
+- **Watched-Data Sync Single-Flight Coalescing**:
+  - Coalesced concurrent full watched-data synchronization requests (`fetchWatchedData`) under `publicationLock`, preventing simultaneous multi-endpoint network bursts (~2.8 MB each).
+  - Bounded executor lifecycle hardening with safe in-flight task removal and reference identity verification.
+
+### Changed
+- **Context-Menu Watched Status Optimization**:
+  - Completely decoupled SIMKL watched-status inspection from UI-thread JSON disk parsing, moving watched cache loading to asynchronous background warmup.
+  - Reduced context-menu opening latency from 60–800 ms to instantaneous (<1 ms / 0 ms main-thread I/O) on resource-constrained TV hardware.
+- **Low-Memory Strategy Hardening**:
+  - Proactive memory-pressure trimming (`TRIM_MEMORY_RUNNING_CRITICAL`), guarded bitmap recycling, and safe fallbacks for ~929 MB RAM devices.
+  - Cold startup Total PSS reduced to 48.4 MB (down by ~4 MB from v3.4), maintaining system operating status `normal`.
+
+### Fixed
+- **Cross-Account State Leakage & Disconnect Cleanup**:
+  - Fixed `CalendarManager.clearUserShows()` to delete `simkl_user_shows.json` from disk upon account logout or disconnect.
+  - Decoupled `clearUserShows()` from ordinary calendar cache invalidation (`clearCache()`), preserving user tracked shows during weather timezone updates.
+  - Implemented late asynchronous write protection, rejecting out-of-order in-flight responses if account or session generation changed during fetch.
+- **Watchlist Infinite Re-fetch Loop**:
+  - Resolved `CatalogManager` defect that treated empty watchlists as network failures, advancing `lastRefresh` timestamp and clearing `lastError`.
+
+---
 ## [v3.4] - 2026-11-04
 ### Added
 - **Streamer Music Integration**:
