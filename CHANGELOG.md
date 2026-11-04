@@ -1,5 +1,34 @@
 # Streamer Launcher - Changelog
 
+## [v3.4] - 2026-11-04
+### Added
+- **Streamer Music Integration**:
+  - Full-featured YouTube Music audio streaming engine using Media3 ExoPlayer with background playback and dynamic waveform visualization.
+  - Regional mixes and playlists discovery directory on Page 1, instant music search with debounced queries and result suggestions.
+  - Status bar Now Playing pill widget with smooth marquee track title, album artwork, and direct shortcut back to playback view.
+  - Interactive playback controls: seekbar scrub with remote DPAD (forward / backward by 5 seconds), shuffle toggle, and track queue management.
+  - Disconnect detection with warning prompt to reconnect internet during streaming interruption.
+- **Floating Quick Settings Panel**:
+  - Compact glass floating panel positioned directly beneath the Quick Settings top-bar action with full D-Pad focus trapping.
+  - Live Now Playing tile within Quick Settings showing real-time playback progress bar, duration timestamps, and one-click navigation to the music player.
+  - Exact D-Pad cyclic navigation matrix with continuous snake wrapping across tiles whether Now Playing is active or hidden.
+- **Restructured Homescreen Dimming Preferences**:
+  - Subpage under Streamer settings -> Appearance -> Dim homescreen components.
+  - Independent toggles for Dim Cricket score and Dim Now playing.
+  - Fixed-anchor layout preservation: dimming the cricket score pill preserves its layout space so the Now Playing pill remains strictly stationary without jumping.
+  - Expanded dim timeout durations: added 45 sec (options from Off to 15 min).
+
+### Changed
+- **Unified Quick Settings Tile Aesthetics**: Cleaned up tile color schemes on LocalSend and Input to match the sleek neutral TV glass design.
+- **Navigation Flow Polish**: Streamer Settings back navigation seamlessly restores focus to Quick Settings button on homescreen.
+
+### Fixed
+- **Home Button Exit Dock Shift**: Eliminated visual app dock glitch when exiting music playback directly to the homescreen via the Home button.
+- **Music UI Banner Highlighting**: Restored high-contrast focused style and focus breathing padding for the Now Playing banner when navigating from the Rotate Mixes button.
+- **Search Card Geometry**: Fixed card positioning in search results so focused cards maintain stable alignment without shifting adjacent cards.
+
+---
+
 ## [v3.3] - 2026-11-04
 ### Added
 - **MDBList Private & Dynamic Lists Integration**: Automatic import of user lists (dynamic, linked, and static) from connected MDBList accounts with on-device API resolution and deduplication.

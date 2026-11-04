@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.3-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.4-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
   <img alt="APK size" src="https://img.shields.io/badge/APK-3.9%20MB-success?style=flat-square">
   <a href="https://github.com/raviprakashji/Streamer-launcher/actions"><img alt="CI Build" src="https://img.shields.io/github/actions/workflow/status/raviprakashji/Streamer-launcher/build-release.yml?branch=main&style=flat-square"></a>
@@ -169,7 +169,7 @@
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-- **Streamer.launcher_v3.3.apk** (3.9 MB)
+- **Streamer.launcher_v3.4.apk** (3.9 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -177,7 +177,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v3.3.apk"
+adb install -r "Streamer.launcher_v3.4.apk"
 ```
 
 ---
@@ -201,7 +201,7 @@ cd Streamer-launcher
 ./gradlew assembleRelease
 ```
 The compiled APK will be located at:
-`app/build/outputs/apk/release/Streamer.launcher_v3.3.apk`
+`app/build/outputs/apk/release/Streamer.launcher_v3.4.apk`
 
 ---
 
