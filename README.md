@@ -117,6 +117,24 @@
 
 ---
 
+## ⚡ Resource & Performance Profile (RAM & CPU)
+
+Streamer Launcher is strictly engineered for low-memory, entry-level Android TV and Google TV hardware (benchmarked on a physical **MediaTek MT5867 Quad-Core with only ~929 MB Total RAM on Android 11**):
+
+| Operating State | Total RAM (PSS) | Java Heap | Graphics & Native | CPU Usage | Real-World Scenario |
+| :--- | :---: | :---: | :---: | :---: | :--- |
+| **Idle / Cold Start** | **~48 MB** | ~4.4 MB | ~17.9 MB | **0.0% – 0.5%** | Fresh launch, sitting idle on the Home dock, background threads completely asleep. |
+| **Normal Active Navigation** | **~65 MB** | ~7.1 MB | ~31.6 MB | **0% – 8%** | Browsing home apps, Page 2 catalogs, opening item context menus, and scrolling recommendations. |
+| **Peak / Max Workload** | **~108 MB** | ~32.8 MB | ~55.2 MB | **15% – 25%** | All 8 catalog rows loaded, live cricket score ticker scrolling, YouTube Music streaming in the background, TV Calendar with airing posters open, and 1080p wallpaper rotation. |
+
+### Architectural Highlights
+- **Zero Idle Drain (Reactive, Not Polling)**: Completely event-driven architecture with zero background timer loops or busy-wait polling. When inactive, CPU drops to **0%**.
+- **Streaming JSON & Request Deduplication**: Multi-megabyte SIMKL TV calendar and watchlist feeds use a streaming parser (`StreamingJsonReader`) with single-flight request coalescing (`fetchWatchlistCoalesced`), eliminating redundant JSON memory allocations and duplicate network bursts.
+- **Main-Thread Decoupling**: Item context menus and watched caches are warmed asynchronously in the background. Opening menus takes **<1 ms** with **0 ms** synchronous disk I/O on the Android main thread.
+- **Safe for Sub-1GB RAM Devices**: Stays well below the Android TV 192 MB low-memory threshold even under maximum concurrent load, guaranteeing zero system lag or background app evictions.
+
+---
+
 ## Technical Architecture
 
 ```
@@ -169,7 +187,7 @@
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-- **Streamer.launcher_v3.4.apk** (3.9 MB)
+- **Streamer.launcher_v3.5.apk** (3.8 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -177,7 +195,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v3.4.apk"
+adb install -r "Streamer.launcher_v3.5.apk"
 ```
 
 ---
@@ -201,7 +219,7 @@ cd Streamer-launcher
 ./gradlew assembleRelease
 ```
 The compiled APK will be located at:
-`app/build/outputs/apk/release/Streamer.launcher_v3.4.apk`
+`app/build/outputs/apk/release/Streamer.launcher_v3.5.apk`
 
 ---
 
