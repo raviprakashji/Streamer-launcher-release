@@ -250,6 +250,22 @@ adb connect <your-tv-ip>:5555
 adb install -r "Streamer.launcher_v3.6.2.apk"
 ```
 
+### Grant Secure Settings Permission (Required for Certain System-Level Features)
+
+Streamer Launcher uses Android's `WRITE_SECURE_SETTINGS` permission for certain system-level features. Android does not allow an ordinary app to grant this permission to itself, so grant it once from a computer connected to your TV through ADB:
+
+```bash
+adb shell pm grant com.streamer.launcher android.permission.WRITE_SECURE_SETTINGS
+```
+
+**Steps:**
+1. Enable **Developer options** and **USB debugging** or **Wireless debugging** on your Android TV.
+2. Connect to the TV from your computer using ADB.
+3. Run the command above.
+4. Restart Streamer Launcher if the affected feature does not immediately detect the permission.
+
+**Note:** This permission can be granted through ADB without root access. It is a privileged Android permission, not an Accessibility Service enablement step; granting it does not turn on an Accessibility Service.
+
 ---
 
 ## Building from Source
