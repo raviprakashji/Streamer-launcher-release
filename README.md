@@ -17,122 +17,148 @@
 
 ## Product Showcase
 
-<p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/download/v1.0/streamer-demo.mp4">
-    <img src="docs/screenshots/home.png" alt="Streamer Launcher Demo Video Preview" width="85%">
-  </a>
-</p>
+> **Screenshot placeholders:** The image paths below are reserved for your updated screenshots. Upload the corresponding images to `docs/screenshots/` when ready. Each feature can have multiple screenshots; add or remove gallery cells as needed.
 
-<p align="center">
-  <em><strong><a href="https://www.youtube.com/watch?v=ZTTD3AxTKcA">Click here to watch the HD Video Demo (YouTube)</a></strong></em>
-</p>
+### 🏠 Home Screen & Launcher
 
-### Core Interface
+| Main Home Screen | Adaptive App Dock | Clutter-Free Home Screen |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/home-main.png" width="100%" alt="Main Streamer Launcher home screen"> | <img src="docs/screenshots/home-dock.png" width="100%" alt="Adaptive app dock supporting up to eight apps"> | <img src="docs/screenshots/home-clutter-free.png" width="100%" alt="Clutter-free home screen"> |
 
-| Home Screen (Page 1) | Discover Catalogs (Page 2) |
-| :---: | :---: |
-| <img src="docs/screenshots/home.png" width="100%" alt="Home Dock and Live Weather"> | <img src="docs/screenshots/discover.png" width="100%" alt="Discover Catalogs and Synopsis"> |
-| *Streamlined glass dock with adaptable icons, clock, and live weather.* | *TMDB Trending rows, ratings aggregator, and dynamic backdrop sync.* |
+| Weather, Date & Clock | Cricket Score Pill | Now Playing Pill |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/home-weather-clock.png" width="100%" alt="Home screen date, weather and clock"> | <img src="docs/screenshots/home-cricket.png" width="100%" alt="Live cricket score pill"> | <img src="docs/screenshots/home-now-playing.png" width="100%" alt="Music Now Playing pill"> |
 
-| High-Definition Trailer Streaming | Streamer Settings Main Menu |
-| :---: | :---: |
-| <img src="docs/screenshots/trailer.png" width="100%" alt="In-App Trailer Playback"> | <img src="docs/screenshots/settings.png" width="100%" alt="Streamer Settings Main Menu"> |
-| *Built-in ExoPlayer 1440p / 1080p in-app trailer player with scrub bar and HD badge.* | *AMOLED dark frosted settings menu with fast categorized navigation.* |
+### 🎬 Movie & TV Discovery
 
----
+| Trending & Popular Catalogs | For You — Movies | For You — TV Shows |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/catalogs-trending.png" width="100%" alt="Trending and popular catalogs"> | <img src="docs/screenshots/for-you-movies.png" width="100%" alt="Personalised movie recommendations"> | <img src="docs/screenshots/for-you-shows.png" width="100%" alt="Personalised TV recommendations"> |
 
-### Settings and Configuration Submenus
+| Title Details & Ratings | Better Posters Artwork | Trailer Playback |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/catalog-title-details.png" width="100%" alt="Title synopsis and multiple ratings"> | <img src="docs/screenshots/catalog-better-posters.png" width="100%" alt="Better Posters artwork"> | <img src="docs/screenshots/catalog-trailer.png" width="100%" alt="HD trailer playback"> |
 
-| Appearance Submenu | Continue Watching Submenu |
-| :---: | :---: |
-| <img src="docs/screenshots/settings_appearance.png" width="100%" alt="Appearance Submenu"> | <img src="docs/screenshots/settings_continue_watching.png" width="100%" alt="Continue Watching Submenu"> |
-| *Wallpapers (Rockies Day/Dusk, Pure black, TMDB cinematic), photo fade, and rotation timer.* | *Filter per-app sources and restore hidden shows with package icon badges.* |
+| MDBList Personal Catalogs | SIMKL Watchlist | Continue Watching |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/catalog-mdblist.png" width="100%" alt="Personal MDBList catalogs"> | <img src="docs/screenshots/catalog-simkl-watchlist.png" width="100%" alt="SIMKL watchlist controls"> | <img src="docs/screenshots/continue-watching.png" width="100%" alt="Continue Watching section"> |
 
-<p align="center">
-  <strong>Discover Catalogs Submenu</strong>
-  <br>
-  <img src="docs/screenshots/settings_discovery.png" width="70%" alt="Discover Catalogs Submenu">
-  <br>
-  <em>Toggle discovery catalogs, connect MDBList and SIMKL watchlists, and configure preferred media players.</em>
-</p>
+### ▶️ Playback Integrations
+
+| Preferred Player Selection | Gemini Search Playback | Catalog Direct Playback |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/player-preferences.png" width="100%" alt="Preferred media player settings"> | <img src="docs/screenshots/gemini-playback.png" width="100%" alt="Play directly from Google Gemini results"> | <img src="docs/screenshots/catalog-direct-playback.png" width="100%" alt="Launch catalog titles in the preferred player"> |
+
+### 📅 TV Show Calendar
+
+| Your Shows | All Premieres | Calendar Episode Details |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/calendar-your-shows.png" width="100%" alt="Personalised Your Shows calendar"> | <img src="docs/screenshots/calendar-premieres.png" width="100%" alt="All Premieres by country"> | <img src="docs/screenshots/calendar-episode-details.png" width="100%" alt="TV calendar episode details"> |
+
+### 🎵 YouTube Music
+
+| Music Home & Quick Mixes | Synchronized Lyrics | Background Playback |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/music-quick-mixes.png" width="100%" alt="YouTube Music quick mixes"> | <img src="docs/screenshots/music-lyrics.png" width="100%" alt="Synchronized lyrics"> | <img src="docs/screenshots/music-background.png" width="100%" alt="Background music playback and Now Playing pill"> |
+
+### 🏏 Live Cricket
+
+| Home Screen Live Scores | Match Schedule | Full Scorecard |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/cricket-home-pill.png" width="100%" alt="Live cricket scores on the home screen"> | <img src="docs/screenshots/cricket-schedule.png" width="100%" alt="Current and upcoming cricket matches"> | <img src="docs/screenshots/cricket-scorecard.png" width="100%" alt="Cricket match scorecard"> |
+
+### 🖼️ Wallpapers
+
+| Full Cinema | Minimal Logo | Clean Posters |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/wallpaper-full-cinema.png" width="100%" alt="Full Cinema wallpaper mode with watched badges"> | <img src="docs/screenshots/wallpaper-minimal-logo.png" width="100%" alt="Minimal Logo wallpaper mode"> | <img src="docs/screenshots/wallpaper-clean-posters.png" width="100%" alt="Clean Posters wallpaper mode"> |
+
+### 📁 File Manager & LocalSend
+
+| Built-in File Manager | LocalSend File Transfer | File Selection |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/file-manager-home.png" width="100%" alt="Built-in TV file manager"> | <img src="docs/screenshots/localsend-transfer.png" width="100%" alt="LocalSend v2 file transfer"> | <img src="docs/screenshots/file-manager-picker.png" width="100%" alt="File selection from the file manager"> |
+
+### 🎛️ Remote & Device Controls
+
+| Button Remapper | Button Alias & Press Actions | HDMI Input Selection |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/button-remapper.png" width="100%" alt="Remote button remapper"> | <img src="docs/screenshots/button-remapper-actions.png" width="100%" alt="Button aliases, single press, double press and long press"> | <img src="docs/screenshots/hdmi-inputs.png" width="100%" alt="HDMI input selection"> |
+
+### ⚙️ Settings, Backup & Updates
+
+| Main Settings | MDBList API Configuration | Backup & Restore |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/settings-main.png" width="100%" alt="Launcher settings"> | <img src="docs/screenshots/settings-mdblist.png" width="100%" alt="MDBList API key configuration"> | <img src="docs/screenshots/settings-backup-restore.png" width="100%" alt="Backup and restore settings and API keys"> |
+
+| Appearance & Dimming | OTA Updates | Music Settings |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/settings-appearance-dimming.png" width="100%" alt="Wallpaper and home screen dimming settings"> | <img src="docs/screenshots/settings-ota.png" width="100%" alt="Over-the-air launcher updates"> | <img src="docs/screenshots/settings-music.png" width="100%" alt="YouTube Music settings and disable option"> |
 
 ---
 
 ## Key Features
 
-- **Streamer Music Integration (YouTube Music Engine)**:
-  - Full-featured YouTube Music audio streaming engine built on Media3 ExoPlayer with background playback and dynamic waveform visualization.
-  - Regional mixes and curated playlists discovery directory on Page 1, plus instant music search with debounced queries and result suggestions.
-  - Status bar Now Playing pill widget with smooth marquee track title, album artwork, and direct return shortcut.
-  - Interactive playback controls: seekbar scrub with remote D-pad (<kbd>Left</kbd> / <kbd>Right</kbd> by 5s), shuffle toggle, and track queue management.
-  - Streaming disconnect detection with warning prompt to reconnect internet during streaming interruption.
-- **Floating Quick Settings Panel**:
-  - Compact frosted glass floating panel positioned directly beneath the Quick Settings top-bar action with full D-Pad focus trapping.
-  - Live Now Playing tile within Quick Settings showing real-time playback progress bar, duration timestamps, and one-click navigation to the music player.
-  - Exact D-Pad cyclic navigation matrix with continuous snake wrapping across tiles (WiFi, LocalSend, Inputs, Streamer Settings, Files, Music).
-- **SIMKL Taste Profile & Native "For You" Recommendations**:
-  - On-device multi-factor recommendation engine calculating decaying genre affinity, release decade distribution, and language preferences.
-  - Dynamically synthesizes personalized "For You: Movies" and "For You: TV Shows" catalogs directly onto Page 2.
-  - Seamless in-place SIMKL watchlist add/remove toggle with zero UI disruption.
-- **Streaming SIMKL TV Calendar & Premiere Schedule**:
-  - Memory-efficient streaming JSON parser (`StreamingJsonReader`) processing large multi-megabyte calendar feeds with bounded memory allocation.
-  - Rolling 16-day windowing (-1 to +14 days) and two-day global timezone margin filter ensuring airing badge synchronization across any local timezone.
-  - Instant 0 ms view loading with persistent disk caching and downsampled RGB_565 poster decoding.
-  - Genuine Premieres filtering: TMDb season debut verification filters out foreign re-runs, repeats, and catalog noise.
-- **Live Cricket Scores & Match Ticker**:
-  - Real-time CricketData API integration with live score pill on the status bar and full scorecard overlay.
-  - Automated match format detection (ODI, T20, Test) with live ball-by-ball and over updates.
-- **LocalSend High-Speed File Transfer**:
-  - Integrated LocalSend (v2 protocol compatible) wireless LAN file transfer directly on Android TV.
-  - Effortlessly send and receive APKs, videos, subtitles, and documents to/from phones, tablets, and PCs without third-party apps or cloud intermediaries.
-- **Streamer Files (Leanback File Manager & Direct APK Installer)**:
-  - Purpose-built Android TV file manager designed specifically for remote D-pad navigation.
-  - Browse internal storage and connected USB flash drives, inspect directories, and install APK packages with background install status feedback.
-- **Direct Hardware Screenshot Capture Engine (Android 14 & Google TV Streamer)**:
-  - Bypasses absent SystemUI screenshot services on Google TV Streamer (Android 14) by capturing raw display frames directly from `SurfaceFlinger` hardware buffers via `AccessibilityService.takeScreenshot(Display.DEFAULT_DISPLAY, ...)` (API 30+).
-  - Converts raw `HardwareBuffer` to Bitmap and writes to `Pictures/Screenshots` via `MediaStore` with on-screen confirmation toast.
+- **Ultra-Light Android TV Launcher**:
+  - Integrated date, weather, and clock.
+  - Adaptive app dock that adjusts to the number of selected apps, supporting up to **8 apps**.
+  - Rearrange or remove apps from the dock.
+  - Clutter-free home screen option, including controls to hide the cricket score pill.
+  - Configurable home screen dimming during a selected time interval.
+- **Built-in File Manager & LocalSend v2**:
+  - TV-friendly file manager designed for remote D-pad navigation.
+  - LocalSend v2 built in for local wireless file transfers.
+  - Open LocalSend directly from the File Manager to send and receive files between devices.
+- **Preferred Media Player & Direct Playback**:
+  - Choose **Nuvio, Stremio, or Wuplay** as the preferred external media player.
+  - Launch supported titles directly from Google Gemini search results (requires Gemini to be available on the TV).
+  - Launch titles directly from built-in catalogs and Continue Watching.
+- **Continue Watching**:
+  - Aggregates supported Android TV / app playback entries.
+  - Launch supported media directly in the selected app.
+  - Hidden-show management with app icon badges and automatic pruning of uninstalled apps.
+- **Movie & TV Show Catalogs**:
+  - Built-in Trending, Popular, and Latest Movies & TV Shows.
+  - SIMKL history-based taste profiles and personalised **For You** recommendation catalogs for Movies and TV Shows.
+  - Bring your own public MDBList lists, including dynamic and static lists.
+  - Better Posters integration for high-quality poster artwork.
+  - Title synopsis and multiple ratings.
+  - HD trailer playback with support for resolutions up to **4K**.
+  - SIMKL-powered watchlist actions: add to watchlist, remove from watchlist, and hide watched titles.
+  - Direct playback through Nuvio, Stremio, or Wuplay.
+- **TV Show Calendar**:
+  - **Your Shows** personalised schedule (SIMKL login required).
+  - **All Premieres** across India, the US, the UK, Canada, and Australia.
+  - Calendar coverage from today through the next 14 days, subject to SIMKL data availability.
+- **YouTube Music Integration**:
+  - Built-in YouTube Music playback and Quick Mixes.
+  - Synchronized lyrics support.
+  - Background playback.
+  - Persistent Now Playing pill on the home screen.
+  - Option to turn off music functionality from Settings.
+- **Live Cricket Scores & Match Schedule**:
+  - Home screen live score pill powered by **CricketData.org**.
+  - View current and upcoming match schedules and scores.
+  - Coverage limited to Full Member international teams (Men and Women) and the **IPL**.
+- **TMDB Wallpapers**:
+  - **Full Cinema** with SIMKL-powered watched badges.
+  - **Minimal Logo**.
+  - **Clean Posters**.
 - **Hardware HDMI & AV Input Switcher**:
-  - Dedicated input source switcher supporting HDMI 1–4 and Composite AV.
-  - Instantly switch TV hardware inputs directly from the home screen dock, top navigation bar, or Quick Settings panel.
-- **Hardware Remote Button Mapper**:
-  - Customize and remap TV remote control buttons (Netflix, Prime Video, Guide, Home, etc.) to launch Streamer Launcher or any preferred TV application/action.
-  - Cleaned up Leanback TV actions (Home, Back, Power menu, Take screenshot, Sleep display) with direct intent fallbacks.
-- **Intelligent Trailer Streaming & Geo-Restriction Fallbacks**:
-  - Multi-tier YouTube stream resolution engine with automatic watch config refresh and fallback candidate discovery (TMDB & YouTube search) for geo-blocked or region-restricted trailers.
-  - Seamless in-app ExoPlayer trailer playback supporting up to 1440p / 1080p with resolution badge, scrubbable progress bar, and instant play/pause.
-- **Ambient Homescreen Dimming & Component Control**:
-  - Customizable idle dimmer under Streamer Settings -> Appearance -> Dim homescreen components (choices: 5s, 10s, 15s, 30s, 45s, 1m, 2m, 5m, 15m, or Off).
-  - Smoothly fades the dock, clock, weather, and top navigation bar to transparent during inactivity, transforming the TV into a clean art canvas.
-  - Independent toggles for Dim Cricket score and Dim Now Playing with fixed-anchor layout preservation.
-  - Instantly wakes up upon any remote D-pad input or touch interaction.
-- **MDBList Private & Dynamic User Lists Integration**:
-  - Automatic import of user lists (dynamic, linked, and static) from connected MDBList accounts with on-device API resolution and deduplication.
-- **Zero-I/O Context Menu & Request Coalescing Pipeline**:
-  - Completely decoupled SIMKL watched-status inspection from UI-thread JSON disk parsing, moving watched cache loading to asynchronous background warmup.
-  - Reduced context-menu opening latency from 60–800 ms to instantaneous (<1 ms / 0 ms main-thread I/O).
-  - Single-flight request coalescing (`fetchWatchlistCoalesced` and `fetchWatchedData`) eliminating duplicate network queries and multi-megabyte downloads.
-- **Backup and Restore System**:
-  - Complete configuration export and import under Streamer Settings -> Backup / Reset.
-  - Backs up and restores dock ordering, wallpaper preferences, screensaver modes, weather locations and units, live CricketData API key, Homescreen Dimming timeouts, and SIMKL credentials.
-  - Seamlessly re-applies preferences across device re-installations while matching currently installed TV applications.
-- **Zero-Permission AOT Compilation**:
-  - Bundles Android Jetpack Baseline Profiles (androidx.profileinstaller) to compile DEX bytecode to native machine instructions directly upon installation and update.
-  - Requires zero Developer Options, no USB Debugging, and no Root privileges.
-- **Media Player Relay and Voice Search Disambiguation**:
-  - Overlays a direct "Watch in [Player]" button on Google Assistant search result pages and TV detail screens.
-  - Intelligent media title resolution ranking that correctly prioritizes exact title and year matches.
-- **TMDB Discover Catalogs**:
-  - Browse trending movies, popular series, top rated titles, and curated genres.
-  - Dynamic synopsis cards with multi-platform ratings (IMDb, TMDb, Rotten Tomatoes, Trakt, Metacritic).
-- **Preferred Media Player Launcher**:
-  - One-click launch to your favorite external video player: Nuvio, Nova Player, Stremio, Just Player, Kodi, VLC, MX Player, or prompt on every play.
-- **Continue Watching Aggregator**:
-  - Resumes ongoing media from Android TV Watch Next and supported media applications.
-  - Hidden show management with app icon badges and automatic pruning of uninstalled apps.
-- **Ultra-Lean and Memory Optimized (3.8 MB APK)**:
-  - Sub-4MB APK footprint with instant cold boot.
-  - Deep memory trim: 48 MB cold startup PSS, 65 MB normal navigation, and safe sub-110 MB peak workload on ~929 MB RAM devices.
-  - Deadlock-free background executor architecture for smooth, stall-free operation on low-RAM TV hardware.
+  - Select supported HDMI and AV inputs directly from the launcher.
+- **Hardware Remote Button Remapper**:
+  - Remap supported TV remote buttons.
+  - Add custom aliases to make buttons easier to identify.
+  - Configure independent single-press, double-press, and long-press actions.
+- **MDBList Account Integration**:
+  - Connect using your personal MDBList API key.
+  - Add personal MDBList catalogs, including dynamic and static lists.
+- **Backup & Restore**:
+  - Export and restore launcher settings and configured API keys.
+- **Over-the-Air Updates**:
+  - Check for and install launcher updates without manually downloading each release.
+- **Low-Memory Engineering**:
+  - Lightweight interface and asynchronous data handling designed for entry-level Android TV hardware.
 
 ---
 
