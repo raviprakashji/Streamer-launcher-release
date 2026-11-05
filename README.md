@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.6.1-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.6.2-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
   <img alt="APK size" src="https://img.shields.io/badge/APK-3.9%20MB-success?style=flat-square">
   <a href="https://github.com/raviprakashji/Streamer-launcher/actions"><img alt="CI Build" src="https://img.shields.io/github/actions/workflow/status/raviprakashji/Streamer-launcher/build-release.yml?branch=main&style=flat-square"></a>
@@ -213,7 +213,7 @@ Streamer Launcher is strictly engineered for low-memory, entry-level Android TV 
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-- **Streamer.launcher_v3.6.1.apk** (3.9 MB)
+- **Streamer.launcher_v3.6.2.apk** (3.9 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -221,7 +221,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v3.6.1.apk"
+adb install -r "Streamer.launcher_v3.6.2.apk"
 ```
 
 ---
@@ -245,11 +245,20 @@ cd Streamer-launcher
 ./gradlew assembleRelease
 ```
 The compiled APK will be located at:
-`app/build/outputs/apk/release/Streamer.launcher_v3.6.1.apk`
+`app/build/outputs/apk/release/Streamer.launcher_v3.6.2.apk`
 
 ---
 
 ## Changelog
+
+### v3.6.2
+- **LocalSend File Picker & Multi-Select Workflow**: Instant single-click file selection returning directly to LocalSend, explicit multi-select entry triggered via long-press, and a dedicated picker action bar featuring an `OK ($count)` button for unified single and multi-file confirmation. Removed redundant nested LocalSend modal and defunct Done action from picker mode.
+
+### v3.6.1
+- **Calendar Navigation & Natural Scrolling**: Resolved focus trap on action buttons via dynamic viewport inspection (`DPAD_LEFT` escape), restored smooth card-by-card natural scrolling without top-pinning or scroll coordinate corruption.
+- **Homescreen Now Playing Pill Persistence**: Synchronized exit fade animation and aligned visibility state so the Now Playing pill remains continuously visible below the cricket score during playback.
+- **Global Home Button System Reset**: Hardened `HomeOverride` accessibility service and added `resetToHomePage1` to reliably dismiss all open overlays from anywhere in the system and restore focus to dock.
+- **Visual Polish & Legacy Storage Permissions**: Synchronized music overlay exit fade-out and added legacy storage permission prompts for Android 9/API 28 and below.
 
 ### v3.6
 - **IMDb Quality Verification Gate**: Dual-threshold IMDb rating verification gate for personalized "For You: Movies" and "For You: TV Shows" catalogs, ensuring high quality recommendations with persistent disk caching and OpenAPI-aligned batch coalescing.

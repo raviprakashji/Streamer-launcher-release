@@ -1,4 +1,15 @@
-# Streamer Launcher - Changelog
+## [v3.6.2] - 2026-11-06
+### Fixed & Hardened
+- **LocalSend File Picker & Multi-Select Workflow**:
+  - **Instant Single-Click Selection**: In `FileManagerActivity` picker mode (`ACTION_OPEN_DOCUMENT` / `ACTION_GET_CONTENT`), single-clicking a file when multi-selection is inactive now immediately returns the picked file URI to the caller (`LocalSendModal`) and finishes `FileManagerActivity`, eliminating the stuck selection state.
+  - **Explicit Multi-Select Activation via Long-Press**: Configured long-press (`handleItemLongClick`) as the dedicated gateway to initiate multi-selection, preventing inadvertent multi-selection on standard navigation. Once active, single-clicking additional files toggles selection count naturally.
+  - **Dedicated Picker Action Bar with Dynamic OK Confirmation**: Replaced all generic file management actions (`Copy`, `Move`, `Delete`, `Rename`, `Open with`, and the redundant nested `LocalSend` modal) in picker mode with a dedicated action bar:
+    - **`[ OK ($count) ]`**: Accented confirmation button bundling all selected items into `Intent.data` and `Intent.clipData`, setting `RESULT_OK`, and returning directly to the parent LocalSend container. Unifies single-item and multi-item workflows under one consistent, predictable button.
+    - **`[ Select all ]`**: Selects all items in the current folder.
+    - **`[ Clear ]`**: Clears selection and restores single-click navigation.
+  - **Eliminated Dead Done Action**: Removed the defunct, unselectable `Done (0)` button from the initial folder action row.
+
+---
 
 ## [v3.6.1] - 2026-11-06
 ### Fixed & Hardened
