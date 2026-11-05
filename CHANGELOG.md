@@ -1,5 +1,28 @@
 # Streamer Launcher - Changelog
 
+## [v3.6.1] - 2026-11-06
+### Fixed & Hardened
+- **Calendar Navigation & Natural Scrolling**:
+  - Resolved focus trap where focus was caught on the action buttons (`Play` / `Trailer`) by implementing dynamic viewport inspection (`getVisibleOrActiveEpisodeCard`), enabling immediate escape back to adjacent visible episode cards via `DPAD_LEFT`.
+  - Replaced relative coordinate calculation (`offsetDescendantRectToMyCoords`) with invariant vertical offset computation (`getDescendantTopInScrollView`), eliminating scroll coordinate corruption and viewport pinning.
+  - Restored natural card-by-card scrolling: removed forced top-pinning on focus transitions, allowing smooth focus progression down the episode list while strictly constraining viewport scrolling to boundary thresholds.
+  - Restored two-way navigation between the top Tab bar (`My shows` / `All premieres`) and episode cards without losing focus.
+- **Homescreen Now Playing Pill Persistence**:
+  - Fixed missing Now Playing pill below the cricket score on the homescreen by synchronizing exit animation in `closeMusicOverlay`, ensuring `updateNowPlayingPill()` executes after the music overlay visibility transitions to `GONE`.
+  - Aligned pill visibility conditions with Quick Settings (`currentTrack != null`), allowing the pill to remain persistent across active, buffering, and paused playback states with dynamic Play/Pause status indication.
+  - Added synchronous dock gap adjustment (`syncHomeGapWithTopBar`) on pill visibility updates, ensuring no overlap or layout jump between the clock, cricket score, and now playing widgets.
+- **Global Home Button System Reset**:
+  - Hardened `HomeOverride` accessibility service with explicit task-clearing intent flags (`FLAG_ACTIVITY_NEW_TASK or FLAG_ACTIVITY_CLEAR_TOP or FLAG_ACTIVITY_SINGLE_TOP`) and Android 14 compliant package-explicit broadcast delivery (`CLOSE_PANELS`).
+  - Implemented `resetToHomePage1()` in `MainActivity` to reliably dismiss all open overlays (TV Calendar, Streamer Music, Cricket Modal, Quick Settings, In-App Trailer Player, Settings, All Apps) and smooth-scroll back to Page 1 dock (focusing YouTube) upon pressing the remote HOME button from anywhere in the launcher.
+- **Streamer Music UI Exit Transition Polish**:
+  - Replaced instantaneous dismissal with a synchronized 120ms alpha fade-out and dock gap recalculation in `closeMusicOverlay()`, eliminating homescreen dock jumping when exiting back to the homescreen.
+- **Android 9 / Legacy Storage Permissions**:
+  - Added startup permission request handling for legacy `READ_EXTERNAL_STORAGE` and `WRITE_EXTERNAL_STORAGE` on devices running Android 9 / API 28 and below, while preserving modern scoped storage behavior on Android 10+.
+
+---
+
+# Streamer Launcher - Changelog
+
 ## [v3.6] - 2026-11-05
 ### Added & Personalization
 - **IMDb Quality Verification Gate for "For You" Recommendations**:
