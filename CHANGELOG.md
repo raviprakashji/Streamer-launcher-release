@@ -1,5 +1,37 @@
 # Streamer Launcher - Changelog
 
+## [v3.6] - 2026-11-05
+### Added & Personalization
+- **IMDb Quality Verification Gate for "For You" Recommendations**:
+  - Implemented dual-threshold IMDb rating verification gate ensuring every title recommended in personalized "For You: Movies" and "For You: TV Shows" catalogs satisfies strict minimum quality standards before caching and publication.
+  - OpenAPI-aligned client retrieval with batch coalescing, deduplication, and resilient fallback handling against network / IMDb provider outages.
+- **Global Music Mixes Expansion**:
+  - Expanded `GLOBAL_CATALOG` in `RegionalMusicDirectory` to 24 diverse, curated playlists across world genres (90s Alternative/Grunge, 2000s Pop Nostalgia, Tropical & Deep House, Hip-Hop Bangers, Indie Pop, Retrowave/Synthwave, Cinematic Soundtracks, Peaceful Piano, Late Night Jazz, Disco & Funk, Modern Country, High Energy Workout, and more).
+  - Clean regional personalization: automatic location lookup using `geo_city` / `geo_country` ensures international locations (e.g. Amsterdam, London, Cairo, Mexico City) strictly receive global/Western mixes without inappropriate Indian genre bleed.
+  - Dynamic music search hints and suggestion chips automatically adapting based on user's geographic region.
+
+### Fixed & Hardened
+- **Streamer Music UI Navigation Crash**:
+  - Resolved fatal `IllegalArgumentException: parameter must be a descendant of this view` triggered by DPAD UP from quick playlist cards or DPAD LEFT from the Rotate Mixes button.
+  - Implemented boundary focus trapping, container focus disabling (`android:focusable="false"` on `musicOverlay`), and defensive rescue logic to prevent remote focus from escaping the overlay to background views.
+- **Cricket Settings Reordering & Validation Gating**:
+  - Reordered Cricket settings submenu under Streamer settings -> Appearance -> Cricket score:
+    1. *CricketData API key* (top position)
+    2. *Cricket scores* (toggle)
+    3. *Refresh scores now*
+  - Enforced gating: toggling scores and refreshing remains strictly disabled until the API key is entered and validated (`checkKey()`), automatically enabling upon successful verification.
+- **Cricket Toggle Homescreen Dock Fluctuation**:
+  - Fixed background homescreen layout jitter and dock displacement when toggling cricket scores ON/OFF by introducing synchronous layout measurement (`syncHomeGapWithTopBar`), eliminating multi-frame asynchronous layout latency.
+- **Streamer Files Scroll Position & Viewport Retention**:
+  - Fixed viewport jumping in Streamer Files when returning from a subfolder in internal storage.
+  - Implemented persistent scroll state and pixel offset tracking (`FolderNavState` with `scrollToPositionWithOffset`), preserving exact scroll offset and visible directory structure upon pressing Back.
+- **Changelog Navigation & Download Progress Polish**:
+  - Enlarged changelog display container with standalone D-Pad focusability and smooth scrolling.
+  - Relocated "Update now" button to screen bottom with generous breathing room and decoupled download progress bar from the update action button.
+  - Shifted developer GitHub attribution footer to the screen bottom for clean visual hierarchy.
+
+---
+
 ## [v3.5] - 2026-11-05
 ### Added
 - **Streaming SIMKL TV Calendar Parser**:
