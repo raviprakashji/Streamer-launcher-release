@@ -27,6 +27,10 @@
 | :---: | :---: | :---: |
 | <img src="docs/screenshots/home-main.png" width="100%" alt="Main Streamer Launcher home screen"> | <img src="docs/screenshots/home-clutter-free.png" width="100%" alt="Clutter-free home screen"> | <img src="docs/screenshots/for-you-movies.png" width="100%" alt="Continue watching & Catalogs"> |
 
+| Continue watching & Catalogs |
+| :---: |
+| <img src="docs/screenshots/quick-settings.png" width="100%" alt="Main Streamer Launcher home screen"> |
+
 ### 🎬 Movie & TV Discovery
 
 | Trending & Popular Catalogs | For You — Movies | Trailer Playback up to 4K|
