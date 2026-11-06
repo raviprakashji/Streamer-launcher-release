@@ -1,4 +1,6 @@
-# Streamer Launcher
+ <img src="docs/screenshots/github-header-banner.png" width="100%" alt="Main Streamer Launcher home screen">
+ 
+ # Streamer Launcher
 
 <p align="center">
   <strong>An ultra-fast, minimal, and elegant home screen engineered specifically for Android TV and Google TV.</strong>
@@ -21,51 +23,39 @@
 
 ### 🏠 Home Screen & Launcher
 
-| Main Home Screen | Adaptive App Dock | Clutter-Free Home Screen |
+| Main Home Screen | Clutter-Free Home Screen | Continue watching & Catalogs |
 | :---: | :---: | :---: |
-| <img src="docs/screenshots/home-main.png" width="100%" alt="Main Streamer Launcher home screen"> | <img src="docs/screenshots/home-dock.png" width="100%" alt="Adaptive app dock supporting up to eight apps"> | <img src="docs/screenshots/home-clutter-free.png" width="100%" alt="Clutter-free home screen"> |
-
-| Weather, Date & Clock | Cricket Score Pill | Now Playing Pill |
-| :---: | :---: | :---: |
-| <img src="docs/screenshots/home-weather-clock.png" width="100%" alt="Home screen date, weather and clock"> | <img src="docs/screenshots/home-cricket.png" width="100%" alt="Live cricket score pill"> | <img src="docs/screenshots/home-now-playing.png" width="100%" alt="Music Now Playing pill"> |
+| <img src="docs/screenshots/home-main.png" width="100%" alt="Main Streamer Launcher home screen"> | <img src="docs/screenshots/home-clutter-free.png" width="100%" alt="Clutter-free home screen"> | <img src="docs/screenshots/for-you-movies.png" width="100%" alt="Continue watching & Catalogs"> |
 
 ### 🎬 Movie & TV Discovery
 
-| Trending & Popular Catalogs | For You — Movies | For You — TV Shows |
+| Trending & Popular Catalogs | For You — Movies | Trailer Playback up to 4K|
 | :---: | :---: | :---: |
-| <img src="docs/screenshots/catalogs-trending.png" width="100%" alt="Trending and popular catalogs"> | <img src="docs/screenshots/for-you-movies.png" width="100%" alt="Personalised movie recommendations"> | <img src="docs/screenshots/for-you-shows.png" width="100%" alt="Personalised TV recommendations"> |
-
-| Title Details & Ratings | Better Posters Artwork | Trailer Playback |
-| :---: | :---: | :---: |
-| <img src="docs/screenshots/catalog-title-details.png" width="100%" alt="Title synopsis and multiple ratings"> | <img src="docs/screenshots/catalog-better-posters.png" width="100%" alt="Better Posters artwork"> | <img src="docs/screenshots/catalog-trailer.png" width="100%" alt="HD trailer playback"> |
-
-| MDBList Personal Catalogs | SIMKL Watchlist | Continue Watching |
-| :---: | :---: | :---: |
-| <img src="docs/screenshots/catalog-mdblist.png" width="100%" alt="Personal MDBList catalogs"> | <img src="docs/screenshots/catalog-simkl-watchlist.png" width="100%" alt="SIMKL watchlist controls"> | <img src="docs/screenshots/continue-watching.png" width="100%" alt="Continue Watching section"> |
+| <img src="docs/screenshots/catalogs-trending.png" width="100%" alt="Trending and popular catalogs"> | <img src="docs/screenshots/for-you-movies.png" width="100%" alt="Personalised movie recommendations"> | <img src="docs/screenshots/catalog-trailer.png" width="100%" alt="HD trailer playback"> |
 
 ### ▶️ Playback Integrations
 
 | Preferred Player Selection | Gemini Search Playback | Catalog Direct Playback |
 | :---: | :---: | :---: |
-| <img src="docs/screenshots/player-preferences.png" width="100%" alt="Preferred media player settings"> | <img src="docs/screenshots/gemini-playback.png" width="100%" alt="Play directly from Google Gemini results"> | <img src="docs/screenshots/catalog-direct-playback.png" width="100%" alt="Launch catalog titles in the preferred player"> |
+| <img src="docs/screenshots/player-preferences.png" width="100%" alt="Preferred media player settings"> | <img src="docs/screenshots/gemini-playback.png" width="100%" alt="Play directly from Google Gemini results">  <img src="docs/screenshots/gemini-playback-1.png" width="100%" alt="Play directly from Google Gemini results"> | <img src="docs/screenshots/more-actions-on-for-you-catalog.png" width="100%" alt="Launch catalog titles in the preferred player"> |
 
 ### 📅 TV Show Calendar
 
-| Your Shows | All Premieres | Calendar Episode Details |
-| :---: | :---: | :---: |
-| <img src="docs/screenshots/calendar-your-shows.png" width="100%" alt="Personalised Your Shows calendar"> | <img src="docs/screenshots/calendar-premieres.png" width="100%" alt="All Premieres by country"> | <img src="docs/screenshots/calendar-episode-details.png" width="100%" alt="TV calendar episode details"> |
+| Your Shows | All Premieres |
+| :---: | :---: |
+| <img src="docs/screenshots/calendar-your-shows.png" width="100%" alt="Personalised Your Shows calendar"> | <img src="docs/screenshots/calendar-premieres.png" width="100%" alt="All Premieres by country"> |
 
-### 🎵 YouTube Music
+### 🎵 In-built Music Player
 
-| Music Home & Quick Mixes | Synchronized Lyrics | Background Playback |
-| :---: | :---: | :---: |
-| <img src="docs/screenshots/music-quick-mixes.png" width="100%" alt="YouTube Music quick mixes"> | <img src="docs/screenshots/music-lyrics.png" width="100%" alt="Synchronized lyrics"> | <img src="docs/screenshots/music-background.png" width="100%" alt="Background music playback and Now Playing pill"> |
+| Music Home & Quick Mixes | Synchronized Lyrics |
+| :---: | :---: |
+| <img src="docs/screenshots/music-quick-mixes.png" width="100%" alt="YouTube Music quick mixes"> | <img src="docs/screenshots/music-lyrics.png" width="100%" alt="Synchronized lyrics"> |
 
 ### 🏏 Live Cricket
 
-| Home Screen Live Scores | Match Schedule | Full Scorecard |
-| :---: | :---: | :---: |
-| <img src="docs/screenshots/cricket-home-pill.png" width="100%" alt="Live cricket scores on the home screen"> | <img src="docs/screenshots/cricket-schedule.png" width="100%" alt="Current and upcoming cricket matches"> | <img src="docs/screenshots/cricket-scorecard.png" width="100%" alt="Cricket match scorecard"> |
+Home Screen Live Scores & Match Schedule |
+| :---: |
+| <img src="docs/screenshots/cricket-schedule.png" width="100%" alt="Current and upcoming cricket matches"> |
 
 ### 🖼️ Wallpapers
 
@@ -77,7 +67,9 @@
 
 | Built-in File Manager | LocalSend File Transfer | File Selection |
 | :---: | :---: | :---: |
-| <img src="docs/screenshots/file-manager-home.png" width="100%" alt="Built-in TV file manager"> | <img src="docs/screenshots/localsend-transfer.png" width="100%" alt="LocalSend v2 file transfer"> | <img src="docs/screenshots/file-manager-picker.png" width="100%" alt="File selection from the file manager"> |
+| <img src="docs/screenshots/file-manager-home.png" width="100%" alt="Built-in TV file manager"> | <img src="docs/screenshots/localsend-transfer.png" width="100%" alt="LocalSend v2 file transfer"> | <img src="docs/screenshots/localsend-file-picker.png" width="100%" alt="File selection from the file manager"> |
+| Multiple App Transfer | LocalSend Transfer in Progress | Transfer Completed |
+| <img src="docs/screenshots/localsend-app-picker.png" width="100%" alt="Built-in TV file manager"> | <img src="docs/screenshots/localsend-transfer-inprogress.png" width="100%" alt="LocalSend v2 file transfer"> | <img src="docs/screenshots/localsend-transfer-complete.png" width="100%" alt="File selection from the file manager"> |
 
 ### 🎛️ Remote & Device Controls
 
@@ -90,10 +82,6 @@
 | Main Settings | MDBList API Configuration | Backup & Restore |
 | :---: | :---: | :---: |
 | <img src="docs/screenshots/settings-main.png" width="100%" alt="Launcher settings"> | <img src="docs/screenshots/settings-mdblist.png" width="100%" alt="MDBList API key configuration"> | <img src="docs/screenshots/settings-backup-restore.png" width="100%" alt="Backup and restore settings and API keys"> |
-
-| Appearance & Dimming | OTA Updates | Music Settings |
-| :---: | :---: | :---: |
-| <img src="docs/screenshots/settings-appearance-dimming.png" width="100%" alt="Wallpaper and home screen dimming settings"> | <img src="docs/screenshots/settings-ota.png" width="100%" alt="Over-the-air launcher updates"> | <img src="docs/screenshots/settings-music.png" width="100%" alt="YouTube Music settings and disable option"> |
 
 ---
 
