@@ -249,6 +249,10 @@ Streamer Launcher uses Android's `WRITE_SECURE_SETTINGS` permission for certain 
 ```bash
 adb shell pm grant com.streamer.launcher android.permission.WRITE_SECURE_SETTINGS
 ```
+If accessibility permissions toggle is turning off  itself for the app, use below ADB command:
+```bash
+adb shell appops set com.streamer.launcher ACCESS_RESTRICTED_SETTINGS allow
+```
 
 **Steps:**
 1. Enable **Developer options** and **USB debugging** or **Wireless debugging** on your Android TV.
