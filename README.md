@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.6.2-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.7-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
   <img alt="APK size" src="https://img.shields.io/badge/APK-3.9%20MB-success?style=flat-square">
   <a href="https://github.com/raviprakashji/Streamer-launcher/actions"><img alt="CI Build" src="https://img.shields.io/github/actions/workflow/status/raviprakashji/Streamer-launcher/build-release.yml?branch=main&style=flat-square"></a>
@@ -231,7 +231,7 @@ Streamer Launcher is strictly engineered for low-memory, entry-level Android TV 
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-- **Streamer.launcher_v3.6.2.apk** (3.9 MB)
+- **Streamer.launcher_v3.7.apk** (3.9 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -239,7 +239,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v3.6.2.apk"
+adb install -r "Streamer.launcher_v3.7.apk"
 ```
 
 ### Grant Secure Settings Permission (Required for Certain System-Level Features)
@@ -283,11 +283,23 @@ cd Streamer-launcher
 ./gradlew assembleRelease
 ```
 The compiled APK will be located at:
-`app/build/outputs/apk/release/Streamer.launcher_v3.6.2.apk`
+`app/build/outputs/apk/release/Streamer.launcher_v3.7.apk`
 
 ---
 
 ## Changelog
+
+### v3.7
+- **Streamer Music Settings & Live Lyrics Control**: Restructured Settings into dedicated "Streamer music" menu with master toggle and conditionally visible "Live lyrics on homescreen" toggle.
+- **Homescreen Live Lyrics & Seamless Dynamic Layout**: Floating live lyrics positioned directly under Now Playing pill with instant teardown on track end/skip and strict playback-state gating.
+- **Homescreen Dock Stability**: Eliminated app dock jumping/glitching during track transitions via synchronous zero-latency sizing and removal of conflicting layout transitions.
+- **Interactive Three-Segment Now Playing Pill**: Independently focusable song info, play/pause, and next track buttons with contained artwork padding.
+- **Bidirectional DPAD Navigation Matrix**: Seamless D-pad navigation across Cricket score pill, Now Playing pill, and All Apps icon.
+- **All Apps Grid Refinement**: Optimized grid layout to maximum 6 app icons per row with balanced sizing and no focus clipping.
+- **Quick Settings & LocalSend Remote Controls**: Added Now Playing media tile and remote HOME button dismissal for LocalSend.
+- **Universal TV Screensaver & Ambient Integration**: Reflection-based `Sandman.startDreamByUser()` for Google TV and Somnambulator / ScreensaverActivity fallback for Android TV 11.
+- **Android TV & Google TV Default Launcher Auto-Persistence**: Highest intent priority ranking and self-healing accessibility service rebind on package replacement.
+- **Autoplay Watchdog & Music UI Loaders**: 10-second stall watchdog timer and elevated loader spinners during search and track loading.
 
 ### v3.6.2
 - **LocalSend File Picker & Multi-Select Workflow**: Instant single-click file selection returning directly to LocalSend, explicit multi-select entry triggered via long-press, and a dedicated picker action bar featuring an `OK ($count)` button for unified single and multi-file confirmation. Removed redundant nested LocalSend modal and defunct Done action from picker mode.

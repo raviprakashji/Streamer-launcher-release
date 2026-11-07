@@ -1,3 +1,58 @@
+## [v3.7] - 2026-11-08
+### Added & Enhanced
+- **Streamer Music Settings & Live Lyrics Control**:
+  - Restructured Settings into dedicated "Streamer music" menu with independent sub-toggles:
+    - Master **Streamer Music** toggle (On/Off).
+    - **Live lyrics on homescreen** toggle (On/Off) — dynamically visible *only* when the master Streamer Music toggle is ON.
+    - Clean `DPAD_BACK` navigation returning directly to the main Settings menu.
+- **Homescreen Live Lyrics & Seamless Dynamic Layout**:
+  - Floating live lyrics layover positioned directly below the Now Playing pill.
+  - Synchronous immediate teardown in `SyncedLyricsEngine.clearImmediate()` canceling background network calls and ticks, eliminating previous song lyric flash during track transitions.
+  - Wired instant lyric teardown on `Player.STATE_ENDED` in `MusicPlaybackManager`.
+  - Guarded homescreen live lyrics visibility strictly with `musicPlaybackManager.isPlaying`, keeping lyrics hidden when audio is paused, ended, or buffering.
+- **Rock-Solid Homescreen Dock Stability**:
+  - Converted `syncHomeGapWithTopBar` to synchronous zero-latency sizing (`animate = false`).
+  - Removed conflicting `android:animateLayoutChanges="true"` on `clockContainer`.
+  - The app dock remains mathematically locked at 416dp without jitter or displacement when songs end or change.
+- **Interactive Three-Segment Now Playing Pill**:
+  - Redesigned the Now Playing pill into three independently focusable segments:
+    - **Song Info** (Artwork + Marquee Title): click opens the full Streamer Music player overlay.
+    - **Play/Pause button**: click toggles playback instantly.
+    - **Next Song button**: click skips to next track with instant lyric reset.
+  - Maintained artwork aspect ratio within pill rounded borders without overflowing padding when in focus.
+- **Bidirectional DPAD Navigation Matrix on Homescreen**:
+  - **All Apps icon (`allAppsButton`) DPAD_LEFT**:
+    - With Cricket score and Now Playing pills both showing -> navigates to Cricket score pill.
+    - With only Cricket score pill showing -> navigates to Cricket score pill.
+    - With only Now Playing pill showing -> navigates to Now Playing pill (song title).
+    - With neither pill showing -> stays locked on All Apps icon.
+  - **Cricket Score pill**:
+    - `DPAD_RIGHT` navigates directly to the All Apps icon.
+    - `DPAD_LEFT` & `DPAD_UP` remain on the Cricket score pill.
+    - `DPAD_DOWN` navigates to Now Playing pill (if visible) or app dock.
+  - **Now Playing Pill**:
+    - With Cricket score pill ON: `DPAD_UP` from all pill segments -> Cricket score pill; `DPAD_LEFT` from song title -> Cricket score pill; `DPAD_RIGHT` from Next button -> All Apps icon; `DPAD_DOWN` -> app dock.
+    - With Cricket score pill OFF: `DPAD_UP` -> stays on pill; `DPAD_LEFT` from song title -> stays on song title; `DPAD_RIGHT` from Next button -> All Apps icon; `DPAD_DOWN` -> app dock.
+- **All Apps Section Grid Refinement**:
+  - Optimized grid to maximum 6 app icons per row (`columnCount="6"`) with balanced card dimensions, generous padding, and no clipping on `1.08x` focus scale.
+- **Quick Settings & LocalSend Remote Controls**:
+  - Added dedicated Now Playing tile in Quick Settings showing thumbnail artwork, marquee title, artist, live play/pause state, and playback duration progress bar.
+  - Added remote HOME button dismissal for the LocalSend modal in Quick Settings, cleanly closing the transfer view and returning to homescreen.
+- **Universal TV Screensaver & Ambient Integration**:
+  - Fixed Ambient screensaver launch in Quick Settings on Android 14 / Google TV via hidden framework reflection (`Sandman.startDreamByUser()`), with fallback to ambient dream packages and system dream settings.
+  - Fixed screensaver preference synchronization on Android 11: direct launcher intent for `com.android.systemui.Somnambulator`, internal `ScreensaverActivity` for local photos and gallery paintings, and correct system default fallback.
+- **Android TV & Google TV Default Launcher Auto-Persistence Across Builds**:
+  - Added stock Android TV launcher `com.google.android.tvlauncher` to `ALLOWED_PACKAGES` and `isTvHome()` detection in `HomeOverride`.
+  - Added `android:priority="3"` to `CATEGORY_HOME` intent-filter in `AndroidManifest.xml` to outrank stock Android TV (`priority="2"`).
+  - Self-healing `ensureHomeService()` automatically re-arms accessibility and clears `mCrashedServices` on every package update (`ACTION_MY_PACKAGE_REPLACED`).
+- **Autoplay Watchdog on Playback Stalls**:
+  - Added 10-second watchdog timer in `MusicPlaybackManager` that auto-skips to the next track if an audio stream stalls or fails to load.
+- **Streamer Music UI Loaders**:
+  - Indeterminate loader spinner displayed during YouTube Music search queries until search results are ready.
+  - Indeterminate loader spinner displayed when selecting a search result song or quick mix until playback initializes.
+
+---
+
 ## [v3.6.2] - 2026-11-06
 ### Fixed & Hardened
 - **LocalSend File Picker & Multi-Select Workflow**:
