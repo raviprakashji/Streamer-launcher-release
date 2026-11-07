@@ -7,9 +7,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.7-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.8-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
-  <img alt="APK size" src="https://img.shields.io/badge/APK-3.9%20MB-success?style=flat-square">
+  <img alt="APK size" src="https://img.shields.io/badge/APK-4.0%20MB-success?style=flat-square">
   <a href="https://github.com/raviprakashji/Streamer-launcher/actions"><img alt="CI Build" src="https://img.shields.io/github/actions/workflow/status/raviprakashji/Streamer-launcher/build-release.yml?branch=main&style=flat-square"></a>
   <img alt="Ad-Free" src="https://img.shields.io/badge/Ads-None-brightgreen?style=flat-square">
   <a href="LICENSE"><img alt="GPL-3.0 License" src="https://img.shields.io/badge/License-GPL--3.0-orange?style=flat-square"></a>
@@ -231,7 +231,7 @@ Streamer Launcher is strictly engineered for low-memory, entry-level Android TV 
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-- **Streamer.launcher_v3.7.apk** (3.9 MB)
+- **Streamer.launcher_v3.8.apk** (4.0 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -239,7 +239,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v3.7.apk"
+adb install -r "Streamer.launcher_v3.8.apk"
 ```
 
 ### Grant Secure Settings Permission (Required for Certain System-Level Features)
@@ -283,11 +283,17 @@ cd Streamer-launcher
 ./gradlew assembleRelease
 ```
 The compiled APK will be located at:
-`app/build/outputs/apk/release/Streamer.launcher_v3.7.apk`
+`app/build/outputs/apk/release/Streamer.launcher_v3.8.apk`
 
 ---
 
 ## Changelog
+
+### v3.8
+- **Bluetooth Quick Settings & Accessory Management**: Added dedicated Bluetooth tile in Quick Settings and top bar Bluetooth shortcut. Interactive frosted glass modal with real-time discovery, battery percentage display, device hierarchy sorting (Headphones/Earphones > Speakers > Gamepads/Controllers > Remotes), DPAD focus trapping, and dynamic height clamping (>6 devices) with an elegant glass scrollbar. Pinned bottom actions for pairing wizard and bluetooth settings.
+- **Dynamic Audio Switching & Real-Time Audio Routing Sync**: Multi-profile active device routing combining OS broadcasts and hardware `AudioManager.getDevices` ground truth. Real-time switching between multiple connected audio sinks with animated waveform "Playing" and "Switch audio" pills. Saved accessories feature a matching "Tap to connect" pill. Real-time dynamic updates on external power-on and disconnect without modal dismissal or UI jitter.
+- **Customizable Appearance & Quick Settings Parity**: Added "Bluetooth services" toggle in Streamer settings -> Appearance. Disabling Bluetooth services dynamically hides the Bluetooth top bar icon and restores the exact 5-row Quick Settings layout without activity reload or dock glitching.
+- **Music Homescreen Lyrics Migration**: Guaranteed default enablement of "Show lyrics on homescreen" for existing users upgrading with music support enabled.
 
 ### v3.7
 - **Streamer Music Settings & Live Lyrics Control**: Restructured Settings into dedicated "Streamer music" menu with master toggle and conditionally visible "Live lyrics on homescreen" toggle.

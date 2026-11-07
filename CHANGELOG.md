@@ -1,3 +1,24 @@
+## [v3.8] - 2026-11-08
+### Added & Enhanced
+- **Bluetooth Quick Settings & Accessory Management**:
+  - Added dedicated Bluetooth tile in Quick Settings and top bar Bluetooth shortcut with real-time connection state indicators.
+  - Interactive, modern frosted glass Bluetooth modal supporting real-time peripheral discovery, battery percentage display with matching font styling, and device classification.
+  - Device hierarchy sorting: Headphones/Earphones > Speakers > Gamepads/Controllers > Remotes > Generic.
+  - Dynamic height clamping for >6 devices with an elegant 4dp glass scrollbar and smooth DPAD scrolling navigation.
+  - Pinned bottom actions for "+ Pair new device" (launches TV pairing wizard across Android TV and Google TV) and "Open bluetooth settings".
+  - Full DPAD focus trapping within the modal, preventing accidental escapes until the Back button is pressed.
+- **Dynamic In-Place Audio Switching & Real-Time Audio Routing Sync**:
+  - Live audio playback switching between multiple connected audio sinks (headphones, soundbars, Bluetooth speakers) with dedicated "Switch audio" and animated waveform "Playing" status pills.
+  - Multi-profile active device detection combining platform broadcasts (`ACTION_ACTIVE_DEVICE_CHANGED`, `ACTION_CONNECTION_STATE_CHANGED`) with Android `AudioManager.getDevices(GET_DEVICES_OUTPUTS)` hardware ground truth.
+  - Instant UI synchronization when external paired audio devices are powered on or disconnected, immediately moving them between CONNECTED and SAVED DEVICES without closing the modal or causing UI jitter.
+  - Styled "Tap to connect" glass pill for saved devices matching the active audio pills.
+- **Customizable Appearance & Quick Settings Parity**:
+  - Added "Bluetooth services" toggle in Streamer settings -> Appearance.
+  - Disabling Bluetooth services dynamically removes the Bluetooth icon from the top row and removes the Bluetooth tile from Quick Settings, restoring the exact 5-row Quick Settings layout without reloading the activity or glitching the dock.
+  - Default initialization ensures Bluetooth services are enabled on first install.
+- **Music Homescreen Lyrics Migration**:
+  - Seamless version upgrade migration defaulting "Show lyrics on homescreen" (`music_home_lyrics_enabled`) to ON for existing users who already had Streamer Music enabled in previous releases, preserving user preferences.
+
 ## [v3.7] - 2026-11-08
 ### Added & Enhanced
 - **Streamer Music Settings & Live Lyrics Control**:
