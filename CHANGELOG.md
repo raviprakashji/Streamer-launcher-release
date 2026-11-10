@@ -1,3 +1,28 @@
+## [v3.9] - 2026-11-11
+### Added, Fixed & Enhanced (vs v3.8)
+- **Liquid-Glass Dock Container & Adaptive Light Wallpaper Contrast**:
+  - Upgraded `DockPillView` with frozen blurred wallpaper slicing directly beneath the dock, top-left radial specular bloom, vertical surface sheen, inner edge lensing, top hairline highlight, 135-degree diagonal specular rim contour, and elevation shadow while preserving dock height, paddings, focus rings, and focus labels.
+  - Added luminance-adaptive smoked slate base (`0x6B1A1C24` -> `0xA8141822`) plus normalized non-banner padding (`6dp`) and HDMI icon tint (`Color.WHITE`) so dock icons remain vibrant even on light/white wallpapers without extra inner tile boxes.
+- **Icon Pack Compatibility & One-Click GitHub APK Installer**:
+  - Added full Projectivy, ADW, Nova, and Lawnchair icon pack support (`IconPackManager`, `IconPackPickerDialog`) with `Apply icon pack` settings and long-press `Choose from icon pack` across both Dock and All Apps tiles.
+  - Added `Icon size in dock`, `App icon tint`, and `Focus ring accent` customization under Appearance -> App row.
+  - Filtered out launcher apps (such as `com.spocky.projengmenu`) from appearing as false-positive icon packs via resource verification (`appfilter.xml` / `drawable.xml`) and launcher exclusion.
+  - When no icon pack is installed, selecting `Get Icon Pack` downloads `Projectivy_Icon_Pack.apk` directly with live download progress and prompts Android's package installer (`UpdateManager.downloadApkFromUrl`).
+- **Official YouTube Continue Watching & Smoked Card Legibility**:
+  - Added `MediaWatchService` (`NotificationListenerService` + `MediaSessionManager`) tracking active playback sessions (including official YouTube on Android 14 / Google TV), caching artwork thumbnails and surfacing newest-first entries (`watchSortKey(0L, ts)`) inside Continue Watching.
+  - Added `Showing on` (`Page 1` / `Page 2`) Continue Watching placement option.
+  - Upgraded Continue Watching cards to high-contrast frosted obsidian glass (`0xB8141822` -> `0xD60C1018`) with crisp white titles, subtitles, and progress bars across both dark and light wallpapers.
+- **Cold-Boot Performance & Wallpaper Fast-Path**:
+  - Added `wp_prepared.jpg` and `wp_blur_prepared.jpg` display-priority fast-path caching (`bootWallpaperIo`), pinned dock app preloading (`preloadPinnedDockAsync`), and `addIdleHandler` deferral for full package and icon pack initialization.
+- **Default Launcher Stickiness & Update Survival**:
+  - Extracted `HomeServiceHelper` for self-healing `HomeOverride` Accessibility rebind across APK replacements (`MY_PACKAGE_REPLACED` / `BOOT_COMPLETED` / `LOCKED_BOOT_COMPLETED`) and `HomeOverride.onServiceConnected()` focus restoration without disabling stock TV launchers.
+- **Streamer Files USB Mass Storage (exFAT/FAT32), Sidebar Highlight & Permissions**:
+  - Implemented pure-Kotlin USB Mass Storage SCSI Bulk-Only Transport + exFAT/FAT32 reader (`UsbMassStorageClient`) with in-app directory browsing, thumbnails, and image viewer without `DocumentsUI` dependencies.
+  - Normalized USB volume IDs (`otg:<device>`) so the active USB drive remains soft-highlighted in the sidebar while browsing folders and receives `DPAD_LEFT` focus back cleanly.
+  - Fixed File Manager storage permission handling to re-prompt on single denials and show the permission toast only when permanently denied (`Deny and don't ask again`).
+- **Bluetooth Pairing, Localized Synopses & Navigation Polish**:
+  - Added in-app Bluetooth accessory scanning and pairing (`BluetoothDeviceManager`, `ConnectedDevicesModal`, `Open Bluetooth settings`), localized TMDb synopsis language selection (`DiscoveryProvider`), configurable homescreen lyrics font size (`Normal` / `Bigger`), `BackupRestoreManager` enhancements, and `HomeScrollView` Page 1 / Page 2 focus containment.
+
 ## [v3.8] - 2026-11-08
 ### Added & Enhanced
 - **Bluetooth Quick Settings & Accessory Management**:

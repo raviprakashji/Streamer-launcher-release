@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.8-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.9-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
   <img alt="APK size" src="https://img.shields.io/badge/APK-4.0%20MB-success?style=flat-square">
   <a href="https://github.com/raviprakashji/Streamer-launcher/actions"><img alt="CI Build" src="https://img.shields.io/github/actions/workflow/status/raviprakashji/Streamer-launcher/build-release.yml?branch=main&style=flat-square"></a>
@@ -92,13 +92,14 @@ Home Screen Live Scores & Match Schedule |
 ## Key Features
 
 - **Ultra-Light Android TV Launcher**:
-  - Integrated date, weather, and clock.
-  - Adaptive app dock that adjusts to the number of selected apps, supporting up to **8 apps**.
+  - Integrated date, weather, and clock with fast pre-cached cold-boot wallpaper and dock startup.
+  - Liquid-glass app dock (`DockPillView`) with adaptive contrast over dark and light wallpapers, supporting up to **8 apps**, custom icon sizing, app icon tinting, and focus ring accent colors.
+  - Compatible with **Projectivy, ADW, Nova, and Lawnchair icon packs** (`Apply icon pack` & long-press `Choose from icon pack`), custom icon uploads, and one-click Projectivy Icon Pack APK installation.
   - Rearrange or remove apps from the dock.
   - Clutter-free home screen option, including controls to hide the cricket score pill.
   - Configurable home screen dimming during a selected time interval.
 - **Built-in File Manager & LocalSend v2**:
-  - TV-friendly file manager designed for remote D-pad navigation.
+  - TV-friendly file manager designed for remote D-pad navigation with pure-Kotlin **exFAT / FAT32** USB Mass Storage OTG support and in-app image previews.
   - LocalSend v2 built in for local wireless file transfers.
   - Open LocalSend directly from the File Manager to send and receive files between devices.
 - **Preferred Media Player & Direct Playback**:
@@ -106,11 +107,12 @@ Home Screen Live Scores & Match Schedule |
   - Launch supported titles directly from Google Gemini search results (requires Gemini to be available on the TV).
   - Launch titles directly from built-in catalogs and Continue Watching.
 - **Continue Watching**:
-  - Aggregates supported Android TV / app playback entries.
+  - Aggregates supported Android TV Watch Next entries and active `MediaSession` playback (including **official YouTube** on Android 14 / Google TV).
+  - Configurable placement on **Page 1 or Page 2** with high-contrast smoked glass cards.
   - Launch supported media directly in the selected app.
   - Hidden-show management with app icon badges and automatic pruning of uninstalled apps.
 - **Movie & TV Show Catalogs**:
-  - Built-in Trending, Popular, and Latest Movies & TV Shows.
+  - Built-in Trending, Popular, and Latest Movies & TV Shows with localized TMDb synopsis language support.
   - SIMKL history-based taste profiles and personalised **For You** recommendation catalogs for Movies and TV Shows.
   - Bring your own public MDBList lists, including dynamic and static lists.
   - Better Posters integration for high-quality poster artwork.
@@ -231,7 +233,7 @@ Streamer Launcher is strictly engineered for low-memory, entry-level Android TV 
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-- **Streamer.launcher_v3.8.apk** (4.0 MB)
+- **Streamer.launcher_v3.9.apk** (4.0 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -239,7 +241,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v3.8.apk"
+adb install -r "Streamer.launcher_v3.9.apk"
 ```
 
 ### Grant Secure Settings Permission (Required for Certain System-Level Features)
@@ -283,11 +285,20 @@ cd Streamer-launcher
 ./gradlew assembleRelease
 ```
 The compiled APK will be located at:
-`app/build/outputs/apk/release/Streamer.launcher_v3.8.apk`
+`app/build/outputs/apk/release/Streamer.launcher_v3.9.apk`
 
 ---
 
 ## Changelog
+
+### v3.9
+- **Liquid-Glass Dock & Light Wallpaper Visibility**: Upgraded `DockPillView` with frozen blurred wallpaper refraction, adaptive smoked glass slate for crisp icon legibility across bright and dark wallpapers without inner tile boxes, radial top-left specular bloom, vertical surface sheen, inner lensing, and a 135-degree diagonal specular rim contour.
+- **Icon Pack Support & One-Click Projectivy Icon Pack Installer**: Full Projectivy, ADW, Nova, and Lawnchair icon pack support (`Apply icon pack` & long-press `Choose from icon pack`), custom icon size slider, app icon tinting, focus ring accent customization, launcher package false-positive filtering (`com.spocky.projengmenu`), and direct in-app APK download/install prompt when no icon pack is installed.
+- **Official YouTube Continue Watching & Card Legibility**: Added `MediaWatchService` (`NotificationListenerService` + `MediaSessionManager`) to track playback sessions from apps like official YouTube on Android 14 / Google TV, added Page 1 / Page 2 placement selection, and upgraded Continue Watching cards to high-contrast frosted obsidian glass.
+- **Fast Cold-Boot Startup**: Added display-priority pre-cached wallpaper & dock blur fast paths (`wp_prepared.jpg`, `wp_blur_prepared.jpg`), pinned dock app preloading, and idle deferral for full package & icon pack scans.
+- **Default Launcher Stickiness & Update Survival**: Extracted `HomeServiceHelper` for self-healing `HomeOverride` Accessibility rebinding across APK updates (`MY_PACKAGE_REPLACED` / `BOOT_COMPLETED`) and wake focus recovery without disabling stock TV launchers.
+- **Streamer Files USB Mass Storage (exFAT/FAT32) & Permissions**: Added pure-Kotlin USB Mass Storage SCSI + exFAT/FAT32 browser and in-app image viewer without external `DocumentsUI` dependencies, active USB sidebar soft-highlighting & `DPAD_LEFT` focus return, and storage permission retry after single denials.
+- **In-App Bluetooth Pairing, Localized Synopses & Lyrics Sizing**: Added in-app Bluetooth scanning/pairing controls in the Connected Devices modal, localized TMDb synopsis language selection, homescreen lyrics font size options (`Normal` / `Bigger`), and hardened `HomeScrollView` Page 1/Page 2 focus containment.
 
 ### v3.8
 - **Bluetooth Quick Settings & Accessory Management**: Added dedicated Bluetooth tile in Quick Settings and top bar Bluetooth shortcut. Interactive frosted glass modal with real-time discovery, battery percentage display, device hierarchy sorting (Headphones/Earphones > Speakers > Gamepads/Controllers > Remotes), DPAD focus trapping, and dynamic height clamping (>6 devices) with an elegant glass scrollbar. Pinned bottom actions for pairing wizard and bluetooth settings.
