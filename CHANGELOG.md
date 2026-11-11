@@ -1,3 +1,21 @@
+## [v3.9.1] - 2026-11-11
+### Added, Fixed & Enhanced (vs v3.9)
+- **Minimalist Continue Watching & Strict App Filtering**:
+  - Added **Minimalist** Continue Watching card style (`282×64dp` horizontal glass pill matching `tvOS-Launcher`) alongside **Classic** under `Streamer settings → Continue watching → Card style`.
+  - On **Page 1**, Minimalist Continue Watching dynamically filters to only the currently focused dock app; on **Page 2**, it displays all active Continue Watching items in a single row with full D-pad traversal (`App dock ↔ CW cards ↔ Discover catalogs`).
+  - Kept **Live lyrics on homescreen** enabled when Minimalist CW is selected on Page 1.
+  - Strictly filtered `Continue watching apps` to streaming / Watch Next apps (+ official YouTube), excluding file managers, launchers, and system utilities.
+  - Added a master **Continue watching** on/off toggle as the top row inside `Continue watching`, synchronized with `Turn features on/off`.
+- **Clean Wallpaper Clarity, Full Cinema Alignment & Top-Bar Navigation**:
+  - Removed the top shadow/white haze from custom photos, folder wallpapers, and Bing Daily wallpapers; fixed pre-decode raw-bitmap luminance sampling order so dark wallpapers stay dark; and defaulted `Appearance → Photo fade` to **Off** (keeping the top area clear even when bottom dock fade is enabled).
+  - Anchored **TMDB Cinema** artwork, metadata, and a narrower `1280`-wide left-aligned synopsis block cleanly to the top-right below the top bar and focused icon label.
+  - Clicking the top-bar **Wi-Fi** icon (when Music is off) now opens Android Wi-Fi Settings directly with matching luminance icon styling and D-pad focus return; long-pressing **Quick Settings** opens Android System Settings and preserves focus on the Quick Settings icon on `Back`.
+  - Kept **Bluetooth** permanently enabled across the top icon bar and Quick Settings (removed the toggle and dead Quick Settings layout branches).
+- **Centralized Feature Toggles (`Turn features on/off`)**:
+  - Renamed and moved **Turn features on/off** directly above **Set launcher as default** in Main Settings, with master switches for **Calendar** (halting background refreshes & collapsing its top-bar gap when off), **Music**, **Continue watching**, and **Discover catalogs**.
+- **Expanded Nuvio Player Variants & Deep-Link Resolution**:
+  - Added individual detection, icon/label resolution, duplicate-label disambiguation, and scheme-aware launch resolution (`nuvio://`, `nuvio-legacy://`, `stremio://`, and launcher fallback) across all 8 Nuvio variants (`com.nuvio.tv`, `com.nuvio.app`, `com.nuvio.tv.test`, `com.nuvio.tv.launcher`, `com.manitux.nuviotr`, `com.robbdeeze.nuviotv`, `com.nuvio.tv.lite`, and `space.nuvio.nativelegacy`) under `Discover catalogs → Preferred media player`.
+
 ## [v3.9] - 2026-11-11
 ### Added, Fixed & Enhanced (vs v3.8)
 - **Liquid-Glass Dock Container & Adaptive Light Wallpaper Contrast**:

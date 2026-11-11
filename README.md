@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.9-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.9.1-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
   <img alt="APK size" src="https://img.shields.io/badge/APK-4.0%20MB-success?style=flat-square">
   <a href="https://github.com/raviprakashji/Streamer-launcher/actions"><img alt="CI Build" src="https://img.shields.io/github/actions/workflow/status/raviprakashji/Streamer-launcher/build-release.yml?branch=main&style=flat-square"></a>
@@ -103,14 +103,13 @@ Home Screen Live Scores & Match Schedule |
   - LocalSend v2 built in for local wireless file transfers.
   - Open LocalSend directly from the File Manager to send and receive files between devices.
 - **Preferred Media Player & Direct Playback**:
-  - Choose **Nuvio, Stremio, or Wuplay** as the preferred external media player.
+  - Choose **Nuvio** (including `com.nuvio.tv`, `com.nuvio.app`, `com.nuvio.tv.lite`, `space.nuvio.nativelegacy`, and other installed Nuvio variants/forks), **Stremio**, or **Wuplay** as the preferred external media player.
   - Launch supported titles directly from Google Gemini search results (requires Gemini to be available on the TV).
   - Launch titles directly from built-in catalogs and Continue Watching.
 - **Continue Watching**:
   - Aggregates supported Android TV Watch Next entries and active `MediaSession` playback (including **official YouTube** on Android 14 / Google TV).
-  - Configurable placement on **Page 1 or Page 2** with high-contrast smoked glass cards.
-  - Launch supported media directly in the selected app.
-  - Hidden-show management with app icon badges and automatic pruning of uninstalled apps.
+  - Supports **Classic** and **Minimalist** horizontal pill card styles, with context-aware **Page 1** per-app dock filtering (preserving homescreen Live Lyrics) or **Page 2** all-apps single-row browsing.
+  - Strict streaming-app filtering, hidden-show management, in-menu enable/disable toggle, and automatic pruning of uninstalled apps.
 - **Movie & TV Show Catalogs**:
   - Built-in Trending, Popular, and Latest Movies & TV Shows with localized TMDb synopsis language support.
   - SIMKL history-based taste profiles and personalised **For You** recommendation catalogs for Movies and TV Shows.
@@ -134,10 +133,13 @@ Home Screen Live Scores & Match Schedule |
   - Home screen live score pill powered by **CricketData.org**.
   - View current and upcoming match schedules and scores.
   - Coverage limited to Full Member international teams (Men and Women) and the **IPL**.
-- **TMDB Wallpapers**:
-  - **Full Cinema** with SIMKL-powered watched badges.
-  - **Minimal Logo**.
-  - **Clean Posters**.
+- **TMDB Wallpapers & Clear Custom Photos**:
+  - **Full Cinema** with top-right artwork, left-aligned synopsis block, and SIMKL-powered watched badges.
+  - **Minimal Logo** and **Clean Posters**.
+  - Custom photos, folders, and Bing Daily wallpapers render cleanly without any top shadow or haze by default (`Appearance → Photo fade` defaults to **Off**), with raw-image luminance detection adapting clock and top-bar icons automatically.
+- **Centralized Feature Controls & Quick Navigation**:
+  - Dedicated **Turn features on/off** menu in Main Settings to toggle **Calendar**, **Music**, **Continue watching**, and **Discover catalogs**.
+  - Long-press **Quick Settings** to open Android System Settings directly; top-bar **Wi-Fi** shortcut (when Music is off) opens Android Wi-Fi Settings directly with D-pad focus preserved on return.
 - **Hardware HDMI & AV Input Switcher**:
   - Select supported HDMI and AV inputs directly from the launcher.
 - **Hardware Remote Button Remapper**:
@@ -233,7 +235,7 @@ Streamer Launcher is strictly engineered for low-memory, entry-level Android TV 
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-- **Streamer.launcher_v3.9.apk** (4.0 MB)
+- **Streamer.launcher_v3.9.1.apk** (4.0 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -241,7 +243,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v3.9.apk"
+adb install -r "Streamer.launcher_v3.9.1.apk"
 ```
 
 ### Grant Secure Settings Permission (Required for Certain System-Level Features)
@@ -285,11 +287,18 @@ cd Streamer-launcher
 ./gradlew assembleRelease
 ```
 The compiled APK will be located at:
-`app/build/outputs/apk/release/Streamer.launcher_v3.9.apk`
+`app/build/outputs/apk/release/Streamer.launcher_v3.9.1.apk`
 
 ---
 
 ## Changelog
+
+### v3.9.1
+- **Minimalist Continue Watching & Strict App Filtering**: Added **Minimalist** (`282×64dp` pill matching `tvOS-Launcher`) alongside **Classic** under `Continue watching → Card style`, dynamic Page 1 focused-app filtering / Page 2 single-row navigation (`App dock ↔ CW cards ↔ Discover catalogs`), Live Lyrics compatibility when Minimalist CW is on Page 1, strict streaming-app filtering in `Continue watching apps`, and an in-menu master toggle for Continue Watching.
+- **Clean Photo & Bing Wallpapers (No Top White Haze)**: Removed the top veil/haze gradient from uploaded photos, folder wallpapers, and Bing Daily wallpapers; fixed raw-bitmap sampling order so black/dark wallpapers never get washed out in light theme before evaluation; and defaulted `Appearance → Photo fade` to **Off**.
+- **Top-Right Full Cinema & Navigation Polish**: Moved TMDB Cinema artwork, ratings, and a `1280`-wide left-aligned synopsis block cleanly below the top bar icons and focused label; kept **Bluetooth** always enabled across Top Bar and Quick Settings; opened Android System Settings on Quick Settings long-press and Android Wi-Fi Settings on top **Wi-Fi** icon click (when Music is off) with preserved D-pad focus on return and consistent icon luminance tinting.
+- **Centralized `Turn features on/off`**: Renamed and moved **Turn features on/off** directly above **Set launcher as default** in Main Settings with master switches for Calendar (halting background refreshes & collapsing top-bar spacing gap-free), Music, Continue Watching, and Discover Catalogs.
+- **Expanded Nuvio Player Variants & Deep-Link Support**: Added individual discovery, real APK labels/icons, automatic `(package)` disambiguation, and scheme-aware `nuvio://`, `nuvio-legacy://`, `stremio://`, and launcher fallback resolution for `com.nuvio.tv`, `com.nuvio.app`, `com.nuvio.tv.test`, `com.nuvio.tv.launcher`, `com.manitux.nuviotr`, `com.robbdeeze.nuviotv`, `com.nuvio.tv.lite`, and `space.nuvio.nativelegacy`.
 
 ### v3.9
 - **Liquid-Glass Dock & Light Wallpaper Visibility**: Upgraded `DockPillView` with frozen blurred wallpaper refraction, adaptive smoked glass slate for crisp icon legibility across bright and dark wallpapers without inner tile boxes, radial top-left specular bloom, vertical surface sheen, inner lensing, and a 135-degree diagonal specular rim contour.
