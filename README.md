@@ -7,9 +7,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.9.1-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.9.2-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
-  <img alt="APK size" src="https://img.shields.io/badge/APK-4.0%20MB-success?style=flat-square">
+  <img alt="APK size" src="https://img.shields.io/badge/APK-4.1%20MB-success?style=flat-square">
   <a href="https://github.com/raviprakashji/Streamer-launcher/actions"><img alt="CI Build" src="https://img.shields.io/github/actions/workflow/status/raviprakashji/Streamer-launcher/build-release.yml?branch=main&style=flat-square"></a>
   <img alt="Ad-Free" src="https://img.shields.io/badge/Ads-None-brightgreen?style=flat-square">
   <a href="LICENSE"><img alt="GPL-3.0 License" src="https://img.shields.io/badge/License-GPL--3.0-orange?style=flat-square"></a>
@@ -235,7 +235,7 @@ Streamer Launcher is strictly engineered for low-memory, entry-level Android TV 
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-- **Streamer.launcher_v3.9.1.apk** (4.0 MB)
+- **Streamer.launcher_v3.9.2.apk** (4.1 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -243,7 +243,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v3.9.1.apk"
+adb install -r "Streamer.launcher_v3.9.2.apk"
 ```
 
 ### Grant Secure Settings Permission (Required for Certain System-Level Features)
@@ -252,6 +252,7 @@ Streamer Launcher uses Android's `WRITE_SECURE_SETTINGS` permission for certain 
 
 ```bash
 adb shell pm grant com.streamer.launcher android.permission.WRITE_SECURE_SETTINGS
+adb shell cmd package set-home-activity com.streamer.launcher/.MainActivity
 ```
 If accessibility permissions toggle is turning off  itself for the app, use below ADB command:
 ```bash
@@ -287,11 +288,17 @@ cd Streamer-launcher
 ./gradlew assembleRelease
 ```
 The compiled APK will be located at:
-`app/build/outputs/apk/release/Streamer.launcher_v3.9.1.apk`
+`app/build/outputs/apk/release/Streamer.launcher_v3.9.2.apk`
 
 ---
 
 ## Changelog
+
+### v3.9.2
+- **Glassio Dock Themes & Customization**: Added Frosted Glass, Clear, Still Glass, Dynamic Glass, and Black AMOLED dock presets (`DockThemePreset`) with glass colour tints (`None`, `Black`, `Petrol`), focus effects (`Glass rim`, `Glow (App colour)`, `Glow (White)`), sharp/rounded corners, dock icon scaling, and infinite wrap-around menu navigation.
+- **Smooth Dock & Continue Watching Layout**: Removed the `"Continue watching"` header text to free vertical space, locked the bottom baseline (`24 dp` from screen bottom) across `On focus`, `Always`, and `Never` app-name modes and icon sizes, and standardized the CW card-to-dock gap to `26 dp` for both Minimalist and Classic styles with smooth `translationY` transitions and zero top-bar movement.
+- **Cold-Start Performance & Self-Healing Home Service**: Converted `All Apps` and `Settings` overlays to lazy `<ViewStub>`s for faster cold boot, updated `StartupTimeline` `T1->T4` warm-fork measurement, and fixed `HomeServiceHelper` / `MediaWatchService` to self-heal crashed `HomeOverride` accessibility bindings.
+- **Streamer Files, Permission-Free Backup/Restore & Defaults**: Added ZIP browse/unzip support and preview/operation improvements in Streamer Files, permission-free Backup/Restore using internal `wallpaperDir()`, added `adb shell cmd package set-home-activity com.streamer.launcher/.MainActivity` to the setup modal, and updated first-install/reset defaults (`Full cinema`, 6-month recency, 30-min rotation, System screensaver, Page 2 CW, Music On).
 
 ### v3.9.1
 - **Minimalist Continue Watching & Strict App Filtering**: Added **Minimalist** (`282×64dp` pill matching `tvOS-Launcher`) alongside **Classic** under `Continue watching → Card style`, dynamic Page 1 focused-app filtering / Page 2 single-row navigation (`App dock ↔ CW cards ↔ Discover catalogs`), Live Lyrics compatibility when Minimalist CW is on Page 1, strict streaming-app filtering in `Continue watching apps`, and an in-menu master toggle for Continue Watching.
