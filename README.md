@@ -7,9 +7,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.9.2.1-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.9.2.2-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
-  <img alt="APK size" src="https://img.shields.io/badge/APK-4.1%20MB-success?style=flat-square">
+  <img alt="APK size" src="https://img.shields.io/badge/APK-4.3%20MB-success?style=flat-square">
   <a href="https://github.com/raviprakashji/Streamer-launcher/actions"><img alt="CI Build" src="https://img.shields.io/github/actions/workflow/status/raviprakashji/Streamer-launcher/build-release.yml?branch=main&style=flat-square"></a>
   <img alt="Ad-Free" src="https://img.shields.io/badge/Ads-None-brightgreen?style=flat-square">
   <a href="LICENSE"><img alt="GPL-3.0 License" src="https://img.shields.io/badge/License-GPL--3.0-orange?style=flat-square"></a>
@@ -26,10 +26,6 @@
 | Main Home Screen | Clutter-Free Home Screen | Continue watching & Catalogs |
 | :---: | :---: | :---: |
 | <img src="docs/screenshots/home-main.png" width="100%" alt="Main Streamer Launcher home screen"> | <img src="docs/screenshots/home-clutter-free.png" width="100%" alt="Clutter-free home screen"> | <img src="docs/screenshots/for-you-movies.png" width="100%" alt="Continue watching & Catalogs"> |
-
-| Quick Settings |
-| :---: |
-| <img src="docs/screenshots/quick-settings.png" width="100%" alt="Main Streamer Launcher home screen"> |
 
 ### 🎬 Movie & TV Discovery
 
@@ -103,7 +99,7 @@ Home Screen Live Scores & Match Schedule |
   - LocalSend v2 built in for local wireless file transfers.
   - Open LocalSend directly from the File Manager to send and receive files between devices.
 - **Preferred Media Player & Direct Playback**:
-  - Choose **Nuvio** (including `com.nuvio.tv`, `com.nuvio.app`, `com.nuvio.tv.lite`, `space.nuvio.nativelegacy`, and other installed Nuvio variants/forks), **Stremio**, or **Wuplay** as the preferred external media player.
+  - Choose **Nuvio** (including `com.nuvio.tv`, `com.nuvio.app`, `com.nuvio.tv.lite`, and other installed Nuvio variants/forks), **Stremio**, or **Wuplay** as the preferred external media player.
   - Launch supported titles directly from Google Gemini search results (requires Gemini to be available on the TV).
   - Launch titles directly from built-in catalogs and Continue Watching.
 - **Continue Watching**:
@@ -235,7 +231,7 @@ Streamer Launcher is strictly engineered for low-memory, entry-level Android TV 
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-- **Streamer.launcher_v3.9.2.1.apk** (4.1 MB)
+- **Streamer.launcher_v3.9.2.2.apk** (4.3 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -243,7 +239,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v3.9.2.1.apk"
+adb install -r "Streamer.launcher_v3.9.2.2.apk"
 ```
 
 ### Grant Secure Settings Permission (Required for Certain System-Level Features)
@@ -253,10 +249,6 @@ Streamer Launcher uses Android's `WRITE_SECURE_SETTINGS` permission for certain 
 ```bash
 adb shell pm grant com.streamer.launcher android.permission.WRITE_SECURE_SETTINGS
 adb shell cmd package set-home-activity com.streamer.launcher/.MainActivity
-```
-If accessibility permissions toggle is turning off  itself for the app, use below ADB command:
-```bash
-adb shell appops set com.streamer.launcher ACCESS_RESTRICTED_SETTINGS allow
 ```
 
 **Steps:**
@@ -288,11 +280,18 @@ cd Streamer-launcher
 ./gradlew assembleRelease
 ```
 The compiled APK will be located at:
-`app/build/outputs/apk/release/Streamer.launcher_v3.9.2.1.apk`
+`app/build/outputs/apk/release/Streamer.launcher_v3.9.2.2.apk`
 
 ---
 
 ## Changelog
+
+### v3.9.2.2
+- **Universal Seamless Dock (`glassio` architecture)**: Adopted `glassio` single unified surface rendering with style-matched background (94% black `#EF000000` for Black AMOLED, 6% white liquid wash for Clear, 14% black tint for Frosted Glass, sharp refraction for Dynamic/Still Glass). Removed artificial sheen linear gradients, radial bloom, and mid-pill stroke cuts; set tile elevation to `0f` to eliminate hardware RenderNode shadow borders around icons.
+- **Wallpaper Slideshow Dock Sync**: Synchronous plate cache flushing and view invalidation when slideshow wallpapers rotate, completely eliminating previous wallpapers getting stuck inside dock icons/banners.
+- **App Drawer Polish**: Fixed top row icon clipping on full grid pages by increasing top padding to `20dp` with `clipToPadding=false`, and added full Snake D-pad navigation across grid rows and ends.
+- **Universal YouTube Continue Watching**: Unified playback tracking and history deduplication across official YouTube, SmartTube, and TizenTube.
+- **Preferred Media Player Clean-Up**: Removed buggy `space.nuvio.nativelegacy` from player discovery and package queries.
 
 ### v3.9.2.1
 - Fixed all apps pinning to dock on app update.
@@ -308,7 +307,7 @@ The compiled APK will be located at:
 - **Clean Photo & Bing Wallpapers (No Top White Haze)**: Removed the top veil/haze gradient from uploaded photos, folder wallpapers, and Bing Daily wallpapers; fixed raw-bitmap sampling order so black/dark wallpapers never get washed out in light theme before evaluation; and defaulted `Appearance → Photo fade` to **Off**.
 - **Top-Right Full Cinema & Navigation Polish**: Moved TMDB Cinema artwork, ratings, and a `1280`-wide left-aligned synopsis block cleanly below the top bar icons and focused label; kept **Bluetooth** always enabled across Top Bar and Quick Settings; opened Android System Settings on Quick Settings long-press and Android Wi-Fi Settings on top **Wi-Fi** icon click (when Music is off) with preserved D-pad focus on return and consistent icon luminance tinting.
 - **Centralized `Turn features on/off`**: Renamed and moved **Turn features on/off** directly above **Set launcher as default** in Main Settings with master switches for Calendar (halting background refreshes & collapsing top-bar spacing gap-free), Music, Continue Watching, and Discover Catalogs.
-- **Expanded Nuvio Player Variants & Deep-Link Support**: Added individual discovery, real APK labels/icons, automatic `(package)` disambiguation, and scheme-aware `nuvio://`, `nuvio-legacy://`, `stremio://`, and launcher fallback resolution for `com.nuvio.tv`, `com.nuvio.app`, `com.nuvio.tv.test`, `com.nuvio.tv.launcher`, `com.manitux.nuviotr`, `com.robbdeeze.nuviotv`, `com.nuvio.tv.lite`, and `space.nuvio.nativelegacy`.
+- **Expanded Nuvio Player Variants & Deep-Link Support**: Added individual discovery, real APK labels/icons, automatic `(package)` disambiguation, and scheme-aware `nuvio://`, `nuvio-legacy://`, `stremio://`, and launcher fallback resolution for `com.nuvio.tv`, `com.nuvio.app`, `com.nuvio.tv.test`, `com.nuvio.tv.launcher`, `com.manitux.nuviotr`, `com.robbdeeze.nuviotv`, and `com.nuvio.tv.lite`.
 
 ### v3.9
 - **Liquid-Glass Dock & Light Wallpaper Visibility**: Upgraded `DockPillView` with frozen blurred wallpaper refraction, adaptive smoked glass slate for crisp icon legibility across bright and dark wallpapers without inner tile boxes, radial top-left specular bloom, vertical surface sheen, inner lensing, and a 135-degree diagonal specular rim contour.
@@ -338,7 +337,15 @@ The compiled APK will be located at:
 - **Autoplay Watchdog & Music UI Loaders**: 10-second stall watchdog timer and elevated loader spinners during search and track loading.
 
 ### v3.6.2
-- **LocalSend File Picker & Multi-Select Workflow**: Instant single-click file selection returning directly to LocalSend, explicit multi-select entry triggered via long-press, and a dedicated picker action bar featuring an `OK ($count)` button for unified single and multi-file confirmation. Removed redundant nested LocalSend modal and defunct Done action from picker mode.
+- **Trailer Playback Media3 HLS Support**: Added `media3-exoplayer-hls:1.5.1` to resolve `ClassNotFoundException: HlsMediaSource$Factory` during trailer streaming.
+- **TV Calendar Unaired Episode Watched Button Visibility**: Future/unaired episodes ($t_{air} > t_{now}$) strictly hide the "Mark watched" button.
+- **Calendar Disabled "No Player Installed" State**: When no third-party player is installed, calendar displays disabled, dimmed "No player installed" button matching homescreen catalog behavior with seamless focus bypass.
+- **Streamer Files Multi-Select Direct DPAD_LEFT to Clear**: Pressing `DPAD_LEFT` from any item in the list/grid while multi-selection is active navigates directly to the Clear button.
+- **Streamer Music UI & Search Results Loading Spinner**: Elevated centered loader appears during mix and track loading until playback initializes.
+- **Music Search Popup Dismissal on HOME**: Pressing HOME while on music search popup dismisses dialog and cleanly returns to home.
+- **Music Search Results "New Search" Navigation**: Bidirectional D-pad focus navigation between Now Playing pill and "New search" button.
+- **Search Results Retention on Track Change**: Prevents forced navigation away from search results when background song changes.
+- **Exit Music UI Dock Glitch & Quick Settings Sync**: Synchronized dock gap recalculation and immediate pill removal when music is disabled.
 
 ### v3.6.1
 - **Calendar Navigation & Natural Scrolling**: Resolved focus trap on action buttons via dynamic viewport inspection (`DPAD_LEFT` escape), restored smooth card-by-card natural scrolling without top-pinning or scroll coordinate corruption.

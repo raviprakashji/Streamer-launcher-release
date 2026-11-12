@@ -1,3 +1,27 @@
+## [v3.9.2.2] - 2026-11-13
+### Added, Fixed & Enhanced (vs v3.9.2.1)
+- **Universal Seamless Dock (`glassio` architecture)**:
+  - Aligned `DockPillView` with `glassio` single unified surface rendering with style-matched fills (94% black `#EF000000` for Black AMOLED, 6% white liquid wash for Clear, 14% black tint for Frosted Glass, sharp backdrop for Dynamic/Still Glass).
+  - Removed artificial decorative linear gradients, specular sheen, and 1px stroke cuts that previously produced horizontal cut lines across the dock.
+  - Eliminated hardware RenderNode elevation shadows (`elevation = 0f`) across dock tiles, removing rectangular outline boxes.
+- **Wallpaper Slideshow Dock Sync**:
+  - Synchronous plate cache invalidation and redraw when slideshow wallpapers rotate, completely eliminating previous wallpapers getting stuck inside dock icons/banners.
+- **App Drawer Grid & Navigation Polish**:
+  - Fixed top row icon clipping on full grid pages by increasing top padding to `20dp` with `clipToPadding=false`.
+  - Added full Snake D-pad navigation across all app grid rows and ends with smooth wraparound.
+- **Universal YouTube Continue Watching**:
+  - Unified playback tracking and history deduplication across official YouTube, SmartTube, and TizenTube.
+- **Preferred Media Player Clean-Up**:
+  - Removed buggy `space.nuvio.nativelegacy` from player discovery and package queries.
+
+---
+
+## [v3.9.2.1] - 2026-11-12
+### Fixed
+- Fixed all apps pinning to dock on app update.
+
+---
+
 ## [v3.9.1] - 2026-11-11
 ### Added, Fixed & Enhanced (vs v3.9)
 - **Minimalist Continue Watching & Strict App Filtering**:
@@ -14,53 +38,9 @@
 - **Centralized Feature Toggles (`Turn features on/off`)**:
   - Renamed and moved **Turn features on/off** directly above **Set launcher as default** in Main Settings, with master switches for **Calendar** (halting background refreshes & collapsing its top-bar gap when off), **Music**, **Continue watching**, and **Discover catalogs**.
 - **Expanded Nuvio Player Variants & Deep-Link Resolution**:
-  - Added individual detection, icon/label resolution, duplicate-label disambiguation, and scheme-aware launch resolution (`nuvio://`, `nuvio-legacy://`, `stremio://`, and launcher fallback) across all 8 Nuvio variants (`com.nuvio.tv`, `com.nuvio.app`, `com.nuvio.tv.test`, `com.nuvio.tv.launcher`, `com.manitux.nuviotr`, `com.robbdeeze.nuviotv`, `com.nuvio.tv.lite`, and `space.nuvio.nativelegacy`) under `Discover catalogs → Preferred media player`.
+  - Added individual detection, icon/label resolution, duplicate-label disambiguation, and scheme-aware launch resolution (`nuvio://`, `nuvio-legacy://`, `stremio://`, and launcher fallback) across all 7 supported Nuvio variants (`com.nuvio.tv`, `com.nuvio.app`, `com.nuvio.tv.test`, `com.nuvio.tv.launcher`, `com.manitux.nuviotr`, `com.robbdeeze.nuviotv`, and `com.nuvio.tv.lite`) under `Discover catalogs → Preferred media player`.
 
-## [v3.9] - 2026-11-11
-### Added, Fixed & Enhanced (vs v3.8)
-- **Liquid-Glass Dock Container & Adaptive Light Wallpaper Contrast**:
-  - Upgraded `DockPillView` with frozen blurred wallpaper slicing directly beneath the dock, top-left radial specular bloom, vertical surface sheen, inner edge lensing, top hairline highlight, 135-degree diagonal specular rim contour, and elevation shadow while preserving dock height, paddings, focus rings, and focus labels.
-  - Added luminance-adaptive smoked slate base (`0x6B1A1C24` -> `0xA8141822`) plus normalized non-banner padding (`6dp`) and HDMI icon tint (`Color.WHITE`) so dock icons remain vibrant even on light/white wallpapers without extra inner tile boxes.
-- **Icon Pack Compatibility & One-Click GitHub APK Installer**:
-  - Added full Projectivy, ADW, Nova, and Lawnchair icon pack support (`IconPackManager`, `IconPackPickerDialog`) with `Apply icon pack` settings and long-press `Choose from icon pack` across both Dock and All Apps tiles.
-  - Added `Icon size in dock`, `App icon tint`, and `Focus ring accent` customization under Appearance -> App row.
-  - Filtered out launcher apps (such as `com.spocky.projengmenu`) from appearing as false-positive icon packs via resource verification (`appfilter.xml` / `drawable.xml`) and launcher exclusion.
-  - When no icon pack is installed, selecting `Get Icon Pack` downloads `Projectivy_Icon_Pack.apk` directly with live download progress and prompts Android's package installer (`UpdateManager.downloadApkFromUrl`).
-- **Official YouTube Continue Watching & Smoked Card Legibility**:
-  - Added `MediaWatchService` (`NotificationListenerService` + `MediaSessionManager`) tracking active playback sessions (including official YouTube on Android 14 / Google TV), caching artwork thumbnails and surfacing newest-first entries (`watchSortKey(0L, ts)`) inside Continue Watching.
-  - Added `Showing on` (`Page 1` / `Page 2`) Continue Watching placement option.
-  - Upgraded Continue Watching cards to high-contrast frosted obsidian glass (`0xB8141822` -> `0xD60C1018`) with crisp white titles, subtitles, and progress bars across both dark and light wallpapers.
-- **Cold-Boot Performance & Wallpaper Fast-Path**:
-  - Added `wp_prepared.jpg` and `wp_blur_prepared.jpg` display-priority fast-path caching (`bootWallpaperIo`), pinned dock app preloading (`preloadPinnedDockAsync`), and `addIdleHandler` deferral for full package and icon pack initialization.
-- **Default Launcher Stickiness & Update Survival**:
-  - Extracted `HomeServiceHelper` for self-healing `HomeOverride` Accessibility rebind across APK replacements (`MY_PACKAGE_REPLACED` / `BOOT_COMPLETED` / `LOCKED_BOOT_COMPLETED`) and `HomeOverride.onServiceConnected()` focus restoration without disabling stock TV launchers.
-- **Streamer Files USB Mass Storage (exFAT/FAT32), Sidebar Highlight & Permissions**:
-  - Implemented pure-Kotlin USB Mass Storage SCSI Bulk-Only Transport + exFAT/FAT32 reader (`UsbMassStorageClient`) with in-app directory browsing, thumbnails, and image viewer without `DocumentsUI` dependencies.
-  - Normalized USB volume IDs (`otg:<device>`) so the active USB drive remains soft-highlighted in the sidebar while browsing folders and receives `DPAD_LEFT` focus back cleanly.
-  - Fixed File Manager storage permission handling to re-prompt on single denials and show the permission toast only when permanently denied (`Deny and don't ask again`).
-- **Bluetooth Pairing, Localized Synopses & Navigation Polish**:
-  - Added in-app Bluetooth accessory scanning and pairing (`BluetoothDeviceManager`, `ConnectedDevicesModal`, `Open Bluetooth settings`), localized TMDb synopsis language selection (`DiscoveryProvider`), configurable homescreen lyrics font size (`Normal` / `Bigger`), `BackupRestoreManager` enhancements, and `HomeScrollView` Page 1 / Page 2 focus containment.
-
-## [v3.8] - 2026-11-08
-### Added & Enhanced
-- **Bluetooth Quick Settings & Accessory Management**:
-  - Added dedicated Bluetooth tile in Quick Settings and top bar Bluetooth shortcut with real-time connection state indicators.
-  - Interactive, modern frosted glass Bluetooth modal supporting real-time peripheral discovery, battery percentage display with matching font styling, and device classification.
-  - Device hierarchy sorting: Headphones/Earphones > Speakers > Gamepads/Controllers > Remotes > Generic.
-  - Dynamic height clamping for >6 devices with an elegant 4dp glass scrollbar and smooth DPAD scrolling navigation.
-  - Pinned bottom actions for "+ Pair new device" (launches TV pairing wizard across Android TV and Google TV) and "Open bluetooth settings".
-  - Full DPAD focus trapping within the modal, preventing accidental escapes until the Back button is pressed.
-- **Dynamic In-Place Audio Switching & Real-Time Audio Routing Sync**:
-  - Live audio playback switching between multiple connected audio sinks (headphones, soundbars, Bluetooth speakers) with dedicated "Switch audio" and animated waveform "Playing" status pills.
-  - Multi-profile active device detection combining platform broadcasts (`ACTION_ACTIVE_DEVICE_CHANGED`, `ACTION_CONNECTION_STATE_CHANGED`) with Android `AudioManager.getDevices(GET_DEVICES_OUTPUTS)` hardware ground truth.
-  - Instant UI synchronization when external paired audio devices are powered on or disconnected, immediately moving them between CONNECTED and SAVED DEVICES without closing the modal or causing UI jitter.
-  - Styled "Tap to connect" glass pill for saved devices matching the active audio pills.
-- **Customizable Appearance & Quick Settings Parity**:
-  - Added "Bluetooth services" toggle in Streamer settings -> Appearance.
-  - Disabling Bluetooth services dynamically removes the Bluetooth icon from the top row and removes the Bluetooth tile from Quick Settings, restoring the exact 5-row Quick Settings layout without reloading the activity or glitching the dock.
-  - Default initialization ensures Bluetooth services are enabled on first install.
-- **Music Homescreen Lyrics Migration**:
-  - Seamless version upgrade migration defaulting "Show lyrics on homescreen" (`music_home_lyrics_enabled`) to ON for existing users who already had Streamer Music enabled in previous releases, preserving user preferences.
+---
 
 ## [v3.7] - 2026-11-08
 ### Added & Enhanced
@@ -117,16 +97,32 @@
 
 ---
 
-## [v3.6.2] - 2026-11-06
+## [v3.6.2] - 2026-11-07
 ### Fixed & Hardened
-- **LocalSend File Picker & Multi-Select Workflow**:
-  - **Instant Single-Click Selection**: In `FileManagerActivity` picker mode (`ACTION_OPEN_DOCUMENT` / `ACTION_GET_CONTENT`), single-clicking a file when multi-selection is inactive now immediately returns the picked file URI to the caller (`LocalSendModal`) and finishes `FileManagerActivity`, eliminating the stuck selection state.
-  - **Explicit Multi-Select Activation via Long-Press**: Configured long-press (`handleItemLongClick`) as the dedicated gateway to initiate multi-selection, preventing inadvertent multi-selection on standard navigation. Once active, single-clicking additional files toggles selection count naturally.
-  - **Dedicated Picker Action Bar with Dynamic OK Confirmation**: Replaced all generic file management actions (`Copy`, `Move`, `Delete`, `Rename`, `Open with`, and the redundant nested `LocalSend` modal) in picker mode with a dedicated action bar:
-    - **`[ OK ($count) ]`**: Accented confirmation button bundling all selected items into `Intent.data` and `Intent.clipData`, setting `RESULT_OK`, and returning directly to the parent LocalSend container. Unifies single-item and multi-item workflows under one consistent, predictable button.
-    - **`[ Select all ]`**: Selects all items in the current folder.
-    - **`[ Clear ]`**: Clears selection and restores single-click navigation.
-  - **Eliminated Dead Done Action**: Removed the defunct, unselectable `Done (0)` button from the initial folder action row.
+- **Trailer Playback Media3 HLS Support**:
+  - Added `androidx.media3:media3-exoplayer-hls:1.5.1` dependency and ProGuard keep rules for `androidx.media3.exoplayer.hls.**`, resolving `ClassNotFoundException: androidx.media3.exoplayer.hls.HlsMediaSource$Factory` during HLS trailer stream playback.
+- **TV Calendar Unaired Episode Watched Button Visibility**:
+  - Conditioned `calendarWatchedBtn.visibility` on whether the episode has actually aired (`airTimestamp <= System.currentTimeMillis() || dateStr <= todayStr`). Future and unaired episodes strictly hide the "Mark watched" button.
+- **Calendar Disabled "No Player Installed" State**:
+  - When no supported third-party player (Stremio, Nuvio, Wuplay, VLC) is installed on the system, the calendar play button displays "No player installed" in a disabled, non-clickable, non-focusable, dimmed state (`alpha = 0.4f`), perfectly mirroring homescreen catalog behavior.
+  - Hardened D-pad focus routing on adjacent action buttons (`Trailer`, `Mark watched`, and episode cards) to cleanly bypass the disabled play button back to the active episode card.
+- **Streamer Files Multi-Select Direct DPAD_LEFT to Clear**:
+  - In `FileAdapter`, when multi-selection mode is active, pressing `DPAD_LEFT` on any selected or focused file/folder from any column in the list or grid immediately navigates directly to the `Clear` button (`clearActionButton.requestFocus()`), preventing focus from jumping to other folders.
+- **Streamer Music UI & Search Results Loading Spinner**:
+  - Added centered, elevated (30dp) indeterminate loader spinner (`musicLoadingSpinner`) on Streamer Music UI and Search Results UI. Displays immediately when a mix or search result track is selected, maintaining user context until playback initializes (`isPlaying == true`), and cleanly dismissing on playback start or error.
+- **Music Search Popup Dismissal on HOME**:
+  - Retained active dialog reference `musicSearchDialog` and intercepted `KeyEvent.KEYCODE_HOME` so pressing the remote HOME button while the search bar popup is open cleanly dismisses the popup and resets the homescreen.
+  - Added explicit dialog dismissal hooks in `resetToHomePage1()`, `onPause()`, `onStop()`, and `closeMusicOverlay()`.
+- **Music Search Results "New Search" Navigation**:
+  - Repositioned `musicBtnEditSearch` ("New Search") adjacent to the dedicated search results Now Playing banner and wired bidirectional D-pad focus: pressing `DPAD_LEFT` from the Now Playing pill focuses "New Search", and pressing `DPAD_RIGHT` from "New Search" returns focus to the Now Playing pill.
+- **Search Results Retention on Track Change**:
+  - In `MusicPlaybackListener.onTrackChanged`, prevented forced navigation to the playback UI (`showMusicPlayingState()`) while browsing search results (`musicSearchResultsLayout.visibility == View.VISIBLE`), updating only the top Now Playing banner while preserving the user's active search results view.
+- **Streamer Music Exit Transition Polish**:
+  - Synchronized exit animation and dock gap recalculation in `closeMusicOverlay()` to completely eliminate visual dock displacement when returning from music playback to the homescreen.
+- **Quick Settings Music Pill Immediate Removal**:
+  - Clearing audio queue (`musicPlaybackManager.clearQueue()`) and updating quick settings tiles immediately when music support is disabled in Streamer Settings.
+- **LocalSend File Picker & Multi-Select Integration**:
+  - Instant single-click selection in document picker mode, dedicated action bar with `[ OK ($count) ]` button, and explicit long-press entry for multi-item transfers.
 
 ---
 
