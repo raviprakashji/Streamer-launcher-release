@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.9.2-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.9.2.1-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
   <img alt="APK size" src="https://img.shields.io/badge/APK-4.1%20MB-success?style=flat-square">
   <a href="https://github.com/raviprakashji/Streamer-launcher/actions"><img alt="CI Build" src="https://img.shields.io/github/actions/workflow/status/raviprakashji/Streamer-launcher/build-release.yml?branch=main&style=flat-square"></a>
@@ -235,7 +235,7 @@ Streamer Launcher is strictly engineered for low-memory, entry-level Android TV 
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-- **Streamer.launcher_v3.9.2.apk** (4.1 MB)
+- **Streamer.launcher_v3.9.2.1.apk** (4.1 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -243,7 +243,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v3.9.2.apk"
+adb install -r "Streamer.launcher_v3.9.2.1.apk"
 ```
 
 ### Grant Secure Settings Permission (Required for Certain System-Level Features)
@@ -288,11 +288,14 @@ cd Streamer-launcher
 ./gradlew assembleRelease
 ```
 The compiled APK will be located at:
-`app/build/outputs/apk/release/Streamer.launcher_v3.9.2.apk`
+`app/build/outputs/apk/release/Streamer.launcher_v3.9.2.1.apk`
 
 ---
 
 ## Changelog
+
+### v3.9.2.1
+- Fixed all apps pinning to dock on app update.
 
 ### v3.9.2
 - **Glassio Dock Themes & Customization**: Added Frosted Glass, Clear, Still Glass, Dynamic Glass, and Black AMOLED dock presets (`DockThemePreset`) with glass colour tints (`None`, `Black`, `Petrol`), focus effects (`Glass rim`, `Glow (App colour)`, `Glow (White)`), sharp/rounded corners, dock icon scaling, and infinite wrap-around menu navigation.
