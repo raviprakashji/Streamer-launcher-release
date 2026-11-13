@@ -1,3 +1,25 @@
+## [v4.0] - 2026-11-13
+### Added, Fixed & Enhanced (vs v3.9.2.2)
+- **Streamer Search Engine & Full-Screen Modal**:
+  - Integrated high-speed unified search across Movies, TV Series, and Anime directly from the home screen top bar (positioned between Wi-Fi and Settings).
+  - Built-in Voice Search (`android.speech.RecognizerIntent`) and on-screen D-pad keyboard input support with instant live filtering.
+  - Smart Content Categorization: Filter chips for **All**, **Movies**, and **Series**; Anime titles are automatically sorted into Movies or Series based on their media format.
+  - Rich Search Result Metadata: Card layout with high-resolution poster artwork, title, release year, unified green type pills (**MOVIE** / **SERIES**), and IMDb & TMDb rating badges.
+  - Full non-truncated synopsis text display on the search details view without affecting home/catalog cards.
+  - Card soft-focus memory: Retains soft-focus highlight on the active search result card when navigating into action buttons.
+  - Isolated media player picker: Lets users choose playback apps (Nuvio variants, Stremio, external players) per search result without modifying global preferences.
+- **Remote Button Mapper & Feature Switch Integration**:
+  - Added dedicated **Streamer search** toggle row under `Streamer settings → Turn features on/off`, controlling top-bar search button visibility and active search overlay state.
+  - Added **Streamer search** action under `Streamer features` in the Button Mapper, allowing quick launch from any remote button or custom keymap.
+- **Accurate Media Playback & Deep-Link Resolution**:
+  - Strict external ID checks in `resolveImdbSync()` prevent titles without IMDb IDs from falling back to loose text searches that hijack unrelated content (e.g. *Gentlemen (2023)* vs *The Gentlemen (2024)*).
+  - Strict year matching (`itemYear == resYear`) and exact title normalization for deep-link targets.
+  - Graceful user feedback toast (`No IMDb ID available for "<title>" in <player>`) when an item cannot be resolved in Nuvio or external players.
+- **Continue Watching Android 9/10 Compatibility**:
+  - Restored `TvContract` Continue Watching on Android 9 and 10 devices by removing restrictive `TV_LISTINGS` permission gates.
+
+---
+
 ## [v3.9.2.2] - 2026-11-13
 ### Added, Fixed & Enhanced (vs v3.9.2.1)
 - **Universal Seamless Dock (`glassio` architecture)**:

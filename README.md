@@ -7,9 +7,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v3.9.2.2-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v4.0-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
-  <img alt="APK size" src="https://img.shields.io/badge/APK-4.3%20MB-success?style=flat-square">
+  <img alt="APK size" src="https://img.shields.io/badge/APK-4.1%20MB-success?style=flat-square">
   <a href="https://github.com/raviprakashji/Streamer-launcher/actions"><img alt="CI Build" src="https://img.shields.io/github/actions/workflow/status/raviprakashji/Streamer-launcher/build-release.yml?branch=main&style=flat-square"></a>
   <img alt="Ad-Free" src="https://img.shields.io/badge/Ads-None-brightgreen?style=flat-square">
   <a href="LICENSE"><img alt="GPL-3.0 License" src="https://img.shields.io/badge/License-GPL--3.0-orange?style=flat-square"></a>
@@ -98,6 +98,14 @@ Home Screen Live Scores & Match Schedule |
   - TV-friendly file manager designed for remote D-pad navigation with pure-Kotlin **exFAT / FAT32** USB Mass Storage OTG support and in-app image previews.
   - LocalSend v2 built in for local wireless file transfers.
   - Open LocalSend directly from the File Manager to send and receive files between devices.
+- **Unified Streamer Search**:
+  - Full-screen search modal accessible directly from the top-bar search button (between Wi-Fi and Settings) or mapped to any remote button via the Button Mapper.
+  - Supports Voice Search (`android.speech.RecognizerIntent`) and remote D-pad keyboard with instant live filtering.
+  - Smart content filtering across All, Movies, and TV Series, with automatic categorization for Anime.
+  - High-res poster art, release year, IMDb/TMDb rating badges, unified green type pills (**MOVIE** / **SERIES**), and complete non-truncated synopsis text.
+  - Card soft-focus memory when navigating into playback controls.
+  - Isolated media player picker overlay for search results to launch titles directly into preferred player apps (Nuvio variants, Stremio, etc.) without altering global preferences.
+  - Master feature switch under `Streamer settings → Turn features on/off → Streamer search`.
 - **Preferred Media Player & Direct Playback**:
   - Choose **Nuvio** (including `com.nuvio.tv`, `com.nuvio.app`, `com.nuvio.tv.lite`, and other installed Nuvio variants/forks), **Stremio**, or **Wuplay** as the preferred external media player.
   - Launch supported titles directly from Google Gemini search results (requires Gemini to be available on the TV).
@@ -134,7 +142,7 @@ Home Screen Live Scores & Match Schedule |
   - **Minimal Logo** and **Clean Posters**.
   - Custom photos, folders, and Bing Daily wallpapers render cleanly without any top shadow or haze by default (`Appearance → Photo fade` defaults to **Off**), with raw-image luminance detection adapting clock and top-bar icons automatically.
 - **Centralized Feature Controls & Quick Navigation**:
-  - Dedicated **Turn features on/off** menu in Main Settings to toggle **Calendar**, **Music**, **Continue watching**, and **Discover catalogs**.
+  - Dedicated **Turn features on/off** menu in Main Settings with master switches to toggle **Calendar**, **Music**, **Streamer search**, **Continue watching**, and **Discover catalogs**.
   - Long-press **Quick Settings** to open Android System Settings directly; top-bar **Wi-Fi** shortcut (when Music is off) opens Android Wi-Fi Settings directly with D-pad focus preserved on return.
 - **Hardware HDMI & AV Input Switcher**:
   - Select supported HDMI and AV inputs directly from the launcher.
@@ -231,7 +239,7 @@ Streamer Launcher is strictly engineered for low-memory, entry-level Android TV 
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-- **Streamer.launcher_v3.9.2.2.apk** (4.3 MB)
+- **Streamer.launcher_v4.0.apk** (4.1 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -239,7 +247,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v3.9.2.2.apk"
+adb install -r "Streamer.launcher_v4.0.apk"
 ```
 
 ### Grant Secure Settings Permission (Required for Certain System-Level Features)
@@ -280,11 +288,30 @@ cd Streamer-launcher
 ./gradlew assembleRelease
 ```
 The compiled APK will be located at:
-`app/build/outputs/apk/release/Streamer.launcher_v3.9.2.2.apk`
+`app/build/outputs/apk/release/Streamer.launcher_v4.0.apk`
 
 ---
 
 ## Changelog
+
+### v4.0
+- **Streamer Search Engine & Full-Screen Modal**:
+  - Integrated high-speed unified search across Movies, TV Series, and Anime directly from the home screen top bar (positioned between Wi-Fi and Settings).
+  - Built-in Voice Search (`android.speech.RecognizerIntent`) and on-screen D-pad keyboard input support with instant live filtering.
+  - Smart Content Categorization: Filter chips for **All**, **Movies**, and **Series**; Anime titles are automatically sorted into Movies or Series based on their media format.
+  - Rich Search Result Metadata: Card layout with high-resolution poster artwork, title, release year, unified green type pills (**MOVIE** / **SERIES**), and IMDb & TMDb rating badges.
+  - Full non-truncated synopsis text display on the search details view without affecting home/catalog cards.
+  - Card soft-focus memory: Retains soft-focus highlight on the active search result card when navigating into action buttons.
+  - Isolated media player picker: Lets users choose playback apps (Nuvio variants, Stremio, external players) per search result without modifying global preferences.
+- **Remote Button Mapper & Feature Switch Integration**:
+  - Added dedicated **Streamer search** toggle row under `Streamer settings → Turn features on/off`, controlling top-bar search button visibility and active search overlay state.
+  - Added **Streamer search** action under `Streamer features` in the Button Mapper, allowing quick launch from any remote button or custom keymap.
+- **Accurate Media Playback & Deep-Link Resolution**:
+  - Strict external ID checks in `resolveImdbSync()` prevent titles without IMDb IDs from falling back to loose text searches that hijack unrelated content (e.g. *Gentlemen (2023)* vs *The Gentlemen (2024)*).
+  - Strict year matching (`itemYear == resYear`) and exact title normalization for deep-link targets.
+  - Graceful user feedback toast (`No IMDb ID available for "<title>" in <player>`) when an item cannot be resolved in Nuvio or external players.
+- **Continue Watching Android 9/10 Compatibility**:
+  - Restored `TvContract` Continue Watching on Android 9 and 10 devices by removing restrictive `TV_LISTINGS` permission gates.
 
 ### v3.9.2.2
 - **Universal Seamless Dock (`glassio` architecture)**: Adopted `glassio` single unified surface rendering with style-matched background (94% black `#EF000000` for Black AMOLED, 6% white liquid wash for Clear, 14% black tint for Frosted Glass, sharp refraction for Dynamic/Still Glass). Removed artificial sheen linear gradients, radial bloom, and mid-pill stroke cuts; set tile elevation to `0f` to eliminate hardware RenderNode shadow borders around icons.
