@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v4.1-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v4.1.1-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
   <img alt="APK size" src="https://img.shields.io/badge/APK-4.2%20MB-success?style=flat-square">
   <a href="https://github.com/raviprakashji/Streamer-launcher/actions"><img alt="CI Build" src="https://img.shields.io/github/actions/workflow/status/raviprakashji/Streamer-launcher/build-release.yml?branch=main&style=flat-square"></a>
@@ -222,7 +222,7 @@ Streamer Launcher is strictly engineered for low-memory, entry-level Android TV 
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-- **Streamer.launcher_v4.1.apk** (4.2 MB)
+- **Streamer.launcher_v4.1.1.apk** (4.2 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -230,7 +230,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v4.1.apk"
+adb install -r "Streamer.launcher_v4.1.1.apk"
 ```
 
 ### Grant Secure Settings Permission (Required for Certain System-Level Features)
@@ -271,11 +271,30 @@ cd Streamer-launcher
 ./gradlew assembleRelease
 ```
 The compiled APK will be located at:
-`app/build/outputs/apk/release/Streamer.launcher_v4.1.apk`
+`app/build/outputs/apk/release/Streamer.launcher_v4.1.1.apk`
 
 ---
 
 ## Changelog
+
+### v4.1.1
+- **Backup & Restore Crash Prevention & Integrity**:
+  - Automatically triggers the full launcher reset and icon cleanup routine prior to applying any backup restore, completely eliminating startup crashes and icon data corruption when restoring multiple backups back-to-back (e.g. switching between custom icons, Projectivy icons, and default icons).
+  - Preserves user's selected "Now Watching" row style (Minimalistic vs Classic) across backup export and restore cycles.
+- **Continue Watching Row Horizontal Navigation Freeze Fix**:
+  - Resolved Continue Watching row freezing and becoming unresponsive after multiple rapid horizontal focus taps across home screen dock apps by fixing dock app family matching, view cache retention, and async update debounce handling.
+- **Photo Fade & Ambient Vignette Polish**:
+  - Added dynamic top and bottom vignette overlays (`bg_photo_fade_top` and `bg_photo_fade_bottom`) when Photo Fade is enabled, softening bright wallpapers behind the clock, weather, cricket score, now playing pills, and app dock for optimal eye comfort.
+  - Ensured Photo Fade vignette overlays apply exclusively to user wallpapers and do not darken TMDb movie/series backdrop previews on Page 2.
+  - **Dock Pill Vignette & Dark Glass Backing**: Embedded bottom vignette gradient sampling into `DockPillView` and applied a subtle translucent dark glass backing (`0x55000000`) beneath specular highlights for *Still Glass*, *Dynamic Glass*, and *Streamer Default* themes on bright wallpapers and when Photo Fade is active, eliminating white glare while retaining specular glossy highlights.
+  - Fixed instant crash when opening `Streamer settings → Appearance`.
+- **Media Player & Cinematic Details Polish**:
+  - **External Player Seamless Resume**: When clicking "Play" on a movie details page and pressing `BACK` from external players (CloudStream, Stremio, Nuvio, Wuplay), launcher resumes directly on that movie's details page with the Play button in focus, gracefully intercepting trailing BACK events and system panel close broadcasts.
+  - **Poster Focus Memory**: When dismissing the movie details modal with DPAD BACK, focus returns directly to that movie's poster in the grid with active focus glow and sidebar synopsis, eliminating focus jump to the Search bar.
+  - **CloudStream Clean Query**: Passes clean movie/series title without release year to CloudStream URI (`cloudstreamsearch://<Title>`) so provider scraper plugins (StreamPlay, HDHub4U, etc.) immediately return matching posters instead of blank screens.
+  - **Preferred Player Menu**: Updated guidance across all languages (`en`, `ar`, `fr`, `tr`) to "Install Nuvio, Wuplay, Stremio or Cloudstream to select a default media player".
+- **Page 2 Header Navigation**:
+  - Fixed DPAD DOWN from Page 2 header buttons (Search, Calendar, Watched toggle, Category chips, Player pill) directly navigating to the posters grid.
 
 ### v4.1
 - **Unified Media Discovery & Search Explorer (Page 2)**:
