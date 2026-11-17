@@ -1,3 +1,41 @@
+## [v4.1] - 2026-11-17
+### Added, Fixed & Enhanced (vs v4.0)
+- **Unified Media Discovery & Search Explorer (Page 2)**:
+  - Transformed Page 2 into a full-screen Media Discovery Explorer and Search Engine (`isSearchPage2Enabled`) with smooth vertical scroll transition between Page 1 and Page 2.
+  - Redesigned Page 2 header bar integrating:
+    - **Search bar**: Interactive expandable search with Voice Search (`android.speech.RecognizerIntent`) and on-screen keyboard filtering.
+    - **TV Show Calendar**: Calendar button positioned directly in the Page 2 header; opens the full TV schedule overlay and returns directly to Page 2 on Back or D-pad Home. Removed separate Calendar icon from the Page 1 top bar.
+    - **Watched Visibility Toggle**: Quick toggle (`Watched: Shown` / `Watched: Hidden`) with instant visual feedback and live catalog filtering.
+    - **Category Filters**: Filter chips for **All**, **Movies**, and **Shows** with automatic sorting for anime formats.
+    - **Catalog Taxonomy & Live Counter**: Inline genre indicator and dynamic title count badge.
+    - **Preferred Player Selection Pill**: Quick player switcher (Nuvio variants, Stremio, CloudStream, or None with graceful feedback) right from the header.
+  - Three-tier sliding taxonomy explorer: Browse genres (Action, Adventure, Comedy, Crime, Sci-Fi, etc.), subgenres / decades, and rich 5-column poster grids with 0% overlap.
+  - Live synopsis box and backdrop previews updating dynamically as posters gain focus.
+  - High-performance caching & debouncing: 24-hour disk cache and 800ms search throttling with query LRU cache, completely eliminating cold-start blank screens and navigation lag.
+  - Catalog consolidation: Unified MDBList, SIMKL watchlist, and For You recommendation rows under "Discover catalogs Page 2".
+- **Custom App Icons & Wallpaper Enhancements**:
+  - **Custom App Icon Upload**: Upload custom image icons for any app on the dock or All Apps drawer with full support for PNG, JPG, WEBP, and GIF formats (max file size: **6 MB**).
+  - **Video Wallpapers**: Native background video loop playback (MP4, MKV, WebM) with hardware-safe RAM thresholds to prevent out-of-memory issues on low-spec Android TV boxes:
+    - Devices with **≤ 1.6 GB RAM**: Max video size **35 MB** (capped at 1080p).
+    - Devices with **≤ 2.5 GB RAM**: Max video size **55 MB** (capped at 1080p).
+    - Devices with **≤ 3.5 GB RAM**: Max video size **75 MB** (supports up to 4K on capable hardware).
+    - Devices with **> 3.5 GB RAM**: Max video size **100 MB** (supports up to 4K).
+  - **Animated GIF Wallpapers**: Native infinite-loop playback for GIF and animated WEBP wallpapers using Android `AnimatedImageDrawable`.
+- **App Dock & Context Menu Polish**:
+  - Fixed dock glass backdrop sampling: Anchored `DockPillView` vertical slice coordinates to resting Page 1 positions (`restingWinY = winLocation[1] + scrollY`), completely eliminating color streaks, distorted wallpaper sampling, and flashing on D-pad Up navigation from Page 2.
+  - Renamed main long-press action from "Upload app icon" to **Set app icon ›**, opening submenus for "Upload app icon" and "Choose from icon pack".
+  - Conditional submenu chevrons: "Add to folder" now displays the `›` chevron only when at least one folder already exists in that scope (dock or All Apps).
+  - Instant menu dismissal: D-pad Home cleanly dismisses hold menus without stuck dialogs or focus leaks.
+- **Enhanced USB OTG File Manager**:
+  - Full read, write, rename, delete, copy, cut, paste, and backup/restore support on external USB OTG storage (exFAT & FAT32) on Android 11+ via `MANAGE_EXTERNAL_STORAGE` and MediaStore fallbacks.
+  - Tree View accordion mode for nested directories with folder item count badges and subfolder creation.
+- **CloudStream Player Integration**:
+  - Added CloudStream (`com.lagradost.cloudstream3`) as a selectable preferred media player alongside Nuvio and Stremio.
+- **1-Click Local ADB Default Launcher Setup**:
+  - Built-in ADB default launcher setup wizard with remote focus trapping and equal-height choice boxes.
+
+---
+
 ## [v4.0] - 2026-11-13
 ### Added, Fixed & Enhanced (vs v3.9.2.2)
 - **Streamer Search Engine & Full-Screen Modal**:

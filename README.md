@@ -7,9 +7,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v4.0-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v4.1-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
-  <img alt="APK size" src="https://img.shields.io/badge/APK-4.1%20MB-success?style=flat-square">
+  <img alt="APK size" src="https://img.shields.io/badge/APK-4.2%20MB-success?style=flat-square">
   <a href="https://github.com/raviprakashji/Streamer-launcher/actions"><img alt="CI Build" src="https://img.shields.io/github/actions/workflow/status/raviprakashji/Streamer-launcher/build-release.yml?branch=main&style=flat-square"></a>
   <img alt="Ad-Free" src="https://img.shields.io/badge/Ads-None-brightgreen?style=flat-square">
   <a href="LICENSE"><img alt="GPL-3.0 License" src="https://img.shields.io/badge/License-GPL--3.0-orange?style=flat-square"></a>
@@ -98,51 +98,34 @@ Home Screen Live Scores & Match Schedule |
   - TV-friendly file manager designed for remote D-pad navigation with pure-Kotlin **exFAT / FAT32** USB Mass Storage OTG support and in-app image previews.
   - LocalSend v2 built in for local wireless file transfers.
   - Open LocalSend directly from the File Manager to send and receive files between devices.
-- **Unified Streamer Search**:
-  - Full-screen search modal accessible directly from the top-bar search button (between Wi-Fi and Settings) or mapped to any remote button via the Button Mapper.
-  - Supports Voice Search (`android.speech.RecognizerIntent`) and remote D-pad keyboard with instant live filtering.
-  - Smart content filtering across All, Movies, and TV Series, with automatic categorization for Anime.
-  - High-res poster art, release year, IMDb/TMDb rating badges, unified green type pills (**MOVIE** / **SERIES**), and complete non-truncated synopsis text.
-  - Card soft-focus memory when navigating into playback controls.
-  - Isolated media player picker overlay for search results to launch titles directly into preferred player apps (Nuvio variants, Stremio, etc.) without altering global preferences.
-  - Master feature switch under `Streamer settings → Turn features on/off → Streamer search`.
+- **Unified Media Discovery & Search Explorer (Page 2)**:
+  - Full-screen Media Discovery Explorer and Search Engine (`isSearchPage2Enabled`) with smooth vertical scroll navigation between Page 1 and Page 2.
+  - Interactive header bar combining:
+    - **Voice & D-Pad Search**: High-speed search with built-in Voice Search (`android.speech.RecognizerIntent`) and on-screen keyboard filtering.
+    - **TV Show Calendar**: Integrated directly into the Page 2 header bar (between Search and Watched toggle) for immediate schedule access; Back and D-pad Home cleanly return to Page 2.
+    - **Watched Toggle**: Quick visibility filter pill (`Watched: Shown` / `Watched: Hidden`) for immediate catalog filtering.
+    - **Category Filters**: Filter chips for **All**, **Movies**, and **Shows** with smart media format routing.
+    - **Catalog Taxonomy & Live Counter**: Inline genre indicator and dynamic title count badge.
+    - **Player Selection Pill**: Direct preferred player switcher (Nuvio variants, Stremio, CloudStream, or None with graceful handling).
+  - Three-tier sliding taxonomy explorer: Browse genres (Action, Adventure, Comedy, Crime, Sci-Fi, etc.), subgenres / decades, and rich 5-column poster grids with 0% overlap.
+  - Live synopsis box and backdrop previews updating dynamically as posters gain focus.
+  - 24-hour disk cache and 800ms query LRU cache, completely eliminating cold-start blank screens and navigation lag.
+  - Master feature switch under `Streamer settings → Turn features on/off → Discover catalogs Page 2`.
 - **Preferred Media Player & Direct Playback**:
-  - Choose **Nuvio** (including `com.nuvio.tv`, `com.nuvio.app`, `com.nuvio.tv.lite`, and other installed Nuvio variants/forks), **Stremio**, or **Wuplay** as the preferred external media player.
+  - Choose **Nuvio** (including `com.nuvio.tv`, `com.nuvio.app`, `com.nuvio.tv.lite`, and other installed variants), **Stremio**, or **CloudStream** as the preferred external media player.
   - Launch supported titles directly from Google Gemini search results (requires Gemini to be available on the TV).
   - Launch titles directly from built-in catalogs and Continue Watching.
-- **Continue Watching**:
-  - Aggregates supported Android TV Watch Next entries and active `MediaSession` playback (including **official YouTube** on Android 14 / Google TV).
-  - Supports **Classic** and **Minimalist** horizontal pill card styles, with context-aware **Page 1** per-app dock filtering (preserving homescreen Live Lyrics) or **Page 2** all-apps single-row browsing.
-  - Strict streaming-app filtering, hidden-show management, in-menu enable/disable toggle, and automatic pruning of uninstalled apps.
-- **Movie & TV Show Catalogs**:
-  - Built-in Trending, Popular, and Latest Movies & TV Shows with localized TMDb synopsis language support.
-  - SIMKL history-based taste profiles and personalised **For You** recommendation catalogs for Movies and TV Shows.
-  - Bring your own public MDBList lists, including dynamic and static lists.
-  - Better Posters integration for high-quality poster artwork.
-  - Title synopsis and multiple ratings.
-  - HD trailer playback with support for resolutions up to **4K**.
-  - SIMKL-powered watchlist actions: add to watchlist, remove from watchlist, and hide watched titles.
-  - Direct playback through Nuvio, Stremio, or Wuplay.
-- **TV Show Calendar**:
-  - **Your Shows** personalised schedule (SIMKL login required).
-  - **All Premieres** across India, the US, the UK, Canada, and Australia.
-  - Calendar coverage from today through the next 14 days, subject to SIMKL data availability.
-- **YouTube Music Integration**:
-  - Built-in YouTube Music playback and Quick Mixes.
-  - Synchronized lyrics support.
-  - Background playback.
-  - Persistent Now Playing pill on the home screen.
-  - Option to turn off music functionality from Settings.
-- **Live Cricket Scores & Match Schedule**:
-  - Home screen live score pill powered by **CricketData.org**.
-  - View current and upcoming match schedules and scores.
-  - Coverage limited to Full Member international teams (Men and Women) and the **IPL**.
-- **TMDB Wallpapers & Clear Custom Photos**:
-  - **Full Cinema** with top-right artwork, left-aligned synopsis block, and SIMKL-powered watched badges.
-  - **Minimal Logo** and **Clean Posters**.
+- **Custom App Icons & Live Video/GIF Wallpapers**:
+  - **Custom App Icon Upload**: Upload custom images for any app on the dock or All Apps drawer with support for PNG, JPG, WEBP, and GIF formats (max file size: **6 MB**), or choose directly from installed icon packs.
+  - **Video Wallpapers**: Background video loop playback (MP4, MKV, WebM) with hardware-safe RAM thresholds:
+    - Devices with **≤ 1.6 GB RAM**: Max video size **35 MB** (1080p max resolution).
+    - Devices with **≤ 2.5 GB RAM**: Max video size **55 MB** (1080p max resolution).
+    - Devices with **≤ 3.5 GB RAM**: Max video size **75 MB** (up to 4K).
+    - Devices with **> 3.5 GB RAM**: Max video size **100 MB** (up to 4K).
+  - **Animated GIF Wallpapers**: Native infinite-loop playback for GIF and animated WEBP wallpapers using Android `AnimatedImageDrawable`.
   - Custom photos, folders, and Bing Daily wallpapers render cleanly without any top shadow or haze by default (`Appearance → Photo fade` defaults to **Off**), with raw-image luminance detection adapting clock and top-bar icons automatically.
 - **Centralized Feature Controls & Quick Navigation**:
-  - Dedicated **Turn features on/off** menu in Main Settings with master switches to toggle **Calendar**, **Music**, **Streamer search**, **Continue watching**, and **Discover catalogs**.
+  - Dedicated **Turn features on/off** menu in Main Settings with master switches to toggle **Music**, **Continue watching**, and **Discover catalogs Page 2**.
   - Long-press **Quick Settings** to open Android System Settings directly; top-bar **Wi-Fi** shortcut (when Music is off) opens Android Wi-Fi Settings directly with D-pad focus preserved on return.
 - **Hardware HDMI & AV Input Switcher**:
   - Select supported HDMI and AV inputs directly from the launcher.
@@ -239,7 +222,7 @@ Streamer Launcher is strictly engineered for low-memory, entry-level Android TV 
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-- **Streamer.launcher_v4.0.apk** (4.1 MB)
+- **Streamer.launcher_v4.1.apk** (4.2 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -247,7 +230,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v4.0.apk"
+adb install -r "Streamer.launcher_v4.1.apk"
 ```
 
 ### Grant Secure Settings Permission (Required for Certain System-Level Features)
@@ -288,11 +271,46 @@ cd Streamer-launcher
 ./gradlew assembleRelease
 ```
 The compiled APK will be located at:
-`app/build/outputs/apk/release/Streamer.launcher_v4.0.apk`
+`app/build/outputs/apk/release/Streamer.launcher_v4.1.apk`
 
 ---
 
 ## Changelog
+
+### v4.1
+- **Unified Media Discovery & Search Explorer (Page 2)**:
+  - Transformed Page 2 into a full-screen Media Discovery Explorer and Search Engine (`isSearchPage2Enabled`) with smooth vertical scroll navigation between Page 1 and Page 2.
+  - Interactive header bar combining:
+    - **Voice & D-Pad Search**: High-speed search with built-in Voice Search (`android.speech.RecognizerIntent`) and on-screen keyboard filtering.
+    - **TV Show Calendar**: Integrated directly into the Page 2 header bar (between Search and Watched toggle) for immediate schedule access; Back and D-pad Home cleanly return to Page 2.
+    - **Watched Toggle**: Quick visibility filter pill (`Watched: Shown` / `Watched: Hidden`) for immediate catalog filtering.
+    - **Category Filters**: Filter chips for **All**, **Movies**, and **Shows** with smart media format routing.
+    - **Catalog Taxonomy & Live Counter**: Inline genre indicator and dynamic title count badge.
+    - **Player Selection Pill**: Direct preferred player switcher (Nuvio variants, Stremio, CloudStream, or None with graceful handling).
+  - Three-tier sliding taxonomy explorer: Browse genres (Action, Adventure, Comedy, Crime, Sci-Fi, etc.), subgenres / decades, and rich 5-column poster grids with 0% overlap.
+  - Live synopsis box and backdrop previews updating dynamically as posters gain focus.
+  - 24-hour disk cache and 800ms query LRU cache, completely eliminating cold-start blank screens and navigation lag.
+  - Master feature switch under `Streamer settings → Turn features on/off → Discover catalogs Page 2`.
+- **Custom App Icons & Live Video/GIF Wallpapers**:
+  - **Custom App Icon Upload**: Upload custom images for any app on the dock or All Apps drawer with support for PNG, JPG, WEBP, and GIF formats (max file size: **6 MB**), or choose directly from installed icon packs.
+  - **Video Wallpapers**: Background video loop playback (MP4, MKV, WebM) with hardware-safe RAM thresholds:
+    - Devices with **≤ 1.6 GB RAM**: Max video size **35 MB** (1080p max resolution).
+    - Devices with **≤ 2.5 GB RAM**: Max video size **55 MB** (1080p max resolution).
+    - Devices with **≤ 3.5 GB RAM**: Max video size **75 MB** (up to 4K).
+    - Devices with **> 3.5 GB RAM**: Max video size **100 MB** (up to 4K).
+  - **Animated GIF Wallpapers**: Native infinite-loop playback for GIF and animated WEBP wallpapers using Android `AnimatedImageDrawable`.
+- **App Dock & Context Menu Polish**:
+  - Fixed dock glass backdrop sampling: Anchored `DockPillView` vertical slice coordinates to resting Page 1 positions (`restingWinY = winLocation[1] + scrollY`), completely eliminating color streaks, distorted wallpaper sampling, and flashing on D-pad Up navigation from Page 2.
+  - Renamed main long-press action from "Upload app icon" to **Set app icon ›**, opening submenus for "Upload app icon" and "Choose from icon pack".
+  - Conditional submenu chevrons: "Add to folder" now displays the `›` chevron only when at least one folder already exists in that scope (dock or All Apps).
+  - Instant menu dismissal: D-pad Home cleanly dismisses hold menus without stuck dialogs or focus leaks.
+- **Enhanced USB OTG File Manager**:
+  - Full read, write, rename, delete, copy, cut, paste, and backup/restore support on external USB OTG storage (exFAT & FAT32) on Android 11+ via `MANAGE_EXTERNAL_STORAGE` and MediaStore fallbacks.
+  - Tree View accordion mode for nested directories with folder item count badges and subfolder creation.
+- **CloudStream Player Integration**:
+  - Added CloudStream (`com.lagradost.cloudstream3`) as a selectable preferred media player alongside Nuvio and Stremio.
+- **1-Click Local ADB Default Launcher Setup**:
+  - Built-in ADB default launcher setup wizard with remote focus trapping and equal-height choice boxes.
 
 ### v4.0
 - **Streamer Search Engine & Full-Screen Modal**:
