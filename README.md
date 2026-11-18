@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v4.1.1-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v4.1.2-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
   <img alt="APK size" src="https://img.shields.io/badge/APK-4.2%20MB-success?style=flat-square">
   <a href="https://github.com/raviprakashji/Streamer-launcher/actions"><img alt="CI Build" src="https://img.shields.io/github/actions/workflow/status/raviprakashji/Streamer-launcher/build-release.yml?branch=main&style=flat-square"></a>
@@ -222,7 +222,7 @@ Streamer Launcher is strictly engineered for low-memory, entry-level Android TV 
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-- **Streamer.launcher_v4.1.1.apk** (4.2 MB)
+- **Streamer.launcher_v4.1.2.apk** (4.2 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -230,7 +230,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v4.1.1.apk"
+adb install -r "Streamer.launcher_v4.1.2.apk"
 ```
 
 ### Grant Secure Settings Permission (Required for Certain System-Level Features)
@@ -271,11 +271,30 @@ cd Streamer-launcher
 ./gradlew assembleRelease
 ```
 The compiled APK will be located at:
-`app/build/outputs/apk/release/Streamer.launcher_v4.1.1.apk`
+`app/build/outputs/apk/release/Streamer.launcher_v4.1.2.apk`
 
 ---
 
 ## Changelog
+
+### v4.1.2
+- **Bluetooth Connected Devices & Pairing System**:
+  - **In-Place Pairing & Dynamic List Sync**: Resolved issue where newly paired Bluetooth devices remained stuck at "Pairing" or failed to appear in "Connected Accessories" without closing and reopening the modal. Decoupled radio discovery cancellation from listener cleanup, keeping bond listeners active throughout pairing.
+  - **Dual-Trigger Event Routing**: Both `BOND_BONDED` and `ACTION_ACL_CONNECTED` automatically transition the UI from scan view to normal view, immediately displaying the newly paired device under "Connected Accessories" with audio waveform and battery status.
+  - **Flicker-Free In-Place Updates**: Replaced brute-force `removeAllViews()` re-inflation with intelligent snapshot diffing. Existing views update their properties in-place without focus loss, highlight restarts, or waveform animation interruptions, completely eliminating modal blinking.
+  - **DPAD HOME Dismissal**: Pressing DPAD HOME while the Bluetooth modal is open cleanly dismisses the modal and returns focus to the first app icon in the app dock.
+- **HomeScreen & App Dock Layout Alignment**:
+  - **Minimalist Continue Watching Card Redesign**: Reduced minimalist card width by 25% to `212dp` for improved card density and clean Leanback symmetry.
+  - **Restored Dock Baseline & Card Spacing**: Restored original app dock bottom baseline positioning and standard visual spacing (`26dp`) between Continue Watching cards and dock top.
+- **Volume Key Hold & Home Override Polish**:
+  - **Volume Key Hold Repeat Loop**: Implemented rapid volume repeat loop in `HomeOverride` accessibility service for smooth, responsive volume control on remotes without native repeat.
+  - **Dynamic Key Filtering Bypass**: Automated volume key filtering bypass while preserving Home key filtering to eliminate stock launcher flash.
+- **Backup & Restore System**:
+  - **Modular Backup & Restore**: Added granular restore options (Settings, Dock, Layout, Wallpapers, Icon Packs) with dedicated subpages.
+  - **Background Looper Stability**: Fixed restore crashes by executing database and preference operations on appropriate background threads with safe UI synchronization.
+- **Media Discovery & Wallpaper Polish**:
+  - **Catalog Infinite Loop & Focus Jump Fixes**: Resolved pagination loops and focus jumps during catalog browsing, dual-indexing localized synopsis translations.
+  - **Expanded Sofadrop Wallpapers**: Increased Sofadrop wallpaper pool to 30 high-resolution interleaved backgrounds.
 
 ### v4.1.1
 - **Backup & Restore Crash Prevention & Integrity**:

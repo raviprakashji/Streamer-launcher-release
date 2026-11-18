@@ -1,3 +1,25 @@
+## [v4.1.2] - 2026-11-18
+### Added, Fixed & Enhanced (vs v4.1.1)
+- **Bluetooth Connected Devices & Pairing System**:
+  - **In-Place Pairing & Dynamic List Sync**: Resolved issue where newly paired Bluetooth devices remained stuck at "Pairing" or failed to appear in "Connected Accessories" without closing and reopening the modal. Decoupled radio discovery cancellation from listener cleanup, keeping bond listeners active throughout pairing.
+  - **Dual-Trigger Event Routing**: Both `BOND_BONDED` and `ACTION_ACL_CONNECTED` automatically transition the UI from scan view to normal view, immediately displaying the newly paired device under "Connected Accessories" with audio waveform and battery status.
+  - **Flicker-Free In-Place Updates**: Replaced brute-force `removeAllViews()` re-inflation with intelligent snapshot diffing. Existing views update their properties in-place without focus loss, highlight restarts, or waveform animation interruptions, completely eliminating modal blinking.
+  - **DPAD HOME Dismissal**: Pressing DPAD HOME while the Bluetooth modal is open cleanly dismisses the modal and returns focus to the first app icon in the app dock.
+- **HomeScreen & App Dock Layout Alignment**:
+  - **Minimalist Continue Watching Card Redesign**: Reduced minimalist card width by 25% to `212dp` for improved card density and clean Leanback symmetry.
+  - **Restored Dock Baseline & Card Spacing**: Restored original app dock bottom baseline positioning and standard visual spacing (`26dp`) between Continue Watching cards and dock top.
+- **Volume Key Hold & Home Override Polish**:
+  - **Volume Key Hold Repeat Loop**: Implemented rapid volume repeat loop in `HomeOverride` accessibility service for smooth, responsive volume control on remotes without native repeat.
+  - **Dynamic Key Filtering Bypass**: Automated volume key filtering bypass while preserving Home key filtering to eliminate stock launcher flash.
+- **Backup & Restore System**:
+  - **Modular Backup & Restore**: Added granular restore options (Settings, Dock, Layout, Wallpapers, Icon Packs) with dedicated subpages.
+  - **Background Looper Stability**: Fixed restore crashes by executing database and preference operations on appropriate background threads with safe UI synchronization.
+- **Media Discovery & Wallpaper Polish**:
+  - **Catalog Infinite Loop & Focus Jump Fixes**: Resolved pagination loops and focus jumps during catalog browsing, dual-indexing localized synopsis translations.
+  - **Expanded Sofadrop Wallpapers**: Increased Sofadrop wallpaper pool to 30 high-resolution interleaved backgrounds.
+
+---
+
 ## [v4.1.1] - 2026-11-18
 ### Added, Fixed & Enhanced (vs v4.1)
 - **Backup & Restore Crash Prevention & Integrity**:
