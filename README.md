@@ -7,9 +7,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v4.1.2-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v4.2-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
-  <img alt="APK size" src="https://img.shields.io/badge/APK-4.2%20MB-success?style=flat-square">
+  <img alt="APK size" src="https://img.shields.io/badge/APK-4.3%20MB-success?style=flat-square">
   <a href="https://github.com/raviprakashji/Streamer-launcher/actions"><img alt="CI Build" src="https://img.shields.io/github/actions/workflow/status/raviprakashji/Streamer-launcher/build-release.yml?branch=main&style=flat-square"></a>
   <img alt="Ad-Free" src="https://img.shields.io/badge/Ads-None-brightgreen?style=flat-square">
   <a href="LICENSE"><img alt="GPL-3.0 License" src="https://img.shields.io/badge/License-GPL--3.0-orange?style=flat-square"></a>
@@ -222,7 +222,7 @@ Streamer Launcher is strictly engineered for low-memory, entry-level Android TV 
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-- **Streamer.launcher_v4.1.2.apk** (4.2 MB)
+- **Streamer.launcher_v4.2.apk** (4.3 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -230,7 +230,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v4.1.2.apk"
+adb install -r "Streamer.launcher_v4.2.apk"
 ```
 
 ### Grant Secure Settings Permission (Required for Certain System-Level Features)
@@ -271,11 +271,31 @@ cd Streamer-launcher
 ./gradlew assembleRelease
 ```
 The compiled APK will be located at:
-`app/build/outputs/apk/release/Streamer.launcher_v4.1.2.apk`
+`app/build/outputs/apk/release/Streamer.launcher_v4.2.apk`
 
 ---
 
 ## Changelog
+
+### v4.2
+- **Page 2 Snake Navigation**:
+  - **Seamless Continuous Grid Navigation**: Pressing `DPAD RIGHT` from the final poster of any catalog row now wraps seamlessly to the first poster of the next row below, enabling natural continuous browsing without backtracking.
+  - **Fluid Sidebar Escape**: Pressing `DPAD LEFT` from the first poster of any row returns focus directly to the genre sidebar navigation rail without trap or jarring focus skips.
+- **Invisible Dock Theme & Custom Tile Borders**:
+  - **Invisible Dock Preset**: Added `Invisible` preset to Dock & Icon Theme settings, completely hiding the dock pill background while maintaining app icon alignment and crisp visibility over wallpapers.
+  - **Configurable Tile Borders**: Introduced dedicated border styling (App colour, Glass outline, Off) and custom border opacity sliders specifically tuned for the Invisible dock.
+  - **Context-Aware Settings Safeguards**: Focus Effect menu is intelligently disabled and dimmed when the Invisible preset is active to avoid visual conflicts with borderless icons.
+- **Aurora Flow Live Wallpaper & Ambient Screensaver**:
+  - **Native OpenGL ES Shader Engine**: Integrated `AuroraLiveView` utilizing an optimized GLSL fragment shader simulating natural multi-layered aurora borealis wave physics and color shifting.
+  - **Wallpaper & Screensaver Dual Mode**: Selectable directly as a live home screen wallpaper or as an ambient screensaver with zero stutter and low thermal overhead.
+- **Animated Icon Idle Optimization**:
+  - **Low-Power Idle Freeze**: Animated dock icons now cleanly render their static baseline frame (`Frame 0`) when idle and only engage dynamic frame-by-frame animation upon receiving DPAD focus.
+  - **Reduced GPU/CPU Footprint**: Eliminates continuous background surface redraws on Android TV devices, keeping system temps low and preserving memory bandwidth for video playback.
+- **Persistent Clock OLED Burn-In Shifting & Large Sizes**:
+  - **8-Point Micro-Orbital Burn-in Protection**: Implemented an automated 8-point pixel-shifting cycle every 2 minutes for the persistent clock overlay to prevent OLED burn-in during long home screen sessions.
+  - **Large Font Scaling & Offset Adjustments**: Added support for 60f and 72f clock font sizes with proportional vertical margin compensations for optimal readability on 65"+ TV panels.
+- **Video Wallpaper Sleep & Standby Lifecycle Fix**:
+  - **Zero Standby Freeze**: Fixed an issue where video wallpapers could freeze or display black frames after waking from TV deep sleep standby or after returning from external streaming apps by stabilizing the ExoPlayer surface rebind lifecycle.
 
 ### v4.1.2
 - **Bluetooth Connected Devices & Pairing System**:
