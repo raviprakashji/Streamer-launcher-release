@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher-release/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v4.2.1-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher-release/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v4.2.2-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
   <img alt="APK size" src="https://img.shields.io/badge/APK-4.5%20MB-success?style=flat-square">
   <img alt="Ad-Free" src="https://img.shields.io/badge/Ads-None-brightgreen?style=flat-square">
@@ -130,10 +130,12 @@ Home Screen Live Scores & Match Schedule |
   - Long-press **Quick Settings** to open Android System Settings directly; top-bar **Wi-Fi** shortcut (when Music is off) opens Android Wi-Fi Settings directly with D-pad focus preserved on return.
 - **Hardware HDMI & AV Input Switcher**:
   - Select supported HDMI and AV inputs directly from the launcher.
-- **Hardware Remote Button Remapper**:
-  - Remap supported TV remote buttons.
+- **Hardware Remote Button Remapper & Universal Floating Overlays**:
+  - Remap supported TV remote buttons with zero-latency, sub-microsecond $O(1)$ key lookup and dynamic accessibility filtering bypass.
   - Add custom aliases to make buttons easier to identify.
   - Configure independent single-press, double-press, and long-press actions.
+  - **Works Anywhere Floating Overlays**: Launch Quick Settings, Live Cricket Scores, full LocalSend file transfer, Music HUD, Streamer Settings, or App Dock directly over any running app or video player (YouTube, Netflix, etc.) without leaving your content or interrupting playback.
+  - **Categorized Actions**: Streamer features cleanly organized into **Works anywhere** and **Works from homescreen** sections.
 - **MDBList Account Integration**:
   - Connect using your personal MDBList API key.
   - Add personal MDBList catalogs, including dynamic and static lists.
@@ -224,8 +226,8 @@ Streamer Launcher is strictly engineered for low-memory, entry-level Android TV 
 ## Installation
 
 ### Option 1: Direct APK Download
-Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-- **Streamer.launcher_v4.2.1.apk** (4.5 MB)
+Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher-release/releases/latest):
+- **Streamer.launcher_v4.2.2.apk** (4.5 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -233,7 +235,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v4.2.1.apk"
+adb install -r "Streamer.launcher_v4.2.2.apk"
 ```
 
 ### Grant Secure Settings Permission (Required for Certain System-Level Features)
@@ -274,11 +276,31 @@ cd Streamer-launcher
 ./gradlew assembleRelease
 ```
 The compiled APK will be located at:
-`app/build/outputs/apk/release/Streamer.launcher_v4.2.1.apk`
+`app/build/outputs/apk/release/Streamer.launcher_v4.2.2.apk`
 
 ---
 
 ## Changelog
+
+### v4.2.2
+- **Universal Floating Overlays Over Running Apps**:
+  - **Overlay Architecture**: Remapped remote buttons now launch floating overlays directly over any foreground application or active video playback (e.g., YouTube, Netflix, Prime Video) without switching tasks or displaying the home screen.
+  - **Quick Settings Overlay**: Slide-in floating panel for Wi-Fi management, audio output switching, ambient settings, sleep timers, and media controls over any active app.
+  - **Cricket Scores Overlay**: Floating top-right live match score card with marquee scrolling, full over/wicket details, and auto-dismissal.
+  - **LocalSend Overlay**: Complete dual-tab LocalSend transfer interface floating over apps with full file-picker and app-sharing support. Fixed an issue where picking files or pressing Back in file manager closed background apps by isolating task affinities.
+  - **Music HUD Overlay**: Floating bottom playback bar with synchronized lyrics and media transport controls.
+  - **Streamer Settings Overlay**: Side panel launcher settings overlay floating directly over foreground apps with dark scrim and smooth back navigation.
+  - **App Dock Overlay**: Floating quick dock with smooth exit animations and clean D-pad traversal.
+  - **Background Catalog & Score Refresh**: Asynchronous catalog and live score refresh triggered via remote buttons with toast feedback, without leaving the active app.
+- **Button Mapper Performance & Architectural Optimizations**:
+  - **$O(1)$ Primitive Key Lookup**: Replaced linear key scans with primitive-indexed `SparseArray` lookups (`keyCodeMap` and `scanCodeMap`), achieving zero-allocation, sub-microsecond key dispatch on TV remotes.
+  - **Dynamic Accessibility Key Filtering Bypass**: Strips `FLAG_REQUEST_FILTER_KEY_EVENTS` when idle (no buttons mapped, no overlays visible), eliminating accessibility IPC input latency across the entire Android TV OS.
+  - **Asynchronous Disk & Graphic Execution**: Moved hardware buffer bitmap wrapping and screenshot disk writing off the main UI thread into dedicated `AppExecutors.diskIo` thread pools.
+  - **Blink-Free Compositor Transitions**: Fixed hardware layer flickering over playing video by animating inner card containers directly and consuming `ACTION_DOWN` of Back/Escape while strictly dismissing on `ACTION_UP`.
+- **Button Mapper Feature Categorization**:
+  - Streamer features are now organized into two distinct, intuitive sections with non-focusable headers:
+    - **Works anywhere**: *App dock, Cricket scores, LocalSend, Quick settings, Refresh catalogs, Streamer settings*
+    - **Works from homescreen**: *Calendar, Streamer Files, Streamer Music, Streamer search, Switch HDMI input*
 
 ### v4.2.1
 - **Shortcuts & Activities & Activity Explorer Polish**:

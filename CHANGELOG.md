@@ -1,3 +1,26 @@
+## [v4.2.2] - 2026-11-20
+### Added, Fixed & Enhanced (vs v4.2.1)
+- **Universal Floating Overlays Over Running Apps**:
+  - **Overlay Architecture**: Remapped remote buttons now launch floating overlays directly over any foreground application or active video playback (e.g., YouTube, Netflix, Prime Video) without switching tasks or displaying the home screen.
+  - **Quick Settings Overlay**: Slide-in floating panel for Wi-Fi management, audio output switching, ambient settings, sleep timers, and media controls over any active app.
+  - **Cricket Scores Overlay**: Floating top-right live match score card with marquee scrolling, full over/wicket details, and auto-dismissal.
+  - **LocalSend Overlay**: Complete dual-tab LocalSend transfer interface floating over apps with full file-picker and app-sharing support. Fixed an issue where picking files or pressing Back in file manager closed background apps by isolating task affinities.
+  - **Music HUD Overlay**: Floating bottom playback bar with synchronized lyrics and media transport controls.
+  - **Streamer Settings Overlay**: Side panel launcher settings overlay floating directly over foreground apps with dark scrim and smooth back navigation.
+  - **App Dock Overlay**: Floating quick dock with smooth exit animations and clean D-pad traversal.
+  - **Background Catalog & Score Refresh**: Asynchronous catalog and live score refresh triggered via remote buttons with toast feedback, without leaving the active app.
+- **Button Mapper Performance & Architectural Optimizations**:
+  - **$O(1)$ Primitive Key Lookup**: Replaced linear key scans with primitive-indexed `SparseArray` lookups (`keyCodeMap` and `scanCodeMap`), achieving zero-allocation, sub-microsecond key dispatch on TV remotes.
+  - **Dynamic Accessibility Key Filtering Bypass**: Strips `FLAG_REQUEST_FILTER_KEY_EVENTS` when idle (no buttons mapped, no overlays visible), eliminating accessibility IPC input latency across the entire Android TV OS.
+  - **Asynchronous Disk & Graphic Execution**: Moved hardware buffer bitmap wrapping and screenshot disk writing off the main UI thread into dedicated `AppExecutors.diskIo` thread pools.
+  - **Blink-Free Compositor Transitions**: Fixed hardware layer flickering over playing video by animating inner card containers directly and consuming `ACTION_DOWN` of Back/Escape while strictly dismissing on `ACTION_UP`.
+- **Button Mapper Feature Categorization**:
+  - Streamer features are now organized into two distinct, intuitive sections with non-focusable headers:
+    - **Works anywhere**: *App dock, Cricket scores, LocalSend, Quick settings, Refresh catalogs, Streamer settings*
+    - **Works from homescreen**: *Calendar, Streamer Files, Streamer Music, Streamer search, Switch HDMI input*
+
+---
+
 ## [v4.2.1] - 2026-11-20
 ### Added, Fixed & Enhanced (vs v4.2)
 - **Shortcuts & Activities & Activity Explorer Polish**:
