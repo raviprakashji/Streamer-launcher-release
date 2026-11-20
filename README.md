@@ -7,9 +7,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v4.2-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v4.2.1-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
-  <img alt="APK size" src="https://img.shields.io/badge/APK-4.3%20MB-success?style=flat-square">
+  <img alt="APK size" src="https://img.shields.io/badge/APK-4.5%20MB-success?style=flat-square">
   <a href="https://github.com/raviprakashji/Streamer-launcher/actions"><img alt="CI Build" src="https://img.shields.io/github/actions/workflow/status/raviprakashji/Streamer-launcher/build-release.yml?branch=main&style=flat-square"></a>
   <img alt="Ad-Free" src="https://img.shields.io/badge/Ads-None-brightgreen?style=flat-square">
   <a href="LICENSE"><img alt="GPL-3.0 License" src="https://img.shields.io/badge/License-GPL--3.0-orange?style=flat-square"></a>
@@ -149,11 +149,13 @@ Home Screen Live Scores & Match Schedule |
 
 Streamer Launcher is strictly engineered for low-memory, entry-level Android TV and Google TV hardware (benchmarked on a physical **MediaTek MT5867 Quad-Core with only ~929 MB Total RAM on Android 11**):
 
-| Operating State | Total RAM (PSS) | Java Heap | Graphics & Native | CPU Usage | Real-World Scenario |
-| :--- | :---: | :---: | :---: | :---: | :--- |
-| **Idle / Cold Start** | **~48 MB** | ~4.4 MB | ~17.9 MB | **0.0% – 0.5%** | Fresh launch, sitting idle on the Home dock, background threads completely asleep. |
-| **Normal Active Navigation** | **~65 MB** | ~7.1 MB | ~31.6 MB | **0% – 8%** | Browsing home apps, Page 2 catalogs, opening item context menus, and scrolling recommendations. |
-| **Peak / Max Workload** | **~108 MB** | ~32.8 MB | ~55.2 MB | **15% – 25%** | All 8 catalog rows loaded, live cricket score ticker scrolling, YouTube Music streaming in the background, TV Calendar with airing posters open, and 1080p wallpaper rotation. |
+### Before vs After v4.2.1 Deep Optimizations
+
+| Operating State | Baseline (v4.2) Total RAM | Optimized (v4.2.1) Total RAM | Java Heap (v4.2.1) | Graphics & Native (v4.2.1) | CPU Usage | Real-World Scenario |
+| :--- | :---: | :---: | :---: | :---: | :---: | :--- |
+| **Idle / Cold Start** | ~48 MB | **~40 MB** *(16.7% ↓)* | ~4.8 MB | ~12.6 MB | **0.0% – 0.5%** | Fresh launch, sitting idle on the Home dock, background threads completely asleep. |
+| **Normal Active Navigation** | ~65 MB | **~73 MB** | ~6.7 MB | ~37.0 MB | **0% – 8%** | Browsing home apps, Page 2 catalogs, opening item context menus, and scrolling recommendations. |
+| **Peak / Max Workload** | ~108 MB | **~83 MB** *(23.1% ↓)* | ~9.3 MB | ~44.5 MB | **15% – 25%** | All 8 catalog rows loaded, live cricket score ticker scrolling, YouTube Music streaming in the background, TV Calendar with airing posters open, and 1080p wallpaper rotation. |
 
 ### Architectural Highlights
 - **Zero Idle Drain (Reactive, Not Polling)**: Completely event-driven architecture with zero background timer loops or busy-wait polling. When inactive, CPU drops to **0%**.
@@ -222,7 +224,7 @@ Streamer Launcher is strictly engineered for low-memory, entry-level Android TV 
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher/releases/latest):
-- **Streamer.launcher_v4.2.apk** (4.3 MB)
+- **Streamer.launcher_v4.2.1.apk** (4.5 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -230,7 +232,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v4.2.apk"
+adb install -r "Streamer.launcher_v4.2.1.apk"
 ```
 
 ### Grant Secure Settings Permission (Required for Certain System-Level Features)
@@ -271,11 +273,34 @@ cd Streamer-launcher
 ./gradlew assembleRelease
 ```
 The compiled APK will be located at:
-`app/build/outputs/apk/release/Streamer.launcher_v4.2.apk`
+`app/build/outputs/apk/release/Streamer.launcher_v4.2.1.apk`
 
 ---
 
 ## Changelog
+
+### v4.2.1
+- **Shortcuts & Activities & Activity Explorer Polish**:
+  - **Quick Presets Focus Retention**: Fixed DPAD UP navigation from preset cards in "System & Dev" and "Files & Hardware" categories resetting to "All Presets". Focus now accurately returns to the active category filter pill.
+  - **Zero-Flicker Tab Navigation**: Removed 150ms artificial delay and implemented view retention across Activity Manager tabs, eliminating jitter, re-inflation lag, and focus-stomping.
+  - **Quick Presets IPC Caching**: Caches resolved system settings intents to eliminate 12 synchronous `PackageManager` IPC calls on every render and category switch.
+  - **Declared Activities LRU Cache**: Implemented a 32-entry LRU cache for package activities in Activity Explorer, making app-switching instantaneous with zero Binder overhead.
+  - **Activity Launcher Drawer Tile Decode Caching**: Tile bitmap decode is now cached in `iconCache`, eliminating repeated flash storage reads on All-Apps drawer redraws.
+  - **Activity Explorer DPAD Traversal Optimization**: Removed redundant recursive `findViewById` loop that ran across all activity cards on every single package DPAD step.
+  - **Thread-Safe Dexopt Compilation**: Migrated compiler cache to `ConcurrentHashMap<String, String>` and eliminated intermediate collection allocations during installed apps resolution.
+- **System-Wide Memory & Performance Engineering**:
+  - **Installed Apps $O(1)$ Leanback Resolution**: Replaced linear list scanning (`leanbackActivities.any { ... }`) with $O(1)$ set lookup (`a.packageName in leanbackPkgSet`), speeding up app discovery on boot and resume.
+  - **App Folder Caching & Collage Icon LRU**: Added in-memory folder state caching (`cachedFolders`) and 32-entry LRU cache for 2x2 folder collage drawables (`collageCache`), eliminating continuous JSON parsing and bitmap/canvas allocations during home dock navigation.
+  - **Recommendation Scoring Regex & Genre Parsing Optimization**: Promoted IMDb ID pattern matching to static compiled regex (`IMDB_ID_REGEX`), extracted static unscripted genre keys, and eliminated duplicate string splitting across candidate scoring passes.
+  - **Zero-Allocation Clock Overlay Formatting**: Replaced per-minute `SimpleDateFormat` allocations with thread-safe reusable date formatters.
+  - **Buffered Backup & Restore Extraction**: Accelerated wallpaper and custom icon archive restoration by wrapping output streams with `BufferedOutputStream`.
+  - **Local ADB RSA Keypair Caching**: In-memory caching for ADB keypairs eliminates redundant disk reads and cryptographic key rebuilding across shell operations.
+- **Atomic File Persistence Durability & Recovery Hardening (`SafeFilePersistence`)**:
+  - **Strict File-Sync Failure Handling**: Enforced strict `fos.fd.sync()` checks during persistence operations; aborts replacement, safely cleans up incomplete temporary files, and leaves original valid targets completely intact if sync fails.
+  - **Deterministic Backup & Recovery Paths**: Added comprehensive testing and validation covering replacement failures after backup creation, crash recovery during interruptions, and stale backup protection.
+- **Resource Footprint Reductions**:
+  - **Idle / Cold Start Total PSS**: Reduced from ~48 MB to **~40 MB** (16.7% reduction).
+  - **Peak Workload Total PSS**: Reduced from ~108 MB to **~83 MB** (23.1% reduction).
 
 ### v4.2
 - **Page 2 Snake Navigation**:

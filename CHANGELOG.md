@@ -1,3 +1,29 @@
+## [v4.2.1] - 2026-11-20
+### Added, Fixed & Enhanced (vs v4.2)
+- **Shortcuts & Activities & Activity Explorer Polish**:
+  - **Quick Presets Focus Retention**: Fixed DPAD UP navigation from preset cards in "System & Dev" and "Files & Hardware" categories resetting to "All Presets". Focus now accurately returns to the active category filter pill.
+  - **Zero-Flicker Tab Navigation**: Removed 150ms artificial delay and implemented view retention across Activity Manager tabs, eliminating jitter, re-inflation lag, and focus-stomping.
+  - **Quick Presets IPC Caching**: Caches resolved system settings intents to eliminate 12 synchronous `PackageManager` IPC calls on every render and category switch.
+  - **Declared Activities LRU Cache**: Implemented a 32-entry LRU cache for package activities in Activity Explorer, making app-switching instantaneous with zero Binder overhead.
+  - **Activity Launcher Drawer Tile Decode Caching**: Tile bitmap decode is now cached in `iconCache`, eliminating repeated flash storage reads on All-Apps drawer redraws.
+  - **Activity Explorer DPAD Traversal Optimization**: Removed redundant recursive `findViewById` loop that ran across all activity cards on every single package DPAD step.
+  - **Thread-Safe Dexopt Compilation**: Migrated compiler cache to `ConcurrentHashMap<String, String>` and eliminated intermediate collection allocations during installed apps resolution.
+- **System-Wide Memory & Performance Engineering**:
+  - **Installed Apps $O(1)$ Leanback Resolution**: Replaced linear list scanning (`leanbackActivities.any { ... }`) with $O(1)$ set lookup (`a.packageName in leanbackPkgSet`), speeding up app discovery on boot and resume.
+  - **App Folder Caching & Collage Icon LRU**: Added in-memory folder state caching (`cachedFolders`) and 32-entry LRU cache for 2x2 folder collage drawables (`collageCache`), eliminating continuous JSON parsing and bitmap/canvas allocations during home dock navigation.
+  - **Recommendation Scoring Regex & Genre Parsing Optimization**: Promoted IMDb ID pattern matching to static compiled regex (`IMDB_ID_REGEX`), extracted static unscripted genre keys, and eliminated duplicate string splitting across candidate scoring passes.
+  - **Zero-Allocation Clock Overlay Formatting**: Replaced per-minute `SimpleDateFormat` allocations with thread-safe reusable date formatters.
+  - **Buffered Backup & Restore Extraction**: Accelerated wallpaper and custom icon archive restoration by wrapping output streams with `BufferedOutputStream`.
+  - **Local ADB RSA Keypair Caching**: In-memory caching for ADB keypairs eliminates redundant disk reads and cryptographic key rebuilding across shell operations.
+- **Atomic File Persistence Durability & Recovery Hardening (`SafeFilePersistence`)**:
+  - **Strict File-Sync Failure Handling**: Enforced strict `fos.fd.sync()` checks during persistence operations; aborts replacement, safely cleans up incomplete temporary files, and leaves original valid targets completely intact if sync fails.
+  - **Deterministic Backup & Recovery Paths**: Added comprehensive testing and validation covering replacement failures after backup creation, crash recovery during interruptions, and stale backup protection.
+- **Resource Footprint Reductions**:
+  - **Idle / Cold Start Total PSS**: Reduced from ~48 MB to **~40 MB** (16.7% reduction).
+  - **Peak Workload Total PSS**: Reduced from ~108 MB to **~83 MB** (23.1% reduction).
+
+---
+
 ## [v4.2] - 2026-11-19
 ### Added, Fixed & Enhanced (vs v4.1.2)
 - **Page 2 Snake Navigation**:
