@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v4.2.1-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher-release/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v4.2.1-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
   <img alt="APK size" src="https://img.shields.io/badge/APK-4.5%20MB-success?style=flat-square">
   <img alt="Ad-Free" src="https://img.shields.io/badge/Ads-None-brightgreen?style=flat-square">
