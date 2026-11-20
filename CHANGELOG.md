@@ -1,3 +1,26 @@
+## [v4.2.3] - 2026-11-21
+### Added, Fixed & Enhanced (vs v4.2.2)
+- **Quick Settings Zen Mode Tile**:
+  - **Clutter-Free Homescreen**: Added a dedicated "Zen mode" tile on Row 6 (left of Ambient Screensaver) to instantly strip homescreen distractions down to a pure, minimal wallpaper and dock view.
+  - **One-Click Multi-Component Toggle**: Clicking Zen mode disables Continue Watching, the entire Page 2 catalogs, Streamer Music, and Shortcuts & Activities in a single action while cleanly saving prior user preferences.
+  - **Automatic State Restoration**: Clicking again instantly restores all 4 components back to their exact previous on/off settings.
+  - **Active Accent & Labeling**: Highlights in `#C084FC` violet/purple border and glow with dynamic `"Active"` / `"Off"` subtitle labels and custom meditating Zen iconography (`ic_zen.xml`).
+  - **Bi-directional Settings Sync**: Manually re-enabling any of the 4 features via *Streamer settings -> Turn features on/off* automatically synchronizes Zen mode back to `Off`.
+- **Streamer Settings Overlay Dismiss & Focus Trapping**:
+  - **Clean Home Dismissal**: Pressing the remote Home button while Streamer settings is open now cleanly dismisses the settings overlay and returns focus directly to the homescreen dock, fixing an issue where settings stayed open while focus slipped underneath.
+  - **Unconditional Scrim Teardown**: Hardened `closeLauncherSettings()` to dismiss overlays and tear down `settingsScrim` unconditionally, preventing stale overlay states across activity transitions and paused intent dispatches.
+  - **DPAD Vertical Focus Trapping**: DPAD DOWN and UP navigation strictly confines focus within the Streamer Settings card, preventing focus traversal from accidentally jumping out to the app dock.
+- **Continue Watching 5th Card Blink Elimination**:
+  - Resolved the spatial focus jump glitch where the partially visible 5th Continue Watching card briefly blinked or highlighted when dismissing Quick Settings on the homescreen via DPAD Home.
+  - Suppresses Continue Watching descendant focusability during Quick Settings dismissal until focus has safely settled on the active dock app.
+- **Appearance & Wallpaper Enhancements**:
+  - **Dim Homescreen Components Default**: When *Appearance -> Dim homescreen components* is ON, Continue Watching cards (both classic and minimalist layouts) are now hidden by default for maximum wallpaper visibility.
+  - **Persistent Clock Page 1 Suppression**: Added a dedicated sub-toggle for *"Hide on homescreen page 1"* under *Appearance -> Persistent clock* (visible only when Persistent Clock is ON), allowing the persistent clock to stay hidden on page 1 while showing on subsequent pages and scrolling.
+  - **Recursive Wallpaper Folder Scanning**: The wallpaper directory picker now scans subfolders recursively (e.g. categorized directories like Abstract, Animals, Anime, Cars), automatically cycling through all nested wallpapers without requiring manual flattening into a single root folder.
+  - **Button Mapper "Change Wallpaper" Action**: Added *"Change wallpaper"* under *Button mapper -> Streamer features -> Works anywhere* (sorted alphabetically), enabling one-click manual wallpaper cycling for both local custom folders and TMDB backdrops from anywhere.
+
+---
+
 ## [v4.2.2] - 2026-11-21
 ### Added, Fixed & Enhanced (vs v4.2.1)
 - **Universal Floating Overlays Over Running Apps**:
