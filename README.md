@@ -286,21 +286,24 @@ The compiled APK will be located at:
 - **Universal Floating Overlays Over Running Apps**:
   - **Overlay Architecture**: Remapped remote buttons now launch floating overlays directly over any foreground application or active video playback (e.g., YouTube, Netflix, Prime Video) without switching tasks or displaying the home screen.
   - **Quick Settings Overlay**: Slide-in floating panel for Wi-Fi management, audio output switching, ambient settings, sleep timers, and media controls over any active app.
+  - **Bluetooth Accessories Overlay**: Remote Button Mapper action and Quick Settings tile now launch `BluetoothOverlay` directly over running apps without opening launcher, preserving exact homescreen modal placement. Includes smooth transition into "Pair new device" scanning view and clean dismissal when opening Bluetooth system settings.
+  - **HDMI Inputs Overlay**: Remote Button Mapper action and Quick Settings tile launch `HdmiInputsOverlay` directly over running apps at the exact same position as homescreen without disturbing background playback.
   - **Cricket Scores Overlay**: Floating top-right live match score card with marquee scrolling, full over/wicket details, and auto-dismissal.
   - **LocalSend Overlay**: Complete dual-tab LocalSend transfer interface floating over apps with full file-picker and app-sharing support. Fixed an issue where picking files or pressing Back in file manager closed background apps by isolating task affinities.
   - **Music HUD Overlay**: Floating bottom playback bar with synchronized lyrics and media transport controls.
-  - **Streamer Settings Overlay**: Side panel launcher settings overlay floating directly over foreground apps with dark scrim and smooth back navigation.
+  - **Streamer Settings Overlay**: Side panel launcher settings overlay floating directly over foreground apps with dark scrim, smooth back navigation, and **continuous infinite DPAD hold scrolling** (300ms initial threshold, 75ms repeat cadence, seamless wrapping between top and bottom).
   - **App Dock Overlay**: Floating quick dock with smooth exit animations and clean D-pad traversal.
   - **Background Catalog & Score Refresh**: Asynchronous catalog and live score refresh triggered via remote buttons with toast feedback, without leaving the active app.
+- **Button Mapper Feature Organization & Outside Homescreen Actions**:
+  - Streamer features in Button Mapper are organized into two distinct, intuitive sections in alphabetical order:
+    - **Works anywhere**: *App dock, Bluetooth accessories, Cricket scores, LocalSend, Quick settings, Refresh catalogs, Streamer Files, Streamer settings, Switch HDMI input*
+    - **Works from homescreen**: *Calendar, Streamer Music, Streamer search*
+  - **Streamer Files**: Moved to *Works anywhere* in alphabetical order; remapped buttons launch `FileManagerActivity` directly with `FLAG_ACTIVITY_NEW_TASK` from any app outside homescreen.
 - **Button Mapper Performance & Architectural Optimizations**:
   - **$O(1)$ Primitive Key Lookup**: Replaced linear key scans with primitive-indexed `SparseArray` lookups (`keyCodeMap` and `scanCodeMap`), achieving zero-allocation, sub-microsecond key dispatch on TV remotes.
   - **Dynamic Accessibility Key Filtering Bypass**: Strips `FLAG_REQUEST_FILTER_KEY_EVENTS` when idle (no buttons mapped, no overlays visible), eliminating accessibility IPC input latency across the entire Android TV OS.
   - **Asynchronous Disk & Graphic Execution**: Moved hardware buffer bitmap wrapping and screenshot disk writing off the main UI thread into dedicated `AppExecutors.diskIo` thread pools.
   - **Blink-Free Compositor Transitions**: Fixed hardware layer flickering over playing video by animating inner card containers directly and consuming `ACTION_DOWN` of Back/Escape while strictly dismissing on `ACTION_UP`.
-- **Button Mapper Feature Categorization**:
-  - Streamer features are now organized into two distinct, intuitive sections with non-focusable headers:
-    - **Works anywhere**: *App dock, Cricket scores, LocalSend, Quick settings, Refresh catalogs, Streamer settings*
-    - **Works from homescreen**: *Calendar, Streamer Files, Streamer Music, Streamer search, Switch HDMI input*
 
 ### v4.2.1
 - **Shortcuts & Activities & Activity Explorer Polish**:
