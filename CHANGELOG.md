@@ -1,3 +1,26 @@
+## [v4.2.4] - 2026-11-22
+### Added, Fixed & Enhanced (vs v4.2.3)
+- **Home Navigation & Focus Polish**:
+  - **Page 1 Home Button Toggle**: Pressing the remote Home button while on Page 1 now directly opens the All Apps grid. Pressing Home from within the All Apps grid smoothly returns to Page 1 and restores focus to the exact previously focused tile (e.g. active dock app).
+  - **Double-Back Screensaver Shortcut**: Double pressing the remote Back button on Page 1 reliably launches the screensaver directly from the input dispatch layer without interference from Page 2 discovery or modern Android TV back-key drops.
+  - **Top Row Icon Label Wiggle Fix**: Synchronized text measurement and layout positioning in `showTopBarLabel`, completely eliminating visual text jitter/wiggle when navigating across top-bar status icons (`All Apps`, `Music`, `Bluetooth`, `Quick Settings`).
+  - **All Apps Grid 2D Navigation**: Fixed all-apps grid navigation freeze where the container ScrollView was intercepting focus, restoring smooth 2D D-pad grid movement and focus rescue.
+- **Screensaver & TMDB Wallpaper Enhancements**:
+  - **TMDB Wallpapers Screensaver Option**: Added TMDB wallpapers (`sofadrop`) as a native screensaver choice. Uses the user's saved TMDB custom source list if TMDB wallpaper is set on the homescreen, or automatically falls back to `TMDB:Trending` and caches artwork without user intervention.
+  - **Screensaver Bottom Shadow Removal**: When TMDB wallpapers appear as a screensaver, the lower dark gradient shadow is dynamically removed for a clean, full-screen cinematic presentation, while preserving the shadow on the homescreen for dock legibility.
+  - **Screensaver Overlay Over Running Apps**: When the Screensaver tile is selected from the Quick Settings overlay over external video playback (e.g., YouTube), the screensaver renders floating on top without pausing or interrupting video audio/playback in the background. Added input grace period to prevent selection keys from instantly dismissing it.
+  - **Ambient Mode Wake-up Hardening**: Resolved screen freeze on "Next Wallpaper" and bottom dock disappearing after waking from idle/ambient mode following a cold TV reboot.
+- **Button Mapper & Floating Overlays**:
+  - **Dedicated Remote Button Collision Fix**: Fixed button identification for dedicated streaming remote keys (YouTube / Button 3, Netflix / Button 4) by prioritizing non-zero KeyCodes over ScanCodes and swallowing key events during detection so Google TV OS doesn't launch default apps.
+  - **Black AMOLED Theme for External App Dock**: When the App Dock overlay is summoned over external apps via Button Mapper, it dynamically applies a solid Black AMOLED theme (`#000000`, 1dp border, dark tile backdrops) without altering the user's chosen homescreen dock theme.
+- **Shortcuts & Activities Enhancements**:
+  - **Package & Activity Explorer Back-Press Fix**: Pressing Back from a tested ("Run") activity now only closes that tested activity screen and returns directly to the exact activity position inside Explorer, preventing the entire window from closing.
+  - **Batch Compiler Timeout Protection**: Extended package dex2oat compilation timeout from 1 minute to 10 minutes, allowing large apps (e.g. CloudStream) to compile successfully without prematurely aborting the batch optimization.
+- **Weather Aesthetics**:
+  - **Silver-White Weather Night Icons**: Added high-contrast aesthetic night icons for clear, partly cloudy, rain, and thunderstorm weather conditions using Open-Meteo `is_day` detection.
+
+---
+
 ## [v4.2.3] - 2026-11-21
 ### Added, Fixed & Enhanced (vs v4.2.2)
 - **Quick Settings Zen Mode Tile**:
