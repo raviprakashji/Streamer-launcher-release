@@ -1,3 +1,21 @@
+## [v4.4] - 2026-11-27
+### Added, Fixed & Enhanced (vs v4.3)
+- **Fire TV / Fire OS Support & Alexa Play Overlay**:
+  - **Fire OS Compatibility**: Added Fire TV / Firestick platform detection (`DeviceUtils.isFireOs`) across launcher home overrides, Unknown Sources app install routing (`UpdateManager`), Fire TV system presets, and Fire TV screensaver syncing/interception (`ScreensaverOverlay`).
+  - **Alexa / Fire TV Play Card Overlay**: Added floating **Play** media card overlay (`FireTvOverlayHelper`, `HomeOverride`) on Fire TV details screens with D-pad navigation, direct playback launch, and scroll hide/restore while keeping Button Mapper clear of Fire TV UIs.
+  - **1-Scan LAN QR ADB Setup**: Added single-command QR web setup (`RemoteSetupServer`) for **atvTools** and Wireless ADB across both Fire OS and Android TV (`adbPopup`).
+- **Android TV Assistant Play Overlay & Details Fix**:
+  - **Stock Android TV Assistant Play Button**: Added floating **Play [app icon]** pill overlay on stock Android TV `EntityDetailsActivity` (`com.google.android.tvlauncher`), anchored cleanly beside Watchlist with proportional spacing at 720p/1080p, `DPAD_RIGHT` focus transfer, click-to-play launch, and scroll hide/restoreâ€”without affecting Alexa/Fire TV or Google TV (`launcherx`).
+  - **No Unintended Home Redirect on Voice Results**: Prevented `EntityDetailsActivity` and Android TV sub-screens from redirecting back to Streamer Launcher during Google Assistant movie/show queries.
+- **Traffic Meter, Shortcuts & Folders**:
+  - **Live Network Traffic Meter**: Added optional floating corner **Traffic Meter** overlay (`PersistentTrafficOverlay`) showing live upload/download speeds and `"No internet"` status across Home and apps, with Appearance toggle and backup support.
+  - **Custom Shortcuts in Folders**: Fixed custom shortcuts (`shortcut:<id>`) remaining duplicated at the root of both the **App Dock** and **All Apps** grid when added to folders; added folder creation action for shortcuts, fixed folder-menu `Add to dock` / `Remove from row` and `Hidden apps` resolution for shortcuts, and added shortcut support inside `AppDockOverlay` folders.
+- **Home Navigation, Appearance & Synopsis Controls**:
+  - **Navigation & UI Polish**: Removed unwanted `DPAD_HOME` -> All Apps trigger on homescreen, hardened Page 1 focus restoration and top-bar `DPAD_DOWN` fallback, refined multi-button popup wrapping, fixed Back button layout, wallpaper reload detection, Still Glass return plate, `Discover catalogs` toggle label, Clock/All-Apps spacing, and settings scroll clipping.
+  - **TMDB Synopsis Font Size & Modal Sizing**: Added `Synopsis font size` (`Normal` / `Bigger`, `1.3x` at 3 lines) for TMDB wallpapers (`SofadropEngine` / `WallpaperRenderer`), while restoring original compact synopsis sizes on Discover Page 3 (`11.5sp`), Catalog Explorer (`10.5sp`), and Cinematic Details (`12.5sp`).
+
+---
+
 ## [v4.3] - 2026-11-26
 ### Added, Fixed & Enhanced (vs v4.2.4)
 - **Streamer Controls Redesign & Live Telemetry**:
@@ -9,11 +27,11 @@
   - **Screen Time & Data (`Hub`, `Table`, `Trends`)**: Added full usage analytics across `7d`, `30d`, and `366d` history backed by real foreground usage events, app launch tracking, and flicker-free in-place cell diffing.
   - **Couch Curfew & Kids Mode**: Added daily app time limits, bedtime schedules, Lock/Block controls, 4-state Kids/LADB indicators (`KIDS MODE ON` header chip + sidebar status dot), and centered Curfew dialogs.
   - **Zero-Usage Visibility & Accurate History**: Fixed midnight boundary merges for `366d` history and kept blocked/`0m` curfew apps visible and editable in the Table view.
-  - **One PIN Unlock per Session**: Entering your Kids Mode PIN once inside **Streamer Controls** unlocks all menus, presets, explorer tools, shortcuts, and LADB disable until you close Streamer Controls—hiding sidebar `🔒` badges for the active session and re-locking automatically on exit (external pinned shortcut launches still prompt for a PIN).
+  - **One PIN Unlock per Session**: Entering your Kids Mode PIN once inside **Streamer Controls** unlocks all menus, presets, explorer tools, shortcuts, and LADB disable until you close Streamer Controlsâ€”hiding sidebar `ðŸ”’` badges for the active session and re-locking automatically on exit (external pinned shortcut launches still prompt for a PIN).
 - **Home Navigation, Overlays & Quick Settings Fixes**:
-  - **3-Page Navigation & Fluid Transitions**: Added smooth transitions across **Page 1 (Dock)** → **Page 2 (All Apps)** → **Page 3 (Discover Catalogs)**, `DPAD_HOME`, **Streamer Controls**, and **Streamer Settings**, while removing accidental `Home` / `Up` triggers to All Apps and duplicate task leaks.
+  - **3-Page Navigation & Fluid Transitions**: Added smooth transitions across **Page 1 (Dock)** â†’ **Page 2 (All Apps)** â†’ **Page 3 (Discover Catalogs)**, `DPAD_HOME`, **Streamer Controls**, and **Streamer Settings**, while removing accidental `Home` / `Up` triggers to All Apps and duplicate task leaks.
   - **Fixed HDMI Inputs Auto-Selecting Over Apps**: Fixed the issue where pressing OK on **Inputs** inside the **Quick Settings** overlay over a third-party app immediately triggered **HDMI 1** on release instead of waiting for user selection.
-  - **Fixed Hidden Continue Watching Reappearing Before Screensaver**: Resolved an intermittent bug where turned-off Continue Watching cards popped up 30–59 seconds before Ambient Mode started; Watch Next refreshes now defer while dimmed and respect disabled states.
+  - **Fixed Hidden Continue Watching Reappearing Before Screensaver**: Resolved an intermittent bug where turned-off Continue Watching cards popped up 30â€“59 seconds before Ambient Mode started; Watch Next refreshes now defer while dimmed and respect disabled states.
   - **Bluetooth & Focus Polish**: Added automatic `BLUETOOTH_CONNECT` permission requests and flicker-free in-place updates in **Bluetooth Accessories**, plus reliable focus restoration after settings, external apps, and Page 2 screensavers while keeping Gemini/Assistant triggers intact.
 - **Discovery, Wallpapers, Dock & Media**:
   - **Director | Cast & Filmography Modal**: Added a **Director | Cast** section on movie/show detail views with synchronized D-pad focus and a filmography popup.
@@ -24,7 +42,7 @@
   - **Backup & Restore v4**: Expanded backup coverage to all current launcher settings, fixed HDMI port restore crashes, preserved custom folders/shortcuts, persisted restore confirmation toasts across restarts, and hardened archive filename safety.
   - **File Manager & LocalSend Reliability**: Added diff-based updates, async icons, and streaming exFAT USB file writes in **Streamer Files**; resolved a thread-pool deadlock, async teardown, and transfer buffer bounds in **LocalSend**.
 - **Performance, Memory & Platform Hardening**:
-  - **Aurora Live Wallpaper & Smooth Frame Pacing (94% → 10% Jank)**: Rebuilt Aurora rendering with pre-baked GPU textures, `33ms` frame pacing, low-RAM device caps, and off-screen pausing—reducing measured TV Home screen jank from **94.42% to 10.32%** (median frame time **38ms → 7ms**).
+  - **Aurora Live Wallpaper & Smooth Frame Pacing (94% â†’ 10% Jank)**: Rebuilt Aurora rendering with pre-baked GPU textures, `33ms` frame pacing, low-RAM device caps, and off-screen pausingâ€”reducing measured TV Home screen jank from **94.42% to 10.32%** (median frame time **38ms â†’ 7ms**).
   - **Lower RAM & Render Overhead**: Eliminated unfocused FBO shadow layers, skipped heavy Explorer APK asset scans, lazy-loaded app drawables, deferred Page 2 inflation, downscaled static wallpapers to `720p` (`RGB_565`), expanded idle cache trimming, hardened Android 14+ broadcasts/permissions, and expanded automated unit tests.
 
 ---
@@ -183,7 +201,7 @@
   - Added dynamic top and bottom vignette overlays (`bg_photo_fade_top` and `bg_photo_fade_bottom`) when Photo Fade is enabled, softening bright wallpapers behind the clock, weather, cricket score, now playing pills, and app dock for optimal eye comfort.
   - Ensured Photo Fade vignette overlays apply exclusively to user wallpapers and do not darken TMDb movie/series backdrop previews on Page 2.
   - **Dock Pill Vignette & Dark Glass Backing**: Embedded bottom vignette gradient sampling into `DockPillView` and applied a subtle translucent dark glass backing (`0x55000000`) beneath specular highlights for *Still Glass*, *Dynamic Glass*, and *Streamer Default* themes on bright wallpapers and when Photo Fade is active, eliminating white glare while retaining specular glossy highlights.
-  - Fixed instant crash when opening `Streamer settings → Appearance`.
+  - Fixed instant crash when opening `Streamer settings â†’ Appearance`.
 - **Media Player & Cinematic Details Polish**:
   - **External Player Seamless Resume**: When clicking "Play" on a movie details page and pressing `BACK` from external players (CloudStream, Stremio, Nuvio, Wuplay), launcher resumes directly on that movie's details page with the Play button in focus, gracefully intercepting trailing BACK events and system panel close broadcasts.
   - **Poster Focus Memory**: When dismissing the movie details modal with DPAD BACK, focus returns directly to that movie's poster in the grid with active focus glow and sidebar synopsis, eliminating focus jump to the Search bar.
@@ -212,15 +230,15 @@
 - **Custom App Icons & Wallpaper Enhancements**:
   - **Custom App Icon Upload**: Upload custom image icons for any app on the dock or All Apps drawer with full support for PNG, JPG, WEBP, and GIF formats (max file size: **6 MB**).
   - **Video Wallpapers**: Native background video loop playback (MP4, MKV, WebM) with hardware-safe RAM thresholds to prevent out-of-memory issues on low-spec Android TV boxes:
-    - Devices with **≤ 1.6 GB RAM**: Max video size **35 MB** (capped at 1080p).
-    - Devices with **≤ 2.5 GB RAM**: Max video size **55 MB** (capped at 1080p).
-    - Devices with **≤ 3.5 GB RAM**: Max video size **75 MB** (supports up to 4K on capable hardware).
+    - Devices with **â‰¤ 1.6 GB RAM**: Max video size **35 MB** (capped at 1080p).
+    - Devices with **â‰¤ 2.5 GB RAM**: Max video size **55 MB** (capped at 1080p).
+    - Devices with **â‰¤ 3.5 GB RAM**: Max video size **75 MB** (supports up to 4K on capable hardware).
     - Devices with **> 3.5 GB RAM**: Max video size **100 MB** (supports up to 4K).
   - **Animated GIF Wallpapers**: Native infinite-loop playback for GIF and animated WEBP wallpapers using Android `AnimatedImageDrawable`.
 - **App Dock & Context Menu Polish**:
   - Fixed dock glass backdrop sampling: Anchored `DockPillView` vertical slice coordinates to resting Page 1 positions (`restingWinY = winLocation[1] + scrollY`), completely eliminating color streaks, distorted wallpaper sampling, and flashing on D-pad Up navigation from Page 2.
-  - Renamed main long-press action from "Upload app icon" to **Set app icon ›**, opening submenus for "Upload app icon" and "Choose from icon pack".
-  - Conditional submenu chevrons: "Add to folder" now displays the `›` chevron only when at least one folder already exists in that scope (dock or All Apps).
+  - Renamed main long-press action from "Upload app icon" to **Set app icon â€º**, opening submenus for "Upload app icon" and "Choose from icon pack".
+  - Conditional submenu chevrons: "Add to folder" now displays the `â€º` chevron only when at least one folder already exists in that scope (dock or All Apps).
   - Instant menu dismissal: D-pad Home cleanly dismisses hold menus without stuck dialogs or focus leaks.
 - **Enhanced USB OTG File Manager**:
   - Full read, write, rename, delete, copy, cut, paste, and backup/restore support on external USB OTG storage (exFAT & FAT32) on Android 11+ via `MANAGE_EXTERNAL_STORAGE` and MediaStore fallbacks.
@@ -243,7 +261,7 @@
   - Card soft-focus memory: Retains soft-focus highlight on the active search result card when navigating into action buttons.
   - Isolated media player picker: Lets users choose playback apps (Nuvio variants, Stremio, external players) per search result without modifying global preferences.
 - **Remote Button Mapper & Feature Switch Integration**:
-  - Added dedicated **Streamer search** toggle row under `Streamer settings → Turn features on/off`, controlling top-bar search button visibility and active search overlay state.
+  - Added dedicated **Streamer search** toggle row under `Streamer settings â†’ Turn features on/off`, controlling top-bar search button visibility and active search overlay state.
   - Added **Streamer search** action under `Streamer features` in the Button Mapper, allowing quick launch from any remote button or custom keymap.
 - **Accurate Media Playback & Deep-Link Resolution**:
   - Strict external ID checks in `resolveImdbSync()` prevent titles without IMDb IDs from falling back to loose text searches that hijack unrelated content (e.g. *Gentlemen (2023)* vs *The Gentlemen (2024)*).
@@ -281,20 +299,20 @@
 ## [v3.9.1] - 2026-11-11
 ### Added, Fixed & Enhanced (vs v3.9)
 - **Minimalist Continue Watching & Strict App Filtering**:
-  - Added **Minimalist** Continue Watching card style (`282×64dp` horizontal glass pill matching `tvOS-Launcher`) alongside **Classic** under `Streamer settings → Continue watching → Card style`.
-  - On **Page 1**, Minimalist Continue Watching dynamically filters to only the currently focused dock app; on **Page 2**, it displays all active Continue Watching items in a single row with full D-pad traversal (`App dock ↔ CW cards ↔ Discover catalogs`).
+  - Added **Minimalist** Continue Watching card style (`282Ã—64dp` horizontal glass pill matching `tvOS-Launcher`) alongside **Classic** under `Streamer settings â†’ Continue watching â†’ Card style`.
+  - On **Page 1**, Minimalist Continue Watching dynamically filters to only the currently focused dock app; on **Page 2**, it displays all active Continue Watching items in a single row with full D-pad traversal (`App dock â†” CW cards â†” Discover catalogs`).
   - Kept **Live lyrics on homescreen** enabled when Minimalist CW is selected on Page 1.
   - Strictly filtered `Continue watching apps` to streaming / Watch Next apps (+ official YouTube), excluding file managers, launchers, and system utilities.
   - Added a master **Continue watching** on/off toggle as the top row inside `Continue watching`, synchronized with `Turn features on/off`.
 - **Clean Wallpaper Clarity, Full Cinema Alignment & Top-Bar Navigation**:
-  - Removed the top shadow/white haze from custom photos, folder wallpapers, and Bing Daily wallpapers; fixed pre-decode raw-bitmap luminance sampling order so dark wallpapers stay dark; and defaulted `Appearance → Photo fade` to **Off** (keeping the top area clear even when bottom dock fade is enabled).
+  - Removed the top shadow/white haze from custom photos, folder wallpapers, and Bing Daily wallpapers; fixed pre-decode raw-bitmap luminance sampling order so dark wallpapers stay dark; and defaulted `Appearance â†’ Photo fade` to **Off** (keeping the top area clear even when bottom dock fade is enabled).
   - Anchored **TMDB Cinema** artwork, metadata, and a narrower `1280`-wide left-aligned synopsis block cleanly to the top-right below the top bar and focused icon label.
   - Clicking the top-bar **Wi-Fi** icon (when Music is off) now opens Android Wi-Fi Settings directly with matching luminance icon styling and D-pad focus return; long-pressing **Quick Settings** opens Android System Settings and preserves focus on the Quick Settings icon on `Back`.
   - Kept **Bluetooth** permanently enabled across the top icon bar and Quick Settings (removed the toggle and dead Quick Settings layout branches).
 - **Centralized Feature Toggles (`Turn features on/off`)**:
   - Renamed and moved **Turn features on/off** directly above **Set launcher as default** in Main Settings, with master switches for **Calendar** (halting background refreshes & collapsing its top-bar gap when off), **Music**, **Continue watching**, and **Discover catalogs**.
 - **Expanded Nuvio Player Variants & Deep-Link Resolution**:
-  - Added individual detection, icon/label resolution, duplicate-label disambiguation, and scheme-aware launch resolution (`nuvio://`, `nuvio-legacy://`, `stremio://`, and launcher fallback) across all 7 supported Nuvio variants (`com.nuvio.tv`, `com.nuvio.app`, `com.nuvio.tv.test`, `com.nuvio.tv.launcher`, `com.manitux.nuviotr`, `com.robbdeeze.nuviotv`, and `com.nuvio.tv.lite`) under `Discover catalogs → Preferred media player`.
+  - Added individual detection, icon/label resolution, duplicate-label disambiguation, and scheme-aware launch resolution (`nuvio://`, `nuvio-legacy://`, `stremio://`, and launcher fallback) across all 7 supported Nuvio variants (`com.nuvio.tv`, `com.nuvio.app`, `com.nuvio.tv.test`, `com.nuvio.tv.launcher`, `com.manitux.nuviotr`, `com.robbdeeze.nuviotv`, and `com.nuvio.tv.lite`) under `Discover catalogs â†’ Preferred media player`.
 
 ---
 
@@ -303,7 +321,7 @@
 - **Streamer Music Settings & Live Lyrics Control**:
   - Restructured Settings into dedicated "Streamer music" menu with independent sub-toggles:
     - Master **Streamer Music** toggle (On/Off).
-    - **Live lyrics on homescreen** toggle (On/Off) — dynamically visible *only* when the master Streamer Music toggle is ON.
+    - **Live lyrics on homescreen** toggle (On/Off) â€” dynamically visible *only* when the master Streamer Music toggle is ON.
     - Clean `DPAD_BACK` navigation returning directly to the main Settings menu.
 - **Homescreen Live Lyrics & Seamless Dynamic Layout**:
   - Floating live lyrics layover positioned directly below the Now Playing pill.
@@ -455,7 +473,7 @@
 ### Changed
 - **Context-Menu Watched Status Optimization**:
   - Completely decoupled SIMKL watched-status inspection from UI-thread JSON disk parsing, moving watched cache loading to asynchronous background warmup.
-  - Reduced context-menu opening latency from 60–800 ms to instantaneous (<1 ms / 0 ms main-thread I/O) on resource-constrained TV hardware.
+  - Reduced context-menu opening latency from 60â€“800 ms to instantaneous (<1 ms / 0 ms main-thread I/O) on resource-constrained TV hardware.
 - **Low-Memory Strategy Hardening**:
   - Proactive memory-pressure trimming (`TRIM_MEMORY_RUNNING_CRITICAL`), guarded bitmap recycling, and safe fallbacks for ~929 MB RAM devices.
   - Cold startup Total PSS reduced to 48.4 MB (down by ~4 MB from v3.4), maintaining system operating status `normal`.

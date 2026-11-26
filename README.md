@@ -3,11 +3,11 @@
  # Streamer Launcher
 
 <p align="center">
-  <strong>An ultra-fast, minimal, and elegant home screen engineered specifically for Android TV and Google TV.</strong>
+  <strong>An ultra-fast, minimal, and elegant home screen engineered specifically for Android TV, Google TV, and Fire TV.</strong>
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher-release/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v4.3-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher-release/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v4.4-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
   <img alt="APK size" src="https://img.shields.io/badge/APK-4.5%20MB-success?style=flat-square">
   <img alt="Ad-Free" src="https://img.shields.io/badge/Ads-None-brightgreen?style=flat-square">
@@ -88,8 +88,9 @@ Home Screen Live Scores & Match Schedule |
 
 ## Key Features
 
-- **Ultra-Light Android TV Launcher**:
-  - Integrated date, weather, and clock with fast pre-cached cold-boot wallpaper and dock startup.
+- **Ultra-Light Android TV & Fire TV Launcher**:
+  - Integrated date, weather, clock, and optional live **Traffic Meter** (`↑↓` speed / `No internet` pill) with fast pre-cached cold-boot wallpaper and dock startup.
+  - Cross-platform **Fire TV / Fire OS** compatibility alongside Android TV & Google TV, including native **atvTools LAN QR ADB Setup** (`RemoteSetupServer`) and Fire TV custom screensaver interception.
   - Liquid-glass app dock (`DockPillView`) with adaptive contrast over dark and light wallpapers, supporting up to **8 apps**, custom icon sizing, app icon tinting, and focus ring accent colors.
   - Compatible with **Projectivy, ADW, Nova, and Lawnchair icon packs** (`Apply icon pack` & long-press `Choose from icon pack`), custom icon uploads, and one-click Projectivy Icon Pack APK installation.
   - Rearrange or remove apps from the dock.
@@ -117,8 +118,8 @@ Home Screen Live Scores & Match Schedule |
   - 24-hour disk cache and 800ms query LRU cache, completely eliminating cold-start blank screens and navigation lag.
   - Master feature switch under `Streamer settings → Turn features on/off → Discover catalogs Page 2`.
 - **Preferred Media Player & Direct Playback**:
-  - Choose **Nuvio** (including `com.nuvio.tv`, `com.nuvio.app`, `com.nuvio.tv.lite`, and other installed variants), **Stremio**, or **CloudStream** as the preferred external media player.
-  - Launch supported titles directly from Google Gemini search results (requires Gemini to be available on the TV).
+  - Choose **Nuvio** (including `com.nuvio.tv`, `com.nuvio.app`, `com.nuvio.tv.lite`, and other installed variants), **Stremio**, **Wuplay**, or **CloudStream** as the preferred external media player.
+  - Launch supported titles directly from **Google Gemini**, **Android TV Google Assistant** detail screens (`EntityDetailsActivity`), and **Fire TV / Alexa** details screens with floating **Play** overlays.
   - Launch titles directly from built-in catalogs and Continue Watching.
 - **Custom App Icons & Live Video/GIF Wallpapers**:
   - **Custom App Icon Upload**: Upload custom images for any app on the dock or All Apps drawer with support for PNG, JPG, WEBP, and GIF formats (max file size: **6 MB**), or choose directly from installed icon packs.
@@ -148,7 +149,7 @@ Home Screen Live Scores & Match Schedule |
 - **Over-the-Air Updates**:
   - Check for and install launcher updates without manually downloading each release.
 - **Low-Memory & High-Smoothness Engineering**:
-  - Lightweight interface, GPU-baked Aurora live wallpaper textures, `720p`/`RGB_565` static wallpaper optimization, **TMDB "On home visit"** backdrop rotation, and asynchronous data handling tuned for entry-level Android TV hardware.
+  - Lightweight interface, GPU-baked Aurora live wallpaper textures, `720p`/`RGB_565` static wallpaper optimization, **TMDB "On home visit"** backdrop rotation, customizable **TMDB synopsis font size** (`Normal` / `Bigger`), and asynchronous data handling tuned for entry-level Android TV and Fire TV hardware.
 
 ---
 
@@ -230,8 +231,8 @@ Streamer Launcher is strictly engineered for low-memory, entry-level Android TV 
 ## Installation
 
 ### Option 1: Direct APK Download
-Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher-release/releases/latest):
-- **Streamer.launcher_v4.3.apk** (4.5 MB)
+Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher-release/releases/latest) (see [CHANGELOG.md](CHANGELOG.md) for release notes):
+- **Streamer.launcher_v4.4.apk** (4.5 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -239,7 +240,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v4.3.apk"
+adb install -r "Streamer.launcher_v4.4.apk"
 ```
 
 ### Grant Secure Settings Permission (Required for Certain System-Level Features)
