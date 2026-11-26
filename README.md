@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher-release/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v4.2.4-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher-release/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v4.3-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
   <img alt="APK size" src="https://img.shields.io/badge/APK-4.5%20MB-success?style=flat-square">
   <img alt="Ad-Free" src="https://img.shields.io/badge/Ads-None-brightgreen?style=flat-square">
@@ -99,9 +99,13 @@ Home Screen Live Scores & Match Schedule |
   - TV-friendly file manager designed for remote D-pad navigation with pure-Kotlin **exFAT / FAT32** USB Mass Storage OTG support and in-app image previews.
   - LocalSend v2 built in for local wireless file transfers.
   - Open LocalSend directly from the File Manager to send and receive files between devices.
-- **Unified Media Discovery & Search Explorer (Page 2)**:
-  - Full-screen Media Discovery Explorer and Search Engine (`isSearchPage2Enabled`) with smooth vertical scroll navigation between Page 1 and Page 2.
-  - Interactive header bar combining:
+- **Streamer Controls & Couch Curfew Parental Controls**:
+  - Built-in **Streamer Controls** workspace featuring **Control Hub** (live RAM, network RX delta, speed burst test, and system telemetry updating every 3 seconds), **Running Tasks** (`totalPSS` memory breakdown and background task cleanup), **Quick Presets**, **Activity Explorer**, **My Shortcuts**, and **App Compiler** with Local ADB (`LADB`) elevation.
+  - **Screen Time & Data**: Interactive **Hub**, **Table**, and **Trends** views with real `UsageEvents` tracking across `7d`, `30d`, and `366d` history.
+  - **Couch Curfew & Kids Mode**: Set daily app limits, bedtime schedules, instant app Lock/Block rules, and a 4-digit PIN. Unlocking once inside **Streamer Controls** keeps the current session unlocked across tabs and LADB controls until exit.
+- **Unified 3-Page Navigation & Media Discovery**:
+  - Smooth 3-page layout flowing from **Page 1 (Home Dock)** → **Page 2 (All Apps)** → **Page 3 (Discover Catalogs)** with GPU-composited transitions and tuned D-pad scrolling physics (`SmoothTvScrollView`).
+  - Interactive discovery header bar combining:
     - **Voice & D-Pad Search**: High-speed search with built-in Voice Search (`android.speech.RecognizerIntent`) and on-screen keyboard filtering.
     - **TV Show Calendar**: Integrated directly into the Page 2 header bar (between Search and Watched toggle) for immediate schedule access; Back and D-pad Home cleanly return to Page 2.
     - **Watched Toggle**: Quick visibility filter pill (`Watched: Shown` / `Watched: Hidden`) for immediate catalog filtering.
@@ -109,7 +113,7 @@ Home Screen Live Scores & Match Schedule |
     - **Catalog Taxonomy & Live Counter**: Inline genre indicator and dynamic title count badge.
     - **Player Selection Pill**: Direct preferred player switcher (Nuvio variants, Stremio, CloudStream, or None with graceful handling).
   - Three-tier sliding taxonomy explorer: Browse genres (Action, Adventure, Comedy, Crime, Sci-Fi, etc.), subgenres / decades, and rich 5-column poster grids with 0% overlap.
-  - Live synopsis box and backdrop previews updating dynamically as posters gain focus.
+  - Live synopsis box, **Director | Cast** filmography popups, and backdrop previews updating dynamically as posters gain focus.
   - 24-hour disk cache and 800ms query LRU cache, completely eliminating cold-start blank screens and navigation lag.
   - Master feature switch under `Streamer settings → Turn features on/off → Discover catalogs Page 2`.
 - **Preferred Media Player & Direct Playback**:
@@ -136,15 +140,15 @@ Home Screen Live Scores & Match Schedule |
   - Configure independent single-press, double-press, and long-press actions.
   - **Works Anywhere Floating Overlays**: Launch Quick Settings, Live Cricket Scores, full LocalSend file transfer, Music HUD, Streamer Settings, or App Dock directly over any running app or video player (YouTube, Netflix, etc.) without leaving your content or interrupting playback.
   - **Categorized Actions**: Streamer features cleanly organized into **Works anywhere** and **Works from homescreen** sections.
-- **MDBList Account Integration**:
-  - Connect using your personal MDBList API key.
-  - Add personal MDBList catalogs, including dynamic and static lists.
-- **Backup & Restore**:
-  - Export and restore launcher settings and configured API keys.
+- **MDBList & Phone QR Setup**:
+  - Connect using your personal MDBList API key and add private, dynamic, or static lists with automatic personal list syncing.
+  - **Scan QR from Phone**: Configure **Cricket**, **MDBList**, and public catalogs right from your smartphone browser without typing API keys on your TV remote.
+- **Backup & Restore v4**:
+  - Export and restore launcher settings, custom folders/shortcuts, icon preferences, and API keys safely across app restarts.
 - **Over-the-Air Updates**:
   - Check for and install launcher updates without manually downloading each release.
-- **Low-Memory Engineering**:
-  - Lightweight interface and asynchronous data handling designed for entry-level Android TV hardware.
+- **Low-Memory & High-Smoothness Engineering**:
+  - Lightweight interface, GPU-baked Aurora live wallpaper textures, `720p`/`RGB_565` static wallpaper optimization, **TMDB "On home visit"** backdrop rotation, and asynchronous data handling tuned for entry-level Android TV hardware.
 
 ---
 
@@ -161,6 +165,7 @@ Streamer Launcher is strictly engineered for low-memory, entry-level Android TV 
 | **Peak / Max Workload** | ~108 MB | **~83 MB** *(23.1% ↓)* | ~9.3 MB | ~44.5 MB | **15% – 25%** | All 8 catalog rows loaded, live cricket score ticker scrolling, YouTube Music streaming in the background, TV Calendar with airing posters open, and 1080p wallpaper rotation. |
 
 ### Architectural Highlights
+- **v4.3 Frame Pacing & Render Pipeline Optimization**: Pre-baking Aurora textures, removing unfocused offscreen elevation layers, lazy-loading drawables, deferring off-screen Page 2 work, and pausing off-screen live wallpaper rendering reduced measured TV Home + Dock + Page 2 janky frames from **94.42% (`558/591`)** down to **10.32% (`35/339`)** (median frame time **38 ms → 7 ms**).
 - **Zero Idle Drain (Reactive, Not Polling)**: Completely event-driven architecture with zero background timer loops or busy-wait polling. When inactive, CPU drops to **0%**.
 - **Streaming JSON & Request Deduplication**: Multi-megabyte SIMKL TV calendar and watchlist feeds use a streaming parser (`StreamingJsonReader`) with single-flight request coalescing (`fetchWatchlistCoalesced`), eliminating redundant JSON memory allocations and duplicate network bursts.
 - **Main-Thread Decoupling**: Item context menus and watched caches are warmed asynchronously in the background. Opening menus takes **<1 ms** with **0 ms** synchronous disk I/O on the Android main thread.
@@ -207,9 +212,8 @@ Streamer Launcher is strictly engineered for low-memory, entry-level Android TV 
 | :--- | :--- |
 | **Move Focus** | <kbd>Up</kbd> <kbd>Down</kbd> <kbd>Left</kbd> <kbd>Right</kbd> Directional Pad (D-pad) |
 | **Launch App / Media** | <kbd>OK</kbd> / <kbd>Enter</kbd> (Center Button) |
-| **Switch Pages** | <kbd>Down</kbd> from dock transitions smoothly to Page 2 (Discover Catalogs) |
-| **All Apps Shortcut** | Press <kbd>Up</kbd> from anywhere in the app dock to focus the All Apps icon |
-| **Open Quick Settings** | Select the Quick Settings icon from the top bar (cyclic D-Pad tile navigation) |
+| **Switch Pages** | <kbd>Down</kbd> from the dock opens **All Apps** (Page 2), continuing into **Discover Catalogs** (Page 3) |
+| **Open Top Bar / Quick Settings** | <kbd>Up</kbd> from the dock moves to the top bar and **Quick Settings** (cyclic D-Pad tile navigation) |
 | **Now Playing Shortcut** | Select the Now Playing pill in the status bar to jump directly into the music player |
 | **Music Player Controls** | <kbd>OK</kbd> to Play/Pause, <kbd>Left</kbd> / <kbd>Right</kbd> on seekbar to scrub by 5s, shuffle toggle, track queue |
 | **Open TV Calendar** | Select the Calendar icon from the top bar |
@@ -227,7 +231,7 @@ Streamer Launcher is strictly engineered for low-memory, entry-level Android TV 
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher-release/releases/latest):
-- **Streamer.launcher_v4.2.4.apk** (4.5 MB)
+- **Streamer.launcher_v4.3.apk** (4.5 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -235,7 +239,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v4.2.4.apk"
+adb install -r "Streamer.launcher_v4.3.apk"
 ```
 
 ### Grant Secure Settings Permission (Required for Certain System-Level Features)
@@ -276,11 +280,39 @@ cd Streamer-launcher
 ./gradlew assembleRelease
 ```
 The compiled APK will be located at:
-`app/build/outputs/apk/release/Streamer.launcher_v4.2.4.apk`
+`app/build/outputs/apk/release/Streamer.launcher_v4.3.apk`
 
 ---
 
 ## Changelog
+
+### v4.3
+- **Streamer Controls Redesign & Live Telemetry**:
+  - **Redesigned Workspace**: Renamed *Control Center* to **Streamer Controls** with cleaner header spacing, live **Privilege Level / Enable LADB** controls, compact sidebar navigation (*Control Hub*, *Running Tasks*, *Screen Time & Data*, *Quick Presets*, *Activity Explorer*, *My Shortcuts*, *App Compiler*), and bottom RAM card.
+  - **Live Control Hub Monitoring**: Added automatic **3-second auto-refresh**, live RX network delta, true live speed burst testing, concise DNS/interface labels, accurate soundbar Bluetooth codec reporting, fixed Clean Cache button state, and true `totalPSS` memory reporting in **Running Tasks**.
+  - **LADB Setup Loop Fix**: Eliminated the infinite *"Allow USB debugging"* prompt loop during wireless LADB pairing.
+  - **D-Pad Rail Focus & Cleanup**: Permanently locked sidebar rail focus traversal, eliminated double-press and bidirectional focus hopping, fixed **App Compiler** focus routing, and detached inactive views on dismissal to free RAM immediately.
+- **Screen Time Analytics & Couch Curfew Parental Controls**:
+  - **Screen Time & Data (`Hub`, `Table`, `Trends`)**: Added full usage analytics across `7d`, `30d`, and `366d` history backed by real foreground usage events, app launch tracking, and flicker-free in-place cell diffing.
+  - **Couch Curfew & Kids Mode**: Added daily app time limits, bedtime schedules, Lock/Block controls, 4-state Kids/LADB indicators (`KIDS MODE ON` header badge + sidebar status dot), and centered Curfew modals.
+  - **Zero-Usage Visibility & Accurate History**: Fixed midnight boundary merges for `366d` history and kept blocked/`0m` curfew apps visible and editable in the Table view.
+  - **One PIN Unlock per Session**: Entering your Kids Mode PIN once inside **Streamer Controls** unlocks all menus, presets, explorer tools, shortcuts, and LADB disable until exit—hiding sidebar `🔒` badges during the session and re-locking automatically on exit (external pinned shortcut launches still prompt for a PIN).
+- **Home Navigation, Overlays & Quick Settings Fixes**:
+  - **3-Page Navigation & Fluid Transitions**: Added smooth GPU-composited transitions across **Page 1 (Dock)** → **Page 2 (All Apps)** → **Page 3 (Discover Catalogs)**, `DPAD_HOME`, **Streamer Controls**, and **Streamer Settings**, while removing accidental `Home` / `Up` All-Apps triggers and duplicate task leaks.
+  - **Fixed HDMI Inputs Auto-Selecting Over Apps**: Fixed the issue where pressing OK on **Inputs** inside the **Quick Settings** overlay over a third-party app immediately selected **HDMI 1** on release instead of waiting for user choice.
+  - **Fixed Hidden Continue Watching Reappearing Before Screensaver**: Resolved an intermittent bug where turned-off Continue Watching cards popped up 30–59 seconds before Ambient Mode started; Watch Next refreshes now defer while dimmed and respect disabled states.
+  - **Bluetooth & Focus Polish**: Added automatic `BLUETOOTH_CONNECT` permission requests and flicker-free in-place updates in **Bluetooth Accessories**, plus reliable focus restoration after settings, external apps, and Page 2 screensavers while keeping Gemini/Assistant triggers intact.
+- **Discovery, Wallpapers, Dock & Media**:
+  - **Director | Cast & Filmography Modal**: Added a **Director | Cast** section on movie/show details with synchronized D-pad focus and a filmography popup.
+  - **TMDB "On Home Visit" Rotation**: Added an **On home visit** rotation option so movie/TV backdrops refresh when returning home.
+  - **Dock, Pickers & Media Fixes**: Optimized **Dock Glass** rendering with zero-allocation drawing and background bitmap prep, fixed focused dock label alignment and folder navigation, virtualized **Icon Pack Picker** scrolling, preserved folders/custom shortcuts during dock pruning, made synced lyrics cancellation targeted, moved watch-history logging off the UI thread, fixed **SIMKL** disconnect crashes, and improved **MDBList** personal list ordering/cleanup.
+- **Phone QR Setup, Backup v4, File Manager & LocalSend**:
+  - **QR Smartphone Setup**: Added phone web setup via QR code for **Cricket**, **MDBList**, and public catalogs (including direct QR scan actions in API Key and Add MDBList views).
+  - **Backup & Restore v4**: Expanded backup coverage to all current launcher settings, fixed HDMI port restore crashes, preserved custom folders/shortcuts, persisted restore confirmation toasts across restarts, and hardened archive filename safety.
+  - **File Manager & LocalSend Reliability**: Added diff-based updates, async icons, and streaming exFAT USB file writes in **Streamer Files**; resolved a thread-pool deadlock, async teardown, and transfer buffer bounds in **LocalSend**.
+- **Performance, Memory & Platform Hardening**:
+  - **Aurora Live Wallpaper & Smooth Frame Pacing (94% → 10% Jank)**: Rebuilt Aurora rendering with pre-baked GPU textures, `33ms` frame pacing, low-RAM device caps, and off-screen pausing—reducing measured TV Home screen jank from **94.42% to 10.32%** (median frame time **38ms → 7ms**).
+  - **Lower RAM & Render Overhead**: Eliminated unfocused FBO shadow layers, skipped heavy Explorer APK asset scans, lazy-loaded app drawables, deferred Page 2 inflation, downscaled static wallpapers to `720p` (`RGB_565`), expanded idle cache trimming, hardened Android 14+ broadcasts/permissions, and expanded automated unit tests.
 
 ### v4.2.4
 - **Home Navigation & Focus Polish**:
@@ -437,7 +469,7 @@ The compiled APK will be located at:
     - **Catalog Taxonomy & Live Counter**: Inline genre indicator and dynamic title count badge.
     - **Player Selection Pill**: Direct preferred player switcher (Nuvio variants, Stremio, CloudStream, or None with graceful handling).
   - Three-tier sliding taxonomy explorer: Browse genres (Action, Adventure, Comedy, Crime, Sci-Fi, etc.), subgenres / decades, and rich 5-column poster grids with 0% overlap.
-  - Live synopsis box and backdrop previews updating dynamically as posters gain focus.
+  - Live synopsis box, **Director | Cast** filmography popups, and backdrop previews updating dynamically as posters gain focus.
   - 24-hour disk cache and 800ms query LRU cache, completely eliminating cold-start blank screens and navigation lag.
   - Master feature switch under `Streamer settings → Turn features on/off → Discover catalogs Page 2`.
 - **Custom App Icons & Live Video/GIF Wallpapers**:
