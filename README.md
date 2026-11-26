@@ -287,32 +287,31 @@ The compiled APK will be located at:
 ## Changelog
 
 ### v4.3
-- **Streamer Controls Redesign & Live Telemetry**:
-  - **Redesigned Workspace**: Renamed *Control Center* to **Streamer Controls** with cleaner header spacing, live **Privilege Level / Enable LADB** controls, compact sidebar navigation (*Control Hub*, *Running Tasks*, *Screen Time & Data*, *Quick Presets*, *Activity Explorer*, *My Shortcuts*, *App Compiler*), and bottom RAM card.
-  - **Live Control Hub Monitoring**: Added automatic **3-second auto-refresh**, live RX network delta, true live speed burst testing, concise DNS/interface labels, accurate soundbar Bluetooth codec reporting, fixed Clean Cache button state, and true `totalPSS` memory reporting in **Running Tasks**.
-  - **LADB Setup Loop Fix**: Eliminated the infinite *"Allow USB debugging"* prompt loop during wireless LADB pairing.
-  - **D-Pad Rail Focus & Cleanup**: Permanently locked sidebar rail focus traversal, eliminated double-press and bidirectional focus hopping, fixed **App Compiler** focus routing, and detached inactive views on dismissal to free RAM immediately.
-- **Screen Time Analytics & Couch Curfew Parental Controls**:
-  - **Screen Time & Data (`Hub`, `Table`, `Trends`)**: Added full usage analytics across `7d`, `30d`, and `366d` history backed by real foreground usage events, app launch tracking, and flicker-free in-place cell diffing.
-  - **Couch Curfew & Kids Mode**: Added daily app time limits, bedtime schedules, Lock/Block controls, 4-state Kids/LADB indicators (`KIDS MODE ON` header badge + sidebar status dot), and centered Curfew modals.
-  - **Zero-Usage Visibility & Accurate History**: Fixed midnight boundary merges for `366d` history and kept blocked/`0m` curfew apps visible and editable in the Table view.
-  - **One PIN Unlock per Session**: Entering your Kids Mode PIN once inside **Streamer Controls** unlocks all menus, presets, explorer tools, shortcuts, and LADB disable until exit—hiding sidebar `🔒` badges during the session and re-locking automatically on exit (external pinned shortcut launches still prompt for a PIN).
-- **Home Navigation, Overlays & Quick Settings Fixes**:
-  - **3-Page Navigation & Fluid Transitions**: Added smooth GPU-composited transitions across **Page 1 (Dock)** → **Page 2 (All Apps)** → **Page 3 (Discover Catalogs)**, `DPAD_HOME`, **Streamer Controls**, and **Streamer Settings**, while removing accidental `Home` / `Up` All-Apps triggers and duplicate task leaks.
-  - **Fixed HDMI Inputs Auto-Selecting Over Apps**: Fixed the issue where pressing OK on **Inputs** inside the **Quick Settings** overlay over a third-party app immediately selected **HDMI 1** on release instead of waiting for user choice.
-  - **Fixed Hidden Continue Watching Reappearing Before Screensaver**: Resolved an intermittent bug where turned-off Continue Watching cards popped up 30–59 seconds before Ambient Mode started; Watch Next refreshes now defer while dimmed and respect disabled states.
-  - **Bluetooth & Focus Polish**: Added automatic `BLUETOOTH_CONNECT` permission requests and flicker-free in-place updates in **Bluetooth Accessories**, plus reliable focus restoration after settings, external apps, and Page 2 screensavers while keeping Gemini/Assistant triggers intact.
+### Changes vs v4.2.4
+
+- **Streamer Controls Redesign, Parental Controls & Live System Telemetry**:
+  - **Renamed & Redesigned Workspace**: Upgraded Control Center to **Streamer Controls**
+  - **Screen Time & Data (`Hub`, `Table`, `Trends`)**: Added full usage analytics across 'Today', `7d` and `30d`` history backed by real foreground usage events and app launch tracking.
+  - **Kids Mode**: Added daily app time limits, bedtime schedules, instant lock/block controls, 4-state `Kids Mode` / `LADB` indicators (`KIDS MODE ON` header badge + sidebar indicator), and centered Curfew dialogs.
+- **Home Screen, 3-Page Navigation & Remote Overlays**:
+  - Moved All apps top bar icon and all shortcut navigation to Page 2 as All apps grid
+  - **3-Page Navigation & Smooth Transitions**: Organized home navigation across **Page 1 (Dock)** -> **Page 2 (All Apps)** -> **Page 3 (Discover Catalogs)** with fluid GPU-composited transitions
+  - **Fixed HDMI Inputs Auto-Selecting Over Apps**: Pressing OK on **Inputs** inside the **Quick Settings** overlay over a third-party app (e.g., YouTube) now waits for you to choose an input instead of immediately triggering **HDMI 1** on release.
+  - **Fixed Hidden Continue Watching Pop-Up Before Screensaver**: Resolved an intermittent bug where turned-off Continue Watching cards reappeared 30–59 seconds before Ambient Mode started; Watch Next refreshes now defer while dimmed and respect disabled states.
+  - **Bluetooth & Focus Polish**: Added automatic Bluetooth connect permission prompts and flicker-free in-place row updates in **Bluetooth Accessories**, plus reliable focus restoration after closing settings, external apps, and Page 2 screensavers while keeping Gemini/Assistant triggers intact.
 - **Discovery, Wallpapers, Dock & Media**:
-  - **Director | Cast & Filmography Modal**: Added a **Director | Cast** section on movie/show details with synchronized D-pad focus and a filmography popup.
-  - **TMDB "On Home Visit" Rotation**: Added an **On home visit** rotation option so movie/TV backdrops refresh when returning home.
-  - **Dock, Pickers & Media Fixes**: Optimized **Dock Glass** rendering with zero-allocation drawing and background bitmap prep, fixed focused dock label alignment and folder navigation, virtualized **Icon Pack Picker** scrolling, preserved folders/custom shortcuts during dock pruning, made synced lyrics cancellation targeted, moved watch-history logging off the UI thread, fixed **SIMKL** disconnect crashes, and improved **MDBList** personal list ordering/cleanup.
+  - **Director | Cast & Filmography Modal**: Added a **Director | Cast** section on movie/show detail views with synchronized D-pad focus and click-through filmography browsing.
+  - **TMDB "On Home Visit" Rotation**: Added an **On home visit** rotation option so movie/TV backdrops refresh automatically when returning home.
+  - **Dock, Pickers & Media Reliability**: Optimized Dock glass rendering with off-UI-thread bitmap prep, fixed focused dock label alignment and folder modal D-pad traversal, virtualized **Icon Pack Picker** scrolling, preserved folders/custom shortcuts during dock cleanup, made synced lyrics cancellation targeted, moved watch-history writes off the UI thread, fixed **SIMKL** disconnect crashes, and improved **MDBList** personal list ordering and cleanup.
 - **Phone QR Setup, Backup v4, File Manager & LocalSend**:
-  - **QR Smartphone Setup**: Added phone web setup via QR code for **Cricket**, **MDBList**, and public catalogs (including direct QR scan actions in API Key and Add MDBList views).
-  - **Backup & Restore v4**: Expanded backup coverage to all current launcher settings, fixed HDMI port restore crashes, preserved custom folders/shortcuts, persisted restore confirmation toasts across restarts, and hardened archive filename safety.
-  - **File Manager & LocalSend Reliability**: Added diff-based updates, async icons, and streaming exFAT USB file writes in **Streamer Files**; resolved a thread-pool deadlock, async teardown, and transfer buffer bounds in **LocalSend**.
-- **Performance, Memory & Platform Hardening**:
-  - **Aurora Live Wallpaper & Smooth Frame Pacing (94% → 10% Jank)**: Rebuilt Aurora rendering with pre-baked GPU textures, `33ms` frame pacing, low-RAM device caps, and off-screen pausing—reducing measured TV Home screen jank from **94.42% to 10.32%** (median frame time **38ms → 7ms**).
-  - **Lower RAM & Render Overhead**: Eliminated unfocused FBO shadow layers, skipped heavy Explorer APK asset scans, lazy-loaded app drawables, deferred Page 2 inflation, downscaled static wallpapers to `720p` (`RGB_565`), expanded idle cache trimming, hardened Android 14+ broadcasts/permissions, and expanded automated unit tests.
+  - **QR Smartphone Setup**: Added scan-from-phone web setup for **Cricket**, **MDBList**, and public catalogs (including direct QR scan buttons in API Key and Add MDBList views).
+  - **Backup & Restore v4**: Expanded backup coverage across all current launcher settings, fixed HDMI port restore crashes, preserved custom folders and shortcuts, persisted restore confirmation toasts across restarts, and hardened archive entry handling.
+  - **File Manager & LocalSend**: Added smooth diff-based list updates, cached backgrounds, async app icons, and streaming exFAT USB drive writes in **Streamer Files**; resolved a thread-pool stall, async teardown, and transfer buffer bounds in **LocalSend**.
+- **Performance, Smoothness & Platform Compatibility**:
+  - **Aurora Live Wallpaper & Smooth Frame Pacing**: 
+    - Smooth transition from wallpaper to screensaver when wallpaper=TMDB or Aurora and screensaver=TMDB or Aurora in the same order
+  - Vibrant Aurora screensaver
+  - Lots of smoothness magic and optimisations
 
 ### v4.2.4
 - **Home Navigation & Focus Polish**:
