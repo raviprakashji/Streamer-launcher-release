@@ -7,9 +7,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/raviprakashji/Streamer-launcher-release/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v4.4-blue?style=flat-square"></a>
+  <a href="https://github.com/raviprakashji/Streamer-launcher-release/releases/latest"><img alt="Version" src="https://img.shields.io/badge/Release-v4.4.1-blue?style=flat-square"></a>
   <img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?style=flat-square">
-  <img alt="APK size" src="https://img.shields.io/badge/APK-4.5%20MB-success?style=flat-square">
+  <img alt="APK size" src="https://img.shields.io/badge/APK-5.1%20MB-success?style=flat-square">
   <img alt="Ad-Free" src="https://img.shields.io/badge/Ads-None-brightgreen?style=flat-square">
    <img alt="Total Downloads" src="https://img.shields.io/github/downloads/raviprakashji/Streamer-launcher-release/total?style=flat-square">
   <a href="LICENSE"><img alt="GPL-3.0 License" src="https://img.shields.io/badge/License-GPL--3.0-orange?style=flat-square"></a>
@@ -98,7 +98,7 @@ Home Screen Live Scores & Match Schedule |
   - Configurable home screen dimming during a selected time interval.
 - **Built-in File Manager & LocalSend v2**:
   - TV-friendly file manager designed for remote D-pad navigation with pure-Kotlin **exFAT / FAT32** USB Mass Storage OTG support and in-app image previews.
-  - LocalSend v2 built in for local wireless file transfers.
+  - LocalSend v2 built in with dual HTTP/HTTPS server support, Ethernet/multicast peer discovery, and MediaStore fallback for local wireless transfers.
   - Open LocalSend directly from the File Manager to send and receive files between devices.
 - **Streamer Controls & Couch Curfew Parental Controls**:
   - Built-in **Streamer Controls** workspace featuring **Control Hub** (live RAM, network RX delta, speed burst test, and system telemetry updating every 3 seconds), **Running Tasks** (`totalPSS` memory breakdown and background task cleanup), **Quick Presets**, **Activity Explorer**, **My Shortcuts**, and **App Compiler** with Local ADB (`LADB`) elevation.
@@ -136,10 +136,10 @@ Home Screen Live Scores & Match Schedule |
 - **Hardware HDMI & AV Input Switcher**:
   - Select supported HDMI and AV inputs directly from the launcher.
 - **Hardware Remote Button Remapper & Universal Floating Overlays**:
-  - Remap supported TV remote buttons with zero-latency, sub-microsecond $O(1)$ key lookup and dynamic accessibility filtering bypass.
-  - Add custom aliases to make buttons easier to identify.
+  - Remap supported TV remote buttons with zero-latency, sub-microsecond $O(1)$ key lookup and fail-open dynamic accessibility key filtering.
+  - Add custom aliases to make buttons easier to identify, or bind **My Shortcuts** directly in the remapper.
   - Configure independent single-press, double-press, and long-press actions.
-  - **Works Anywhere Floating Overlays**: Launch Quick Settings, Live Cricket Scores, full LocalSend file transfer, Music HUD, Streamer Settings, or App Dock directly over any running app or video player (YouTube, Netflix, etc.) without leaving your content or interrupting playback.
+  - **Works Anywhere Floating Overlays**: Launch **All Apps** (`AllAppsOverlay`), **Streamer Controls** (`StreamerControlsOverlay`), Quick Settings, Live Cricket Scores, full LocalSend file transfer, Music HUD, Streamer Settings, or App Dock directly over any running app or video player (YouTube, Netflix, etc.) without leaving your content or interrupting playback.
   - **Categorized Actions**: Streamer features cleanly organized into **Works anywhere** and **Works from homescreen** sections.
 - **MDBList & Phone QR Setup**:
   - Connect using your personal MDBList API key and add private, dynamic, or static lists with automatic personal list syncing.
@@ -232,7 +232,7 @@ Streamer Launcher is strictly engineered for low-memory, entry-level Android TV 
 
 ### Option 1: Direct APK Download
 Download the latest pre-compiled release from the [Releases Page](https://github.com/raviprakashji/Streamer-launcher-release/releases/latest) (see [CHANGELOG.md](CHANGELOG.md) for release notes):
-- **Streamer.launcher_v4.4.apk** (4.5 MB)
+- **Streamer.launcher_v4.4.1.apk** (5.1 MB)
 
 ### Option 2: Install via ADB
 ```bash
@@ -240,7 +240,7 @@ Download the latest pre-compiled release from the [Releases Page](https://github
 adb connect <your-tv-ip>:5555
 
 # 2. Install the APK
-adb install -r "Streamer.launcher_v4.4.apk"
+adb install -r "Streamer.launcher_v4.4.1.apk"
 ```
 
 ### Grant Secure Settings Permission (Required for Certain System-Level Features)

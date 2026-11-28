@@ -1,3 +1,23 @@
+## [v4.4.1] - 2026-11-28
+### Added, Fixed & Enhanced (vs v4.4)
+- **Home Button Intercept & D-Pad Navigation Reliability**:
+  - Eliminated launcher blinks and stalls when pressing Home on non-default TV setups by pre-intercepting `KEYCODE_HOME` with cached default-Home awareness (`isStreamerDefaultHome()`) across `MainActivity` and external apps while keeping System Settings and Google TV system screens native.
+  - Added `120` ms Home redirect deduplication (`shouldSkipGoHomeCooldown`) and a `160`–`240` ms post-redirect verification pass (`verifyTvHomeRedirectRunnable`) for reliable return to Streamer Launcher.
+  - Added `130` ms sustained D-pad repeat throttling (`shouldThrottleDpadRepeat`) across the launcher and Streamer Controls dialogs, and fixed Quick Settings hold/click races (`650` ms hold threshold).
+- **TMDB Wallpaper "On Home Visit" Fix**:
+  - Fixed TMDB **"On home visit"** backdrop rotation not firing on Home button presses or external-app returns by triggering advancement from in-process Home handling, `dispatchKeyEvent(KEYCODE_HOME)`, and `onResume` with a `500` ms deduplication window.
+  - Stopped periodic background `wallpaperTick` scheduling when rotation interval is set to **On home visit** (`0`) to prevent unwanted timed rotations.
+- **Button Remapper & Floating Overlays**:
+  - Added **All Apps** (`AllAppsOverlay`) and **Streamer Controls** (`StreamerControlsOverlay`) universal floating overlays (`Works anywhere`), plus **My Shortcuts** integration directly inside the Button Remapper.
+  - Switched accessibility key filtering to fail open dynamically without static manifest key-event filtering flags, added post-update accessibility rebind waits (`450` ms), and synchronized Screensaver overlay key handling.
+  - Hardened `VideoWallpaper` playback recovery, extended USB/folder wallpaper scanning (`WallpaperFolderHelper`), fixed Row 5 label spacing in All Apps, and respected Home override opt-out in `HomeServiceHelper`.
+- **LocalSend v2 Dual-Stack Server & Discovery**:
+  - Added dual HTTP/HTTPS server support, improved Ethernet/multicast peer discovery, and MediaStore fallback for incoming transfers.
+- **Lightened SL on Obsidian Visual Identity**:
+  - Updated app icon, Android TV banner, Streamer Controls header/tile, Custom Shortcuts icon sync, and repository branding assets to the **Lightened SL on Obsidian** design.
+
+---
+
 ## [v4.4] - 2026-11-27
 ### Added, Fixed & Enhanced (vs v4.3)
 - **Fire TV / Fire OS Support & Alexa Play Overlay**:
